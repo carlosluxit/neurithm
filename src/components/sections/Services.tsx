@@ -63,7 +63,7 @@ export default function Services() {
                     {service.features.map((feature) => (
                       <li
                         key={feature}
-                        className="text-sm text-muted-foreground flex items-center gap-2 font-medium"
+                        className="text-base text-muted-foreground flex items-center gap-2 font-medium"
                       >
                         <div className="w-1 h-1 rounded-full bg-accent-light" />
                         {feature}
