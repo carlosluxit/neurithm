@@ -324,10 +324,10 @@ export default function CaseStudiesPage() {
             <Target className="w-4 h-4 text-[var(--color-accent-light)]" />
             Proven outcomes across industries
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
-            <span className="gradient-text">Real Results.</span>
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 heading-display">
+            Real Results.
             <br />
-            <span className="gradient-text">Real Transformation.</span>
+            Real Transformation.
           </h1>
           <p className="text-lg md:text-xl text-[var(--color-muted)] max-w-2xl mx-auto">
             See how organizations like yours have leveraged AI to eliminate
@@ -382,7 +382,7 @@ export default function CaseStudiesPage() {
               <div className="grid grid-cols-2 gap-4 mb-6">
                 {study.results.slice(0, 2).map((result) => (
                   <div key={result.label}>
-                    <p className="text-2xl font-bold gradient-text-accent">
+                    <p className="text-2xl font-bold text-white">
                       {result.value}
                     </p>
                     <p className="text-xs text-[var(--color-muted)]">
@@ -419,7 +419,7 @@ export default function CaseStudiesPage() {
                 <span className="text-xs font-medium px-3 py-1 rounded-full glass-card text-[var(--color-muted)] inline-block mb-3">
                   {study.industry}
                 </span>
-                <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-2">
+                <h2 className="text-3xl md:text-4xl font-bold heading-section mb-2">
                   {study.headline}
                 </h2>
                 <p className="text-[var(--color-muted)]">{study.company}</p>
@@ -445,7 +445,7 @@ export default function CaseStudiesPage() {
               <div className="glass-card rounded-2xl p-6">
                 <div className="flex items-center gap-2 mb-4">
                   <Clock className="w-5 h-5 text-[var(--color-error)]" />
-                  <h3 className="text-lg font-semibold text-[var(--color-foreground)]">
+                  <h3 className="text-lg font-bold text-white heading-section">
                     The Challenge
                   </h3>
                 </div>
@@ -456,7 +456,7 @@ export default function CaseStudiesPage() {
                   {study.challenge.details.map((detail, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-3 text-sm text-[var(--color-muted)]"
+                      className="flex items-start gap-3 text-sm text-[var(--color-muted-foreground)] leading-relaxed"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-error)] mt-1.5 shrink-0" />
                       {detail}
@@ -469,7 +469,7 @@ export default function CaseStudiesPage() {
               <div className="glass-card rounded-2xl p-6">
                 <div className="flex items-center gap-2 mb-4">
                   <Target className="w-5 h-5 text-[var(--color-success)]" />
-                  <h3 className="text-lg font-semibold text-[var(--color-foreground)]">
+                  <h3 className="text-lg font-bold text-white heading-section">
                     The Solution
                   </h3>
                 </div>
@@ -480,7 +480,7 @@ export default function CaseStudiesPage() {
                   {study.solution.details.map((detail, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-3 text-sm text-[var(--color-muted)]"
+                      className="flex items-start gap-3 text-sm text-[var(--color-muted-foreground)] leading-relaxed"
                     >
                       <CheckCircle2 className="w-4 h-4 text-[var(--color-success)] mt-0.5 shrink-0" />
                       {detail}
@@ -492,23 +492,31 @@ export default function CaseStudiesPage() {
 
             {/* Our Approach */}
             <div className="glass-card rounded-2xl p-6 mb-8">
-              <div className="flex items-center gap-2 mb-6">
+              <div className="flex items-center gap-3 mb-6">
                 <TrendingUp className="w-5 h-5 text-[var(--color-accent-light)]" />
-                <h3 className="text-lg font-semibold text-[var(--color-foreground)]">
+                <h3 className="text-xl font-bold text-white heading-section">
                   Our Approach
                 </h3>
               </div>
               <div className="grid sm:grid-cols-2 gap-4">
-                {study.approach.map((phase, i) => (
-                  <div
-                    key={i}
-                    className="p-4 rounded-xl bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)]"
-                  >
-                    <p className="text-sm text-[var(--color-muted)] leading-relaxed">
-                      {phase}
-                    </p>
-                  </div>
-                ))}
+                {study.approach.map((phase, i) => {
+                  const dashIdx = phase.indexOf(':')
+                  const label = dashIdx > -1 ? phase.slice(0, dashIdx + 1) : ''
+                  const desc = dashIdx > -1 ? phase.slice(dashIdx + 1) : phase
+                  return (
+                    <div
+                      key={i}
+                      className="p-5 rounded-xl bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] hover:border-[rgba(124,92,252,0.2)] transition-colors"
+                    >
+                      {label && (
+                        <p className="text-sm font-bold text-white mb-2 heading-section">{label}</p>
+                      )}
+                      <p className="text-sm text-[var(--color-muted)] leading-relaxed">
+                        {desc.trim()}
+                      </p>
+                    </div>
+                  )
+                })}
               </div>
             </div>
 
@@ -519,7 +527,7 @@ export default function CaseStudiesPage() {
                   key={result.label}
                   className="glass-card rounded-2xl p-6 text-center"
                 >
-                  <p className="text-3xl md:text-4xl font-bold gradient-text-accent mb-1">
+                  <p className="text-3xl md:text-4xl font-bold text-white mb-1">
                     {result.value}
                   </p>
                   <p className="text-sm font-medium text-[var(--color-foreground)] mb-1">
@@ -556,7 +564,7 @@ export default function CaseStudiesPage() {
       <section className="relative section-spacing overflow-hidden">
         <div className="orb-gradient orb-purple w-[600px] h-[600px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20" />
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold gradient-text mb-6">
+          <h2 className="text-3xl md:text-5xl font-bold heading-section mb-6">
             Ready to be our next success story?
           </h2>
           <p className="text-lg text-[var(--color-muted)] mb-10 max-w-xl mx-auto">

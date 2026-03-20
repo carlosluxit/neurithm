@@ -139,9 +139,8 @@ export default function ContactPage() {
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.08]">
-            Let&apos;s Build Something{' '}
-            <span className="gradient-text">Intelligent</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.08] heading-display">
+            Let&apos;s Build Something Intelligent
           </h1>
 
           <p className="mt-8 text-lg sm:text-xl text-muted max-w-2xl mx-auto leading-relaxed">
@@ -400,9 +399,8 @@ export default function ContactPage() {
       <section className="section-spacing relative border-t border-border">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
-              Frequently Asked{' '}
-              <span className="gradient-text">Questions</span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 heading-section">
+              Frequently Asked Questions
             </h2>
             <p className="text-muted text-lg">
               Common questions about working with Neurithm.

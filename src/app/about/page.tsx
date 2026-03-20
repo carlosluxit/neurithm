@@ -102,9 +102,8 @@ export default function AboutPage() {
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.08]">
-            The Team Behind the{' '}
-            <span className="gradient-text">Transformation</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.08] heading-display">
+            The Team Behind the Transformation
           </h1>
 
           <p className="mt-8 text-lg sm:text-xl text-muted max-w-2xl mx-auto leading-relaxed">
@@ -119,8 +118,8 @@ export default function AboutPage() {
       <section className="section-spacing relative">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
-              What We <span className="gradient-text">Stand For</span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 heading-section">
+              What We Stand For
             </h2>
             <p className="text-muted text-lg max-w-xl mx-auto">
               Our values shape every engagement, every recommendation, and every
@@ -153,8 +152,8 @@ export default function AboutPage() {
 
         <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
-              Our <span className="gradient-text">4-Phase Approach</span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 heading-section">
+              Our 4-Phase Approach
             </h2>
             <p className="text-muted text-lg max-w-2xl mx-auto">
               Every transformation follows a proven methodology — disciplined
@@ -192,7 +191,7 @@ export default function AboutPage() {
                 <div className="w-10 h-10 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto mb-4">
                   <stat.icon className="w-4 h-4 text-accent-light" />
                 </div>
-                <div className="text-3xl sm:text-4xl font-bold gradient-text-accent mb-1">
+                <div className="text-3xl sm:text-4xl font-bold text-white mb-1">
                   {stat.value}
                 </div>
                 <div className="text-sm text-muted">{stat.label}</div>
@@ -208,9 +207,8 @@ export default function AboutPage() {
 
         <div className="max-w-3xl mx-auto px-6 lg:px-8 relative z-10">
           <div className="glass-card rounded-3xl p-12 lg:p-16 text-center gradient-border">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-6">
-              Ready to Begin?{' '}
-              <span className="gradient-text">Let&apos;s Talk.</span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-6 heading-section">
+              Ready to Begin? Let&apos;s Talk.
             </h2>
             <p className="text-lg text-muted leading-relaxed mb-10 max-w-xl mx-auto">
               Let&apos;s discuss your AI transformation and build a roadmap

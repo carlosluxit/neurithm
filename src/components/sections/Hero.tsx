@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import BlurText from '@/components/reactbits/BlurText'
 import DecryptedText from '@/components/reactbits/DecryptedText'
+import RotatingText from '@/components/reactbits/RotatingText'
 
 const FloatingLines = dynamic(() => import('@/components/reactbits/FloatingLines'), { ssr: false })
 
@@ -40,7 +41,7 @@ export default function Hero() {
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/5 mb-8">
           <div className="w-1.5 h-1.5 rounded-full bg-accent-light animate-pulse" />
-          <span className="text-xs font-medium text-accent-light tracking-wide uppercase">
+          <span className="section-label">
             <DecryptedText
               text="AI Transformation Agency"
               speed={40}
@@ -55,18 +56,26 @@ export default function Hero() {
 
         {/* Main Headline */}
         <BlurText
-          text="Every Revolution Needs a Rhythm"
+          text="EVERY REVOLUTION NEEDS A RHYTHM"
           delay={80}
-          className="text-6xl sm:text-7xl lg:text-8xl xl:text-[6.5rem] heading-display"
+          className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl heading-display uppercase"
           animateBy="words"
           direction="bottom"
         />
 
-        {/* Subheadline */}
-        <p className="mt-8 text-lg sm:text-xl text-muted max-w-2xl mx-auto leading-relaxed">
-          Neurithm empowers enterprises to harness AI strategically, intelligently,
-          and efficiently. From discovery to scaling — synchronized to your ambition.
-        </p>
+        {/* Subheadline with Rotating Text */}
+        <div className="mt-8 text-lg sm:text-xl text-muted max-w-2xl mx-auto leading-relaxed">
+          <span>Neurithm empowers enterprises to </span>
+          <RotatingText
+            texts={['harness AI strategically', 'automate intelligently', 'scale efficiently', 'transform boldly']}
+            mainClassName="text-accent-light font-medium inline-flex"
+            rotationInterval={3000}
+            staggerDuration={0.02}
+            staggerFrom="first"
+            transition={{ type: 'spring', damping: 30, stiffness: 200 }}
+          />
+          <span>. From discovery to scaling — synchronized to your ambition.</span>
+        </div>
 
         {/* CTAs */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">

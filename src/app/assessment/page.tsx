@@ -74,9 +74,8 @@ export default function AssessmentPage() {
             </span>
           </div>
 
-          <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6">
-            AI Transformation{' '}
-            <span className="gradient-text">Readiness Score</span>
+          <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6 heading-display">
+            AI Transformation Readiness Score
           </h1>
 
           <p className="text-lg text-muted leading-relaxed mb-8 max-w-xl mx-auto">

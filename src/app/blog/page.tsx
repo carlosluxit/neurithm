@@ -115,9 +115,8 @@ export default function BlogPage() {
           <p className="text-sm font-medium text-accent-light tracking-widest uppercase mb-4">
             Insights & Resources
           </p>
-          <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6">
-            Behind the{' '}
-            <span className="gradient-text">Breakthrough</span>
+          <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6 heading-display">
+            Behind the Breakthrough
           </h1>
           <p className="text-lg text-muted leading-relaxed">
             Expert analysis, actionable frameworks, and real-world case studies
@@ -186,8 +185,8 @@ export default function BlogPage() {
         {/* Whitepapers */}
         <div>
           <div className="text-center mb-10">
-            <h3 className="text-2xl font-bold mb-3">
-              Gated Resources & <span className="gradient-text">Whitepapers</span>
+            <h3 className="text-2xl font-bold mb-3 heading-section">
+              Gated Resources & Whitepapers
             </h3>
             <p className="text-muted text-sm">In-depth research and frameworks for AI transformation leaders.</p>
           </div>

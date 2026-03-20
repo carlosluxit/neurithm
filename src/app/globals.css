@@ -3,8 +3,8 @@
 @theme inline {
   --color-background: #050510;
   --color-foreground: #f0f0f5;
-  --color-muted: #8a8a9a;
-  --color-muted-foreground: #6a6a7a;
+  --color-muted: #9d9db0;
+  --color-muted-foreground: #7e7e94;
   --color-border: rgba(255, 255, 255, 0.12);
   --color-border-hover: rgba(255, 255, 255, 0.2);
   --color-card: rgba(255, 255, 255, 0.06);
@@ -16,14 +16,14 @@
   --color-accent-glow-strong: rgba(124, 92, 252, 0.4);
   --color-surface: #0c0c20;
   --color-surface-raised: #121230;
-  --color-accent-warm: #f59e0b;
-  --color-accent-warm-light: #fbbf24;
-  --color-accent-cool: #06b6d4;
-  --color-accent-cool-light: #22d3ee;
+  --color-accent-warm: #c084fc;
+  --color-accent-warm-light: #d8b4fe;
+  --color-accent-cool: #818cf8;
+  --color-accent-cool-light: #a5b4fc;
   --color-success: #34d399;
   --color-warning: #fbbf24;
   --color-error: #f87171;
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-body);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-heading);
 }
@@ -40,6 +40,9 @@ body {
   background: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -187,7 +190,17 @@ body {
 /* Section divider */
 .section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-accent)/0.3, var(--color-accent-cool)/0.3, var(--color-accent-warm)/0.2, transparent);
+  background: linear-gradient(90deg, transparent, var(--color-accent)/0.3, var(--color-accent-cool)/0.2, transparent);
+}
+
+/* Section label — bold Space Grotesk caps */
+.section-label {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent-light);
 }
 
 /* Typography */

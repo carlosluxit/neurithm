@@ -119,11 +119,8 @@ export default function CalculatorPage() {
               <TrendingUp className="w-3.5 h-3.5 text-accent-light" />
               <span className="text-xs font-medium text-accent-light tracking-wide uppercase">Your ROI Projection</span>
             </div>
-            <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-4">
-              <span className="gradient-text">
-                ${Math.round(results.netSavings / 1000)}K
-              </span>{' '}
-              Annual Net Savings
+            <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-4 heading-display">
+              ${Math.round(results.netSavings / 1000)}K Annual Net Savings
             </h1>
             <p className="text-lg text-muted">
               Based on {inputs.employees} employees with AI automation potential
@@ -261,9 +258,8 @@ export default function CalculatorPage() {
               Free Tool
             </span>
           </div>
-          <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-4">
-            AI ROI{' '}
-            <span className="gradient-text">Calculator</span>
+          <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-4 heading-display">
+            AI ROI Calculator
           </h1>
           <p className="text-lg text-muted max-w-xl mx-auto">
             See exactly how much AI automation can save your business.
@@ -347,7 +343,7 @@ export default function CalculatorPage() {
                 </div>
                 <div>
                   <p className="text-xs text-muted mb-1">ROI</p>
-                  <p className="text-lg font-bold gradient-text-accent">{results.roi}%</p>
+                  <p className="text-lg font-bold text-white">{results.roi}%</p>
                 </div>
                 <div>
                   <p className="text-xs text-muted mb-1">FTE Saved</p>

@@ -92,12 +92,11 @@ export default function Demos() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16 lg:mb-20">
-          <p className="text-sm font-medium text-accent-light tracking-widest uppercase mb-4">
+          <p className="section-label mb-4">
             See It In Action
           </p>
-          <h2 className="text-4xl lg:text-5xl font-bold tracking-tight">
-            Interactive{' '}
-            <span className="gradient-text">AI Demos</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl heading-section">
+            Interactive AI Demos
           </h2>
           <p className="mt-6 text-lg text-muted leading-relaxed">
             Experience the power of our AI solutions firsthand.

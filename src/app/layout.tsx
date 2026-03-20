@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
+import { Geist_Mono, Space_Grotesk, Darker_Grotesque } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import { organizationSchema, websiteSchema, serviceSchema } from "@/lib/schema";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const darkerGrotesque = Darker_Grotesque({
+  variable: "--font-body",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -84,7 +85,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      className={`${darkerGrotesque.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <head>
         {schemas.map((schema, i) => (
