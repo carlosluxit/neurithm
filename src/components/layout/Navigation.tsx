@@ -7,11 +7,11 @@ import { SITE } from '@/lib/constants'
 
 const navLinks = [
   { href: '#services', label: 'Services' },
-  { href: '#process', label: 'Process' },
-  { href: '#demos', label: 'Demos' },
+  { href: '/case-studies', label: 'Case Studies' },
   { href: '/assessment', label: 'AI Assessment' },
   { href: '/calculator', label: 'ROI Calculator' },
   { href: '/blog', label: 'Insights' },
+  { href: '/contact', label: 'Contact' },
 ]
 
 export default function Navigation() {

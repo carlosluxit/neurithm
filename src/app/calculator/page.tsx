@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { Calculator, ArrowRight, TrendingUp, Clock, DollarSign, Users, Sparkles } from 'lucide-react'
-import CountUp from '@/components/reactbits/CountUp'
+import { Calculator, ArrowRight, TrendingUp, Clock, DollarSign, Users, Sparkles, BarChart3, ArrowLeft } from 'lucide-react'
+import Link from 'next/link'
 
 type CalcInputs = {
   employees: number
@@ -17,7 +17,7 @@ type CalcInputs = {
 function calculateROI(inputs: CalcInputs) {
   const hourlyRate = inputs.avgSalary / 2080
   const totalRepetitiveHours = inputs.employees * inputs.hoursOnRepetitive * 52
-  const automationRate = 0.65 // 65% of repetitive tasks can be automated
+  const automationRate = 0.65
   const hoursAutomated = totalRepetitiveHours * automationRate
   const annualSavings = hoursAutomated * hourlyRate
   const implementationCost = inputs.employees <= 50 ? 75000 : inputs.employees <= 200 ? 150000 : 300000
@@ -27,6 +27,13 @@ function calculateROI(inputs: CalcInputs) {
   const roi = ((netSavings - implementationCost) / implementationCost) * 100
   const paybackMonths = Math.ceil(implementationCost / (netSavings / 12))
   const fteEquivalent = Math.round(hoursAutomated / 2080 * 10) / 10
+
+  // Multi-year projections (15% improvement year over year)
+  const year1 = netSavings - implementationCost
+  const year2 = netSavings
+  const year3 = Math.round(netSavings * 1.15)
+  const year4 = Math.round(netSavings * 1.3)
+  const year5 = Math.round(netSavings * 1.45)
 
   return {
     annualSavings: Math.round(annualSavings),
@@ -39,6 +46,15 @@ function calculateROI(inputs: CalcInputs) {
     hoursAutomated: Math.round(hoursAutomated),
     fteEquivalent,
     totalRepetitiveHours: Math.round(totalRepetitiveHours),
+    projections: {
+      year1: Math.round(year1),
+      year2: Math.round(year2),
+      year3,
+      year4,
+      year5,
+      cumulative3yr: Math.round(year1 + year2 + year3),
+      cumulative5yr: Math.round(year1 + year2 + year3 + year4 + year5),
+    },
   }
 }
 
@@ -86,9 +102,18 @@ export default function CalculatorPage() {
   }
 
   if (showResults) {
+    const maxProjection = Math.max(
+      results.projections.year1,
+      results.projections.year2,
+      results.projections.year3,
+      results.projections.year4,
+      results.projections.year5,
+    )
+
     return (
       <div className="min-h-screen pt-28 pb-20">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6">
+          {/* Header */}
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/5 mb-6">
               <TrendingUp className="w-3.5 h-3.5 text-accent-light" />
@@ -124,26 +149,78 @@ export default function CalculatorPage() {
             })}
           </div>
 
-          {/* Detailed Breakdown */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            {/* 5-Year Projection Chart */}
+            <div className="glass-card rounded-2xl p-8">
+              <div className="flex items-center gap-2 mb-6">
+                <BarChart3 className="w-5 h-5 text-accent-light" />
+                <h3 className="font-semibold">5-Year Savings Projection</h3>
+              </div>
+              <div className="flex items-end gap-3 h-48 mb-4">
+                {[
+                  { year: 'Y1', value: results.projections.year1 },
+                  { year: 'Y2', value: results.projections.year2 },
+                  { year: 'Y3', value: results.projections.year3 },
+                  { year: 'Y4', value: results.projections.year4 },
+                  { year: 'Y5', value: results.projections.year5 },
+                ].map((bar) => {
+                  const height = maxProjection > 0 ? Math.max((bar.value / maxProjection) * 100, 5) : 5
+                  return (
+                    <div key={bar.year} className="flex-1 flex flex-col items-center gap-2">
+                      <span className="text-xs font-mono text-muted">
+                        ${Math.round(bar.value / 1000)}K
+                      </span>
+                      <div className="w-full relative" style={{ height: `${height}%` }}>
+                        <div className="absolute inset-0 rounded-t-lg bg-gradient-to-t from-accent to-accent-light opacity-80" />
+                      </div>
+                      <span className="text-xs text-muted">{bar.year}</span>
+                    </div>
+                  )
+                })}
+              </div>
+              <div className="flex items-center justify-between pt-4 border-t border-border">
+                <span className="text-sm text-muted">5-Year Cumulative</span>
+                <span className="text-lg font-bold text-success">${Math.round(results.projections.cumulative5yr / 1000)}K</span>
+              </div>
+            </div>
+
+            {/* Detailed Breakdown */}
+            <div className="glass-card rounded-2xl p-8">
+              <h3 className="font-semibold mb-6">Financial Breakdown</h3>
+              <div className="space-y-4">
+                {[
+                  { label: 'Hours automated annually', value: `${results.hoursAutomated.toLocaleString()} hrs` },
+                  { label: 'Gross savings from automation', value: `$${results.annualSavings.toLocaleString()}`, positive: true },
+                  { label: 'Implementation (one-time)', value: `-$${results.implementationCost.toLocaleString()}` },
+                  { label: 'AI operations (annual)', value: `-$${results.annualAgentCost.toLocaleString()}` },
+                  { label: 'Net Year 1', value: `$${results.projections.year1.toLocaleString()}`, bold: true },
+                  { label: 'Net Year 2+', value: `$${results.netSavings.toLocaleString()}`, positive: true, bold: true },
+                ].map((row) => (
+                  <div key={row.label} className={`flex items-center justify-between py-2 ${row.bold ? 'border-t border-border pt-3' : ''}`}>
+                    <span className={`text-sm ${row.bold ? 'font-medium' : 'text-muted'}`}>{row.label}</span>
+                    <span className={`text-sm font-mono ${row.positive ? 'text-success' : ''} ${row.bold ? 'font-bold' : ''}`}>
+                      {row.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Assumptions */}
           <div className="glass-card rounded-2xl p-8 mb-8">
-            <h3 className="font-semibold mb-6">Detailed Breakdown</h3>
-            <div className="space-y-4">
-              {[
-                { label: 'Hours spent on repetitive tasks annually', value: `${results.totalRepetitiveHours.toLocaleString()} hrs` },
-                { label: 'Hours automatable with AI (65%)', value: `${results.hoursAutomated.toLocaleString()} hrs` },
-                { label: 'Gross annual savings from automation', value: `$${results.annualSavings.toLocaleString()}`, positive: true },
-                { label: 'Implementation cost (one-time)', value: `-$${results.implementationCost.toLocaleString()}` },
-                { label: 'AI agent operational cost (annual)', value: `-$${results.annualAgentCost.toLocaleString()}` },
-                { label: 'Net annual savings (Year 1)', value: `$${(results.netSavings - results.implementationCost).toLocaleString()}`, bold: true },
-                { label: 'Net annual savings (Year 2+)', value: `$${results.netSavings.toLocaleString()}`, positive: true, bold: true },
-              ].map((row) => (
-                <div key={row.label} className={`flex items-center justify-between py-3 ${row.bold ? 'border-t border-border pt-4' : ''}`}>
-                  <span className={`text-sm ${row.bold ? 'font-medium' : 'text-muted'}`}>{row.label}</span>
-                  <span className={`text-sm font-mono ${row.positive ? 'text-success' : ''} ${row.bold ? 'font-bold text-base' : ''}`}>
-                    {row.value}
-                  </span>
-                </div>
-              ))}
+            <h3 className="font-semibold mb-4">Methodology & Assumptions</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-muted">
+              <div className="space-y-2">
+                <p>&#x2022; 65% of repetitive tasks are automatable with current AI</p>
+                <p>&#x2022; Implementation costs based on company size tier</p>
+                <p>&#x2022; 15% year-over-year improvement from AI learning</p>
+              </div>
+              <div className="space-y-2">
+                <p>&#x2022; Agent costs include hosting, maintenance, and monitoring</p>
+                <p>&#x2022; Savings exclude indirect benefits (quality, speed, satisfaction)</p>
+                <p>&#x2022; Based on Neurithm&apos;s 50+ enterprise engagements</p>
+              </div>
             </div>
           </div>
 
@@ -154,10 +231,19 @@ export default function CalculatorPage() {
               Book a free discovery call to discuss your specific use cases and get a
               detailed implementation plan.
             </p>
-            <button className="btn-primary py-4 px-8 inline-flex items-center gap-3 group text-base">
-              Book Discovery Call
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </button>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link href="/contact" className="btn-primary py-4 px-8 inline-flex items-center gap-3 group text-base">
+                Book Discovery Call
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <button
+                onClick={() => setShowResults(false)}
+                className="btn-secondary py-4 px-8 inline-flex items-center gap-3 text-base"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Recalculate
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -267,6 +353,10 @@ export default function CalculatorPage() {
                   <p className="text-xs text-muted mb-1">FTE Saved</p>
                   <p className="text-lg font-bold">{results.fteEquivalent}</p>
                 </div>
+              </div>
+              <div className="mt-3 pt-3 border-t border-accent/10">
+                <p className="text-xs text-muted mb-1">5-Year Cumulative Savings</p>
+                <p className="text-lg font-bold text-success">${Math.round(results.projections.cumulative5yr / 1000)}K</p>
               </div>
             </div>
 

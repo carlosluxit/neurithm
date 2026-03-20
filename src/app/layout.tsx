@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
+import { organizationSchema, websiteSchema, serviceSchema } from "@/lib/schema";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,7 +16,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Neurithm — AI Transformation Synchronized to Your Ambition",
+  title: {
+    default: "Neurithm — AI Transformation Synchronized to Your Ambition",
+    template: "%s | Neurithm",
+  },
   description:
     "Neurithm empowers enterprises to harness AI strategically, intelligently, and efficiently. AI consulting, agent development, process automation, and team enablement.",
   keywords: [
@@ -29,13 +33,18 @@ export const metadata: Metadata = {
     "AI ROI calculator",
     "process automation",
     "AI agent development",
+    "AI transformation agency",
+    "machine learning consulting",
+    "intelligent automation",
   ],
+  metadataBase: new URL("https://neurithm.ai"),
   openGraph: {
     title: "Neurithm — AI Transformation Synchronized to Your Ambition",
     description:
       "From discovery to scaling, Neurithm synchronizes AI transformation to your ambition. Get your free AI readiness score.",
     type: "website",
     siteName: "Neurithm",
+    url: "https://neurithm.ai",
   },
   twitter: {
     card: "summary_large_image",
@@ -46,6 +55,16 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://neurithm.ai",
   },
 };
 
@@ -54,41 +73,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Neurithm",
-    description:
-      "AI Transformation Agency — empowering enterprises to harness AI strategically, intelligently, and efficiently.",
-    url: "https://neurithm.ai",
-    logo: "https://neurithm.ai/logo.png",
-    sameAs: [],
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "sales",
-      email: "hello@neurithm.ai",
-    },
-    offers: [
-      {
-        "@type": "Offer",
-        name: "AI Readiness Assessment",
-        description:
-          "Free AI readiness assessment that scores your organization across 5 dimensions and provides a personalized transformation roadmap.",
-      },
-      {
-        "@type": "Offer",
-        name: "AI Strategy & Consulting",
-        description:
-          "End-to-end AI strategy consulting from assessment through deployment.",
-      },
-      {
-        "@type": "Offer",
-        name: "AI Agent Development",
-        description:
-          "Custom AI agent development for automation, customer service, sales, and operations.",
-      },
-    ],
-  };
+  const schemas = [organizationSchema(), websiteSchema(), serviceSchema()];
 
   return (
     <html
@@ -96,12 +81,15 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-          }}
-        />
+        {schemas.map((schema, i) => (
+          <script
+            key={i}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(schema).replace(/</g, "\\u003c"),
+            }}
+          />
+        ))}
       </head>
       <body className="min-h-full flex flex-col">
         <Navigation />

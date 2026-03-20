@@ -42,6 +42,8 @@ export async function POST(request: Request) {
             source: lead.source,
             score: lead.score,
             lead_id: data?.[0]?.id,
+            calculator_data: body.calculator_data || null,
+            assessment_data: body.assessment_data || null,
           }),
         })
       } catch (emailError) {
