@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import {
   Building2,
   TrendingUp,
@@ -9,10 +10,6 @@ import {
   ArrowRight,
   Quote,
   CheckCircle2,
-  Heart,
-  Shield,
-  ShoppingCart,
-  Scale,
   Filter,
 } from 'lucide-react'
 import Link from 'next/link'
@@ -23,8 +20,7 @@ type Industry = (typeof industries)[number]
 interface CaseStudy {
   id: string
   industry: Exclude<Industry, 'All'>
-  icon: React.ReactNode
-  iconColor: string
+  icon: string
   company: string
   companyDescription: string
   headline: string
@@ -53,8 +49,7 @@ const caseStudies: CaseStudy[] = [
   {
     id: 'healthcare-patient-flow',
     industry: 'Healthcare',
-    icon: <Heart className="w-6 h-6" />,
-    iconColor: 'text-rose-400',
+    icon: '/icons/industry-healthcare.png',
     company: 'Regional Healthcare Network',
     companyDescription:
       'A multi-location healthcare provider with 12 clinics, 200+ physicians, and over 500,000 annual patient visits across the Midwest.',
@@ -116,8 +111,7 @@ const caseStudies: CaseStudy[] = [
   {
     id: 'finance-compliance-automation',
     industry: 'Financial Services',
-    icon: <Shield className="w-6 h-6" />,
-    iconColor: 'text-blue-400',
+    icon: '/icons/industry-finance.png',
     company: 'Mid-Market Investment Advisory',
     companyDescription:
       'A registered investment advisory firm managing $4.2B in assets, serving institutional clients with a compliance team of 15 analysts handling regulatory obligations across SEC, FINRA, and state regulators.',
@@ -179,8 +173,7 @@ const caseStudies: CaseStudy[] = [
   {
     id: 'ecommerce-customer-experience',
     industry: 'E-Commerce',
-    icon: <ShoppingCart className="w-6 h-6" />,
-    iconColor: 'text-emerald-400',
+    icon: '/icons/industry-ecommerce.png',
     company: 'Direct-to-Consumer Lifestyle Brand',
     companyDescription:
       'A fast-growing DTC brand with $85M annual revenue, 2.4 million active customers, and a product catalog spanning 3,000+ SKUs across home goods, wellness, and lifestyle categories.',
@@ -242,8 +235,7 @@ const caseStudies: CaseStudy[] = [
   {
     id: 'legal-document-intelligence',
     industry: 'Legal',
-    icon: <Scale className="w-6 h-6" />,
-    iconColor: 'text-amber-400',
+    icon: '/icons/industry-legal.png',
     company: 'National Commercial Law Firm',
     companyDescription:
       'A 180-attorney commercial law firm specializing in M&A, corporate governance, and regulatory compliance, handling 400+ active matters and processing thousands of contracts monthly.',
@@ -315,23 +307,20 @@ export default function CaseStudiesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden section-spacing">
-        <div className="orb-gradient orb-purple w-[500px] h-[500px] -top-40 -right-40 absolute" />
-        <div className="orb-gradient orb-indigo w-[400px] h-[400px] -bottom-20 -left-20 absolute" />
+      <section className="relative overflow-hidden min-h-[70vh] flex items-center">
+        {/* Orbs */}
+        <div className="orb-gradient orb-purple w-[700px] h-[700px] -top-48 -right-48 absolute opacity-30 animate-pulse-glow" />
+        <div className="orb-gradient orb-indigo w-[500px] h-[500px] -bottom-32 -left-32 absolute opacity-20" />
+        <div className="orb-gradient orb-blue w-[400px] h-[400px] top-1/3 left-1/4 absolute opacity-10" />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm text-[var(--color-muted)] mb-8">
-            <Target className="w-4 h-4 text-[var(--color-accent-light)]" />
-            Proven outcomes across industries
-          </div>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 heading-display">
-            Real Results.
-            <br />
-            Real Transformation.
+        <div className="relative z-10 max-w-6xl mx-auto px-6 text-center pt-32 pb-20">
+          <p className="section-label mb-6">Proven Outcomes</p>
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl xl:text-[7rem] 2xl:text-[8rem] heading-display uppercase mb-8">
+            Real Results. Real Transformation.
           </h1>
-          <p className="text-lg md:text-xl text-[var(--color-muted)] max-w-2xl mx-auto">
+          <p className="text-2xl sm:text-3xl text-muted leading-relaxed max-w-3xl mx-auto">
             See how organizations like yours have leveraged AI to eliminate
-            inefficiencies, unlock revenue, and transform the way they operate.
+            inefficiencies, unlock revenue, and transform operations.
           </p>
         </div>
       </section>
@@ -339,15 +328,15 @@ export default function CaseStudiesPage() {
       {/* Filter Tabs */}
       <section className="relative z-10 max-w-6xl mx-auto px-6 pb-16">
         <div className="flex items-center gap-3 flex-wrap justify-center">
-          <Filter className="w-4 h-4 text-[var(--color-muted)]" />
+          <Filter className="w-5 h-5 text-muted" />
           {industries.map((industry) => (
             <button
               key={industry}
               onClick={() => setActiveFilter(industry)}
-              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${
+              className={`px-6 py-3 rounded-full text-base font-bold transition-all duration-300 cursor-pointer ${
                 activeFilter === industry
                   ? 'btn-primary'
-                  : 'glass-card text-[var(--color-muted)] hover:text-[var(--color-foreground)]'
+                  : 'glass-card text-muted hover:text-foreground'
               }`}
             >
               {industry}
@@ -357,46 +346,85 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Case Study Cards */}
-      <section className="relative z-10 max-w-6xl mx-auto px-6 pb-20">
-        <div className="grid md:grid-cols-2 gap-6">
+      <section className="relative z-10 max-w-6xl mx-auto px-6 pb-24">
+        <div className="grid md:grid-cols-2 gap-8">
           {filteredStudies.map((study) => (
             <a
               key={study.id}
               href={`#${study.id}`}
-              className="glass-card rounded-2xl p-8 group transition-all duration-500 hover:scale-[1.02] hover:glow-sm block"
+              className="glass-card rounded-2xl p-10 group transition-all duration-500 hover:scale-[1.02] hover:glow-sm block"
             >
-              <div className="flex items-start justify-between mb-4">
-                <div className={`p-3 rounded-xl glass-card ${study.iconColor}`}>
-                  {study.icon}
+              <div className="flex items-start justify-between mb-6">
+                <div className="w-16 h-16 rounded-2xl overflow-hidden">
+                  <Image
+                    src={study.icon}
+                    alt={study.industry}
+                    width={64}
+                    height={64}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <span className="text-xs font-medium px-3 py-1 rounded-full glass-card text-[var(--color-muted)]">
+                <span className="text-sm font-bold px-4 py-1.5 rounded-full glass-card text-accent-light uppercase tracking-wider">
                   {study.industry}
                 </span>
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-[var(--color-foreground)] group-hover:text-[var(--color-accent-light)] transition-colors">
+              <h3 className="text-3xl font-bold mb-3 heading-section group-hover:text-accent-light transition-colors">
                 {study.headline}
               </h3>
-              <p className="text-sm text-[var(--color-muted)] mb-6">
+              <p className="text-lg text-muted mb-8">
                 {study.company}
               </p>
-              <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className="grid grid-cols-2 gap-6 mb-8">
                 {study.results.slice(0, 2).map((result) => (
                   <div key={result.label}>
-                    <p className="text-2xl font-bold text-white">
+                    <p className="text-4xl font-extrabold text-white heading-display">
                       {result.value}
                     </p>
-                    <p className="text-xs text-[var(--color-muted)]">
+                    <p className="text-base text-muted mt-1">
                       {result.label}
                     </p>
                   </div>
                 ))}
               </div>
-              <div className="flex items-center text-sm text-[var(--color-accent-light)] font-medium group-hover:gap-3 gap-2 transition-all">
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-accent/10 border border-accent/20 text-accent-light font-semibold text-base group-hover:bg-accent/20 group-hover:border-accent/40 transition-all">
                 Read full case study
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </div>
             </a>
           ))}
+        </div>
+      </section>
+
+      {/* Light contrast summary */}
+      <section className="section-light py-24 lg:py-32">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <h2 className="text-6xl sm:text-7xl lg:text-8xl xl:text-[9rem] font-black tracking-tight leading-[0.85] uppercase heading-display mb-10">
+            Measurable
+            <br />
+            Impact
+          </h2>
+          <p className="text-2xl sm:text-3xl text-muted leading-relaxed max-w-3xl mx-auto mb-16">
+            Every engagement is measured by outcomes, not hours.
+            Here&apos;s the proof.
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
+            <div>
+              <p className="text-5xl sm:text-6xl font-black heading-display mb-2">62%</p>
+              <p className="text-lg text-muted font-medium">Wait time cut</p>
+            </div>
+            <div>
+              <p className="text-5xl sm:text-6xl font-black heading-display mb-2">99.7%</p>
+              <p className="text-lg text-muted font-medium">Accuracy rate</p>
+            </div>
+            <div>
+              <p className="text-5xl sm:text-6xl font-black heading-display mb-2">$5.9M</p>
+              <p className="text-lg text-muted font-medium">Total savings</p>
+            </div>
+            <div>
+              <p className="text-5xl sm:text-6xl font-black heading-display mb-2">12s</p>
+              <p className="text-lg text-muted font-medium">Response time</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -406,59 +434,68 @@ export default function CaseStudiesPage() {
           key={study.id}
           id={study.id}
           className={`relative section-spacing ${
-            idx % 2 === 0 ? 'bg-[var(--color-surface)]' : ''
+            idx % 2 === 0 ? 'section-elevated' : ''
           }`}
         >
-          <div className="max-w-5xl mx-auto px-6">
+          {/* Subtle orb per section */}
+          <div className="orb-gradient orb-purple w-[400px] h-[400px] absolute -top-20 -right-20 opacity-10" />
+
+          <div className="max-w-5xl mx-auto px-6 relative z-10">
             {/* Header */}
-            <div className="flex flex-col sm:flex-row items-start gap-4 mb-12">
-              <div className={`p-4 rounded-2xl glass-card ${study.iconColor}`}>
-                {study.icon}
+            <div className="flex flex-col sm:flex-row items-start gap-6 mb-16">
+              <div className="w-20 h-20 rounded-2xl overflow-hidden shrink-0">
+                <Image
+                  src={study.icon}
+                  alt={study.industry}
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div>
-                <span className="text-xs font-medium px-3 py-1 rounded-full glass-card text-[var(--color-muted)] inline-block mb-3">
+                <span className="section-label inline-block mb-3">
                   {study.industry}
                 </span>
-                <h2 className="text-3xl md:text-4xl font-bold heading-section mb-2">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold heading-display uppercase mb-3">
                   {study.headline}
                 </h2>
-                <p className="text-[var(--color-muted)]">{study.company}</p>
+                <p className="text-xl text-muted">{study.company}</p>
               </div>
             </div>
 
             {/* Company Profile */}
-            <div className="glass-card rounded-2xl p-6 mb-8">
-              <div className="flex items-center gap-2 mb-3">
-                <Building2 className="w-5 h-5 text-[var(--color-accent-light)]" />
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-[var(--color-muted)]">
+            <div className="glass-card rounded-2xl p-8 mb-10">
+              <div className="flex items-center gap-3 mb-4">
+                <Building2 className="w-6 h-6 text-accent-light" />
+                <h3 className="section-label">
                   Company Profile
                 </h3>
               </div>
-              <p className="text-[var(--color-foreground)] leading-relaxed">
+              <p className="text-xl text-foreground leading-relaxed">
                 {study.companyDescription}
               </p>
             </div>
 
             {/* Challenge & Solution Grid */}
-            <div className="grid md:grid-cols-2 gap-8 mb-8">
+            <div className="grid md:grid-cols-2 gap-8 mb-10">
               {/* Challenge */}
-              <div className="glass-card rounded-2xl p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <Clock className="w-5 h-5 text-[var(--color-error)]" />
-                  <h3 className="text-lg font-bold text-white heading-section">
+              <div className="glass-card rounded-2xl p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <Clock className="w-6 h-6 text-error" />
+                  <h3 className="text-2xl font-bold text-white heading-section">
                     The Challenge
                   </h3>
                 </div>
-                <p className="text-[var(--color-muted)] mb-4 leading-relaxed">
+                <p className="text-lg text-muted mb-6 leading-relaxed">
                   {study.challenge.summary}
                 </p>
-                <ul className="space-y-3">
+                <ul className="space-y-4">
                   {study.challenge.details.map((detail, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-3 text-sm text-[var(--color-muted-foreground)] leading-relaxed"
+                      className="flex items-start gap-3 text-base text-foreground/80 leading-relaxed"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-error)] mt-1.5 shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-error mt-2 shrink-0" />
                       {detail}
                     </li>
                   ))}
@@ -466,23 +503,23 @@ export default function CaseStudiesPage() {
               </div>
 
               {/* Solution */}
-              <div className="glass-card rounded-2xl p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <Target className="w-5 h-5 text-[var(--color-success)]" />
-                  <h3 className="text-lg font-bold text-white heading-section">
+              <div className="glass-card rounded-2xl p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <Target className="w-6 h-6 text-success" />
+                  <h3 className="text-2xl font-bold text-white heading-section">
                     The Solution
                   </h3>
                 </div>
-                <p className="text-[var(--color-muted)] mb-4 leading-relaxed">
+                <p className="text-lg text-muted mb-6 leading-relaxed">
                   {study.solution.summary}
                 </p>
-                <ul className="space-y-3">
+                <ul className="space-y-4">
                   {study.solution.details.map((detail, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-3 text-sm text-[var(--color-muted-foreground)] leading-relaxed"
+                      className="flex items-start gap-3 text-base text-foreground/80 leading-relaxed"
                     >
-                      <CheckCircle2 className="w-4 h-4 text-[var(--color-success)] mt-0.5 shrink-0" />
+                      <CheckCircle2 className="w-5 h-5 text-success mt-0.5 shrink-0" />
                       {detail}
                     </li>
                   ))}
@@ -491,14 +528,14 @@ export default function CaseStudiesPage() {
             </div>
 
             {/* Our Approach */}
-            <div className="glass-card rounded-2xl p-6 mb-8">
-              <div className="flex items-center gap-3 mb-6">
-                <TrendingUp className="w-5 h-5 text-[var(--color-accent-light)]" />
-                <h3 className="text-xl font-bold text-white heading-section">
+            <div className="glass-card rounded-2xl p-8 mb-10">
+              <div className="flex items-center gap-3 mb-8">
+                <TrendingUp className="w-6 h-6 text-accent-light" />
+                <h3 className="text-2xl font-bold text-white heading-section">
                   Our Approach
                 </h3>
               </div>
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-6">
                 {study.approach.map((phase, i) => {
                   const dashIdx = phase.indexOf(':')
                   const label = dashIdx > -1 ? phase.slice(0, dashIdx + 1) : ''
@@ -506,12 +543,12 @@ export default function CaseStudiesPage() {
                   return (
                     <div
                       key={i}
-                      className="p-5 rounded-xl bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] hover:border-[rgba(124,92,252,0.2)] transition-colors"
+                      className="p-6 rounded-xl bg-white/[0.04] border border-white/[0.08] hover:border-accent/20 transition-colors"
                     >
                       {label && (
-                        <p className="text-sm font-bold text-white mb-2 heading-section">{label}</p>
+                        <p className="text-base font-bold text-white mb-3 heading-section">{label}</p>
                       )}
-                      <p className="text-sm text-[var(--color-muted)] leading-relaxed">
+                      <p className="text-base text-muted leading-relaxed">
                         {desc.trim()}
                       </p>
                     </div>
@@ -521,19 +558,19 @@ export default function CaseStudiesPage() {
             </div>
 
             {/* Results */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
               {study.results.map((result) => (
                 <div
                   key={result.label}
-                  className="glass-card rounded-2xl p-6 text-center"
+                  className="glass-card rounded-2xl p-8 text-center"
                 >
-                  <p className="text-3xl md:text-4xl font-bold text-white mb-1">
+                  <p className="text-4xl md:text-5xl font-extrabold text-white mb-2 heading-display">
                     {result.value}
                   </p>
-                  <p className="text-sm font-medium text-[var(--color-foreground)] mb-1">
+                  <p className="text-base font-bold text-foreground mb-1">
                     {result.label}
                   </p>
-                  <p className="text-xs text-[var(--color-muted)]">
+                  <p className="text-sm text-muted">
                     {result.description}
                   </p>
                 </div>
@@ -541,20 +578,20 @@ export default function CaseStudiesPage() {
             </div>
 
             {/* Quote */}
-            <div className="glass-card rounded-2xl p-8 relative overflow-hidden">
-              <Quote className="w-10 h-10 text-[var(--color-accent)] opacity-30 mb-4" />
-              <blockquote className="text-lg md:text-xl text-[var(--color-foreground)] leading-relaxed mb-6 italic">
+            <div className="glass-card rounded-2xl p-10 relative overflow-hidden">
+              <Quote className="w-12 h-12 text-accent opacity-30 mb-6" />
+              <blockquote className="text-xl md:text-2xl text-foreground leading-relaxed mb-8 italic">
                 &ldquo;{study.quote.text}&rdquo;
               </blockquote>
               <div>
-                <p className="font-semibold text-[var(--color-foreground)]">
+                <p className="text-lg font-bold text-foreground">
                   {study.quote.author}
                 </p>
-                <p className="text-sm text-[var(--color-muted)]">
+                <p className="text-base text-muted">
                   {study.quote.role}
                 </p>
               </div>
-              <div className="absolute -bottom-10 -right-10 w-40 h-40 orb-gradient orb-purple opacity-20" />
+              <div className="absolute -bottom-10 -right-10 w-48 h-48 orb-gradient orb-purple opacity-20" />
             </div>
           </div>
         </section>
@@ -562,26 +599,29 @@ export default function CaseStudiesPage() {
 
       {/* CTA */}
       <section className="relative section-spacing overflow-hidden">
-        <div className="orb-gradient orb-purple w-[600px] h-[600px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20" />
-        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold heading-section mb-6">
-            Ready to be our next success story?
+        <div className="orb-gradient orb-purple w-[700px] h-[700px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-25 animate-pulse-glow" />
+        <div className="orb-gradient orb-indigo w-[400px] h-[400px] absolute -bottom-20 -right-20 opacity-15" />
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+          <p className="section-label mb-6">Your Turn</p>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold heading-display uppercase mb-8">
+            Ready To Be Next?
           </h2>
-          <p className="text-lg text-[var(--color-muted)] mb-10 max-w-xl mx-auto">
+          <p className="text-2xl text-muted mb-12 max-w-2xl mx-auto leading-relaxed">
             Every transformation starts with a conversation. Tell us about your
             challenges, and we&apos;ll show you what&apos;s possible.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/assessment"
-              className="btn-primary inline-flex items-center justify-center gap-2"
+              className="btn-primary text-lg py-4 px-8 inline-flex items-center justify-center gap-3 group"
             >
               Get Your Free Assessment
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
-              href="/#contact"
-              className="btn-secondary inline-flex items-center justify-center gap-2"
+              href="/contact"
+              className="btn-secondary text-lg py-4 px-8 inline-flex items-center justify-center gap-3"
             >
               Schedule a Consultation
             </Link>

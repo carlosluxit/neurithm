@@ -36,7 +36,7 @@ export default function Process() {
               <div key={phase.title} className="relative group">
                 <div className="glass-card rounded-2xl p-8 h-full transition-all duration-300 hover:border-accent/20">
                   <div className="flex items-center gap-4 mb-6">
-                    <span className="text-4xl font-bold text-accent/20">{phase.number}</span>
+                    <span className="text-5xl lg:text-6xl font-black text-accent/40">{phase.number}</span>
                     <div className="w-11 h-11 rounded-xl overflow-hidden">
                       <Image
                         src={phaseIcons[index]}

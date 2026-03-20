@@ -112,13 +112,13 @@ export default function BlogPage() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <p className="text-sm font-medium text-accent-light tracking-widest uppercase mb-4">
+          <p className="text-base font-medium text-accent-light tracking-widest uppercase mb-4">
             Insights & Resources
           </p>
-          <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6 heading-display">
+          <h1 className="text-5xl lg:text-6xl font-bold tracking-tight mb-6 heading-display">
             Behind the Breakthrough
           </h1>
-          <p className="text-lg text-muted leading-relaxed">
+          <p className="text-xl text-muted leading-relaxed">
             Expert analysis, actionable frameworks, and real-world case studies
             from the frontlines of AI transformation.
           </p>
@@ -133,20 +133,20 @@ export default function BlogPage() {
               className="glass-card rounded-2xl p-8 group cursor-pointer transition-all duration-300 hover:border-accent/20"
             >
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-xs font-medium text-accent-light px-3 py-1 rounded-full border border-accent/20 bg-accent/5">
+                <span className="text-sm font-medium text-accent-light px-3 py-1 rounded-full border border-accent/20 bg-accent/5">
                   {post.category}
                 </span>
-                <span className="text-xs text-muted flex items-center gap-1">
-                  <Clock className="w-3 h-3" /> {post.readTime}
+                <span className="text-sm text-muted flex items-center gap-1">
+                  <Clock className="w-4 h-4" /> {post.readTime}
                 </span>
               </div>
-              <h2 className="text-xl lg:text-2xl font-bold mb-3 group-hover:text-accent-light transition-colors">
+              <h2 className="text-2xl lg:text-3xl font-bold mb-3 group-hover:text-accent-light transition-colors">
                 {post.title}
               </h2>
-              <p className="text-sm text-muted leading-relaxed mb-4">{post.excerpt}</p>
+              <p className="text-base text-muted leading-relaxed mb-5">{post.excerpt}</p>
               <div className="flex items-center justify-between">
-                <span className="text-xs text-muted-foreground">{post.date}</span>
-                <div className="flex items-center gap-2 text-sm text-accent-light">
+                <span className="text-sm text-muted-foreground">{post.date}</span>
+                <div className="flex items-center gap-2 text-base text-accent-light">
                   Read article
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </div>
@@ -157,24 +157,24 @@ export default function BlogPage() {
 
         {/* All Posts */}
         <div className="mb-20">
-          <h3 className="text-lg font-semibold mb-6">All Articles</h3>
+          <h3 className="text-2xl font-bold mb-8">All Articles</h3>
           <div className="space-y-4">
             {posts.filter(p => !p.featured).map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="flex items-center justify-between p-5 rounded-xl border border-border bg-card hover:bg-card-hover hover:border-border-hover transition-all duration-200 group"
+                className="flex items-center justify-between p-6 rounded-xl border border-border bg-card hover:bg-card-hover hover:border-border-hover transition-all duration-200 group"
               >
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="text-xs font-medium text-accent-light">{post.category}</span>
-                    <span className="text-xs text-muted">{post.date}</span>
-                    <span className="text-xs text-muted flex items-center gap-1">
-                      <Clock className="w-3 h-3" /> {post.readTime}
+                    <span className="text-sm font-medium text-accent-light">{post.category}</span>
+                    <span className="text-sm text-muted">{post.date}</span>
+                    <span className="text-sm text-muted flex items-center gap-1">
+                      <Clock className="w-4 h-4" /> {post.readTime}
                     </span>
                   </div>
-                  <h4 className="font-medium text-sm group-hover:text-accent-light transition-colors">{post.title}</h4>
-                  <p className="text-xs text-muted mt-1">{post.excerpt}</p>
+                  <h4 className="font-semibold text-lg group-hover:text-accent-light transition-colors">{post.title}</h4>
+                  <p className="text-base text-muted mt-1">{post.excerpt}</p>
                 </div>
                 <ArrowRight className="w-4 h-4 text-muted flex-shrink-0 transition-transform group-hover:translate-x-1 ml-4" />
               </Link>
@@ -185,32 +185,32 @@ export default function BlogPage() {
         {/* Whitepapers */}
         <div>
           <div className="text-center mb-10">
-            <h3 className="text-2xl font-bold mb-3 heading-section">
+            <h3 className="text-3xl font-bold mb-4 heading-section">
               Gated Resources & Whitepapers
             </h3>
-            <p className="text-muted text-sm">In-depth research and frameworks for AI transformation leaders.</p>
+            <p className="text-muted text-lg">In-depth research and frameworks for AI transformation leaders.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {whitepapers.map((wp) => (
               <div key={wp.id} className="glass-card rounded-2xl p-8 gradient-border">
                 <BookOpen className="w-8 h-8 text-accent-light mb-4" />
-                <h4 className="font-semibold mb-2">{wp.title}</h4>
-                <p className="text-xs text-muted leading-relaxed mb-4">{wp.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
+                <h4 className="font-bold text-xl mb-3">{wp.title}</h4>
+                <p className="text-base text-muted leading-relaxed mb-5">{wp.description}</p>
+                <div className="flex flex-wrap gap-2 mb-5">
                   {wp.topics.map((topic) => (
-                    <span key={topic} className="text-[10px] px-2 py-1 rounded-full border border-border text-muted">
+                    <span key={topic} className="text-sm px-3 py-1 rounded-full border border-border text-muted">
                       {topic}
                     </span>
                   ))}
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-muted-foreground">{wp.pages}</span>
+                  <span className="text-sm text-muted-foreground">{wp.pages}</span>
                   <button
                     onClick={() => { setSelectedWp(wp.id); setGateOpen(true); setWpSuccess(false) }}
-                    className="text-xs text-accent-light font-medium hover:underline inline-flex items-center gap-1"
+                    className="text-sm text-accent-light font-medium hover:underline inline-flex items-center gap-1"
                   >
-                    <Download className="w-3 h-3" />
+                    <Download className="w-4 h-4" />
                     Download
                   </button>
                 </div>
@@ -221,8 +221,8 @@ export default function BlogPage() {
 
         {/* Newsletter CTA */}
         <div className="mt-20 glass-card rounded-2xl p-10 text-center gradient-border">
-          <h3 className="text-xl font-bold mb-3">Stay Ahead of the AI Curve</h3>
-          <p className="text-muted text-sm mb-6 max-w-md mx-auto">
+          <h3 className="text-2xl font-bold mb-4">Stay Ahead of the AI Curve</h3>
+          <p className="text-muted text-base mb-6 max-w-lg mx-auto">
             Get weekly insights on AI transformation, new case studies, and actionable
             frameworks delivered to your inbox.
           </p>
@@ -232,7 +232,7 @@ export default function BlogPage() {
               placeholder="your@email.com"
               className="flex-1"
             />
-            <button className="btn-primary py-3 px-6 text-sm whitespace-nowrap">
+            <button className="btn-primary py-3 px-6 text-base whitespace-nowrap">
               Subscribe
             </button>
           </div>

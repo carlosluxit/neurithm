@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import dynamic from 'next/dynamic'
+import StarBorder from '@/components/reactbits/StarBorder'
 
 const TrueFocus = dynamic(() => import('@/components/reactbits/TrueFocus'), { ssr: false })
 
@@ -43,13 +44,12 @@ export default function CTA() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/assessment"
-              className="btn-primary text-base py-4 px-8 inline-flex items-center gap-3 group"
-            >
-              Get Your Free AI Score
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+            <StarBorder as="a" href="/assessment" color="#9b7fff" speed="5s" thickness={2}>
+              <span className="inline-flex items-center gap-3 text-base font-medium group">
+                Get Your Free AI Score
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </StarBorder>
             <Link
               href="/calculator"
               className="btn-secondary text-base py-4 px-8"

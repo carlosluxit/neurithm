@@ -30,23 +30,23 @@ export default function Industries() {
         </div>
 
         {/* Industry Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {industries.map((industry) => (
             <div
               key={industry.name}
-              className="glass-card rounded-xl p-6 text-center group cursor-pointer transition-all duration-300 hover:border-accent/20"
+              className="glass-card rounded-2xl p-8 text-center group cursor-pointer transition-all duration-300 hover:border-accent/20"
             >
-              <div className="w-14 h-14 rounded-xl overflow-hidden mx-auto mb-4">
+              <div className="w-20 h-20 rounded-2xl overflow-hidden mx-auto mb-6">
                 <Image
                   src={industry.icon}
                   alt={industry.name}
-                  width={56}
-                  height={56}
+                  width={80}
+                  height={80}
                   className="w-full h-full object-cover"
                 />
               </div>
-              <h4 className="font-semibold text-base mb-2">{industry.name}</h4>
-              <p className="text-sm text-muted leading-relaxed">{industry.description}</p>
+              <h4 className="font-bold text-xl mb-3 heading-section">{industry.name}</h4>
+              <p className="text-base text-muted leading-relaxed">{industry.description}</p>
             </div>
           ))}
         </div>

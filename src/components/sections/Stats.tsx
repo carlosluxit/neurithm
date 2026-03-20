@@ -19,7 +19,7 @@ export default function Stats() {
               <div className="text-6xl lg:text-8xl font-extrabold text-white heading-display">
                 <CountUp to={stat.value} duration={2.5} suffix={stat.suffix} />
               </div>
-              <p className="mt-3 text-base text-muted">{stat.label}</p>
+              <p className="mt-4 text-lg lg:text-xl text-muted font-medium">{stat.label}</p>
             </div>
           ))}
         </div>

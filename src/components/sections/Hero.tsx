@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic'
 import BlurText from '@/components/reactbits/BlurText'
 import DecryptedText from '@/components/reactbits/DecryptedText'
 import RotatingText from '@/components/reactbits/RotatingText'
+import StarBorder from '@/components/reactbits/StarBorder'
 
 const FloatingLines = dynamic(() => import('@/components/reactbits/FloatingLines'), { ssr: false })
 
@@ -64,11 +65,11 @@ export default function Hero() {
         />
 
         {/* Subheadline with Rotating Text */}
-        <div className="mt-10 text-xl sm:text-2xl text-muted max-w-3xl mx-auto leading-relaxed text-center">
+        <div className="mt-10 text-2xl sm:text-3xl lg:text-4xl text-muted max-w-4xl mx-auto leading-relaxed text-center">
           <div>Neurithm empowers enterprises to</div>
           <RotatingText
             texts={['harness AI strategically', 'automate intelligently', 'scale efficiently', 'transform boldly']}
-            mainClassName="text-accent-light font-medium inline-flex justify-center"
+            mainClassName="text-accent-light font-semibold inline-flex justify-center"
             rotationInterval={3000}
             staggerDuration={0.02}
             staggerFrom="first"
@@ -78,13 +79,12 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link
-            href="/assessment"
-            className="btn-primary text-base py-4 px-8 inline-flex items-center gap-3 group"
-          >
-            Get Your AI Readiness Score
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </Link>
+          <StarBorder as="a" href="/assessment" color="#9b7fff" speed="5s" thickness={2}>
+            <span className="inline-flex items-center gap-3 text-base font-medium group">
+              Get Your AI Readiness Score
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </span>
+          </StarBorder>
           <Link
             href="/calculator"
             className="btn-secondary text-base py-4 px-8 inline-flex items-center gap-3"

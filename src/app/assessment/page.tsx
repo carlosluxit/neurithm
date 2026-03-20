@@ -1,8 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowRight, ArrowLeft, CheckCircle2, Sparkles, Download, BarChart3 } from 'lucide-react'
+import { ArrowRight, ArrowLeft, CheckCircle2, Sparkles, Download, BarChart3, Clock, Zap, Brain, Target, TrendingUp, Shield } from 'lucide-react'
 import { ASSESSMENT_QUESTIONS } from '@/lib/constants'
+import dynamic from 'next/dynamic'
+import { BentoCard } from '@/components/reactbits/MagicBento'
+
+const MagicBentoGrid = dynamic(() => import('@/components/reactbits/MagicBento'), { ssr: false })
 
 type Answers = Record<string, number>
 
@@ -65,46 +69,106 @@ export default function AssessmentPage() {
   // Intro screen
   if (step === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center pt-20">
-        <div className="max-w-2xl mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/5 mb-8">
-            <BarChart3 className="w-3.5 h-3.5 text-accent-light" />
-            <span className="text-xs font-medium text-accent-light tracking-wide uppercase">
-              Free Assessment
-            </span>
+      <div className="min-h-screen pt-28 pb-20">
+        <div className="max-w-6xl mx-auto px-6">
+          {/* Hero header */}
+          <div className="text-center mb-14">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/5 mb-8">
+              <BarChart3 className="w-4 h-4 text-accent-light" />
+              <span className="text-sm font-medium text-accent-light tracking-wide uppercase">
+                Free Assessment
+              </span>
+            </div>
+
+            <h1 className="text-5xl lg:text-7xl xl:text-8xl font-bold tracking-tight mb-6 heading-display uppercase">
+              How AI-Ready<br />Are You?
+            </h1>
+
+            <p className="text-xl sm:text-2xl text-muted leading-relaxed max-w-2xl mx-auto">
+              6 questions. 2 minutes. A clear picture of where you stand
+              and where AI can take you.
+            </p>
           </div>
 
-          <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6 heading-display">
-            AI Transformation Readiness Score
-          </h1>
+          {/* Bento Grid */}
+          <MagicBentoGrid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto mb-14">
+            {/* Large CTA card */}
+            <BentoCard className="sm:col-span-2 lg:col-span-2 lg:row-span-2 !min-h-[320px] flex flex-col justify-between">
+              <div>
+                <div className="w-14 h-14 rounded-2xl bg-accent/15 flex items-center justify-center mb-6">
+                  <Brain className="w-7 h-7 text-accent-light" />
+                </div>
+                <h2 className="text-3xl lg:text-4xl font-bold heading-section mb-4">
+                  AI Readiness Score
+                </h2>
+                <p className="text-lg text-muted leading-relaxed mb-8">
+                  Get a personalized assessment across 6 critical dimensions of AI transformation readiness.
+                </p>
+              </div>
+              <button
+                onClick={() => setStep(1)}
+                className="btn-primary text-lg py-4 px-10 inline-flex items-center gap-3 group w-fit"
+              >
+                Start Assessment
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </button>
+            </BentoCard>
 
-          <p className="text-lg text-muted leading-relaxed mb-8 max-w-xl mx-auto">
-            Answer 6 quick questions to discover how ready your organization is for
-            AI transformation. Get a personalized score and actionable recommendations.
-          </p>
+            {/* Quick stats cards */}
+            <BentoCard className="!min-h-[150px] flex flex-col justify-between">
+              <Clock className="w-8 h-8 text-accent-warm" />
+              <div>
+                <p className="text-4xl font-black heading-display mb-1">2 min</p>
+                <p className="text-base text-muted">To complete</p>
+              </div>
+            </BentoCard>
 
-          <div className="grid grid-cols-3 gap-4 mb-10 max-w-md mx-auto">
-            <div className="glass-card rounded-xl p-4">
-              <p className="text-2xl font-bold text-accent-light">2 min</p>
-              <p className="text-xs text-muted mt-1">To complete</p>
-            </div>
-            <div className="glass-card rounded-xl p-4">
-              <p className="text-2xl font-bold text-accent-light">6</p>
-              <p className="text-xs text-muted mt-1">Questions</p>
-            </div>
-            <div className="glass-card rounded-xl p-4">
-              <p className="text-2xl font-bold text-accent-light">Free</p>
-              <p className="text-xs text-muted mt-1">Always</p>
+            <BentoCard className="!min-h-[150px] flex flex-col justify-between">
+              <Zap className="w-8 h-8 text-accent-cool" />
+              <div>
+                <p className="text-4xl font-black heading-display mb-1">Instant</p>
+                <p className="text-base text-muted">Results & insights</p>
+              </div>
+            </BentoCard>
+
+            <BentoCard className="!min-h-[150px] flex flex-col justify-between">
+              <Target className="w-8 h-8 text-success" />
+              <div>
+                <p className="text-4xl font-black heading-display mb-1">6</p>
+                <p className="text-base text-muted">Key dimensions</p>
+              </div>
+            </BentoCard>
+
+            <BentoCard className="!min-h-[150px] flex flex-col justify-between">
+              <Shield className="w-8 h-8 text-accent-light" />
+              <div>
+                <p className="text-4xl font-black heading-display mb-1">Free</p>
+                <p className="text-base text-muted">No strings attached</p>
+              </div>
+            </BentoCard>
+          </MagicBentoGrid>
+
+          {/* What you'll learn */}
+          <div className="max-w-5xl mx-auto">
+            <h3 className="text-2xl font-bold heading-section text-center mb-8">What You&apos;ll Discover</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {[
+                { icon: TrendingUp, title: 'Your AI Maturity Level', desc: 'Where you sit on the AI adoption curve compared to industry peers' },
+                { icon: Target, title: 'Key Opportunities', desc: 'The highest-impact areas where AI can drive immediate ROI' },
+                { icon: Sparkles, title: 'Custom Roadmap', desc: 'Actionable next steps tailored to your organization\'s readiness' },
+              ].map((item) => (
+                <div key={item.title} className="glass-card rounded-2xl p-6 flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+                    <item.icon className="w-5 h-5 text-accent-light" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg mb-1">{item.title}</h4>
+                    <p className="text-base text-muted leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-
-          <button
-            onClick={() => setStep(1)}
-            className="btn-primary text-base py-4 px-10 inline-flex items-center gap-3 group"
-          >
-            Start Assessment
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </button>
         </div>
       </div>
     )
