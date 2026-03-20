@@ -98,7 +98,7 @@ export default function Demos() {
           <h2 className="text-6xl sm:text-7xl lg:text-8xl xl:text-[7rem] 2xl:text-[8rem] heading-display uppercase">
             Interactive AI Demos
           </h2>
-          <p className="mt-8 text-xl sm:text-2xl text-muted leading-relaxed max-w-3xl mx-auto">
+          <p className="mt-8 text-2xl sm:text-3xl text-muted leading-relaxed max-w-3xl mx-auto">
             Experience the power of our AI solutions firsthand.
             Live demos of what we build for clients.
           </p>

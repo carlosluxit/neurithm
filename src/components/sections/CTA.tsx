@@ -36,7 +36,7 @@ export default function CTA() {
             />
           </div>
 
-          <p className="text-xl text-muted leading-relaxed mb-10 max-w-2xl mx-auto">
+          <p className="text-2xl text-muted leading-relaxed mb-10 max-w-2xl mx-auto">
             Smarter decisions, lower costs, and faster AI launches — powered by
             data clarity and agile execution. Take the first step with a free
             AI readiness assessment.

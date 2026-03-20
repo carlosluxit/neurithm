@@ -64,11 +64,11 @@ export default function Hero() {
         />
 
         {/* Subheadline with Rotating Text */}
-        <div className="mt-10 text-xl sm:text-2xl text-muted max-w-3xl mx-auto leading-relaxed">
-          <span>Neurithm empowers enterprises to </span>
+        <div className="mt-10 text-xl sm:text-2xl text-muted max-w-3xl mx-auto leading-relaxed text-center">
+          <div>Neurithm empowers enterprises to</div>
           <RotatingText
             texts={['harness AI strategically', 'automate intelligently', 'scale efficiently', 'transform boldly']}
-            mainClassName="text-accent-light font-medium inline-flex"
+            mainClassName="text-accent-light font-medium inline-flex justify-center"
             rotationInterval={3000}
             staggerDuration={0.02}
             staggerFrom="first"
