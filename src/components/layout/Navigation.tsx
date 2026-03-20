@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Menu, X, Sparkles } from 'lucide-react'
-import { SITE } from '@/lib/constants'
+import { Menu, X } from 'lucide-react'
+import { LogoMark } from '@/components/ui/Logo'
+import DecryptedText from '@/components/reactbits/DecryptedText'
 
 const navLinks = [
   { href: '#services', label: 'Services' },
@@ -35,10 +36,8 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-18">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center glow-sm">
-              <Sparkles className="w-4 h-4 text-white" />
-            </div>
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <LogoMark className="w-9 h-9" />
             <span className="text-lg font-semibold tracking-tight">
               <span className="text-foreground">Neu</span>
               <span className="text-accent-light">Rithm</span>
@@ -53,7 +52,12 @@ export default function Navigation() {
                 href={link.href}
                 className="text-sm text-muted hover:text-foreground transition-colors duration-200"
               >
-                {link.label}
+                <DecryptedText
+                  text={link.label}
+                  speed={30}
+                  maxIterations={8}
+                  animateOn="hover"
+                />
               </Link>
             ))}
           </div>
@@ -64,7 +68,6 @@ export default function Navigation() {
               href="/assessment"
               className="btn-primary text-sm py-3 px-6 inline-flex items-center gap-2"
             >
-              <Sparkles className="w-4 h-4" />
               Get Your AI Score
             </Link>
           </div>
@@ -99,7 +102,6 @@ export default function Navigation() {
               onClick={() => setIsOpen(false)}
               className="btn-primary text-sm py-3 px-6 inline-flex items-center gap-2 mt-4"
             >
-              <Sparkles className="w-4 h-4" />
               Get Your AI Score
             </Link>
           </div>

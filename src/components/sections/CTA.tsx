@@ -1,27 +1,28 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 export default function CTA() {
   return (
     <section id="contact" className="section-spacing relative overflow-hidden">
-      {/* Background orbs */}
+      {/* Background orbs — multi-color */}
       <div className="orb-gradient orb-purple w-[600px] h-[600px] -left-64 top-0 opacity-20" />
-      <div className="orb-gradient orb-blue w-[400px] h-[400px] right-0 bottom-0 opacity-15" />
+      <div className="orb-gradient orb-cyan w-[400px] h-[400px] right-0 bottom-0 opacity-15" />
+      <div className="orb-gradient orb-amber w-[300px] h-[300px] right-32 top-16 opacity-10" />
 
       <div className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="glass-card rounded-3xl p-12 lg:p-16 text-center gradient-border">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/5 mb-8">
-            <Sparkles className="w-3.5 h-3.5 text-accent-light" />
-            <span className="text-xs font-medium text-accent-light tracking-wide uppercase">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent-cool/20 bg-accent-cool/5 mb-8">
+            <div className="w-1.5 h-1.5 rounded-full bg-accent-cool animate-pulse" />
+            <span className="text-xs font-medium text-accent-cool-light tracking-wide uppercase">
               Start Your Transformation
             </span>
           </div>
 
-          <h2 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl heading-section mb-6">
             Expect Results.{' '}
-            <span className="gradient-text">Get More.</span>
+            <span className="gradient-text-multi">Get More.</span>
           </h2>
 
           <p className="text-lg text-muted leading-relaxed mb-10 max-w-2xl mx-auto">

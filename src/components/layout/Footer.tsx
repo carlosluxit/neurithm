@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { Sparkles, ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
+import { LogoFull } from '@/components/ui/Logo'
 import { SITE } from '@/lib/constants'
 
 const footerLinks = {
@@ -30,14 +31,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-white" />
-              </div>
-              <span className="text-lg font-semibold tracking-tight">
-                <span className="text-foreground">Neu</span>
-                <span className="text-accent-light">Rithm</span>
-              </span>
+            <Link href="/" className="inline-block mb-4">
+              <LogoFull className="h-9" />
             </Link>
             <p className="text-sm text-muted leading-relaxed mb-6 max-w-xs">
               {SITE.tagline}. Empowering enterprises to harness AI strategically,

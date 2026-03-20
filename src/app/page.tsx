@@ -11,10 +11,15 @@ export default function Home() {
     <>
       <Hero />
       <Stats />
+      <div className="section-divider" />
       <Services />
+      <div className="section-divider" />
       <Process />
+      <div className="section-divider" />
       <Demos />
+      <div className="section-divider" />
       <Industries />
+      <div className="section-divider" />
       <CTA />
     </>
   )

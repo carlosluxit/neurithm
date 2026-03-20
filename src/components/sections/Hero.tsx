@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, Zap } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import Aurora from '@/components/reactbits/Aurora'
 import BlurText from '@/components/reactbits/BlurText'
 import DecryptedText from '@/components/reactbits/DecryptedText'
@@ -12,7 +12,7 @@ export default function Hero() {
       {/* Aurora Background */}
       <div className="absolute inset-0 z-0">
         <Aurora
-          colorStops={['#5227FF', '#7c5cfc', '#3b82f6']}
+          colorStops={['#5227FF', '#7c5cfc', '#06b6d4']}
           amplitude={1.2}
           blend={0.6}
           speed={0.8}
@@ -26,7 +26,7 @@ export default function Hero() {
       <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center pt-32 pb-20">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/5 mb-8">
-          <Zap className="w-3.5 h-3.5 text-accent-light" />
+          <div className="w-1.5 h-1.5 rounded-full bg-accent-cool animate-pulse" />
           <span className="text-xs font-medium text-accent-light tracking-wide uppercase">
             <DecryptedText
               text="AI Transformation Agency"
@@ -44,7 +44,7 @@ export default function Hero() {
         <BlurText
           text="Every Revolution Needs a Rhythm"
           delay={80}
-          className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05]"
+          className="text-6xl sm:text-7xl lg:text-8xl xl:text-[6.5rem] heading-display"
           animateBy="words"
           direction="bottom"
         />
