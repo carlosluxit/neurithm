@@ -3,38 +3,43 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import dynamic from 'next/dynamic'
-import Aurora from '@/components/reactbits/Aurora'
 import BlurText from '@/components/reactbits/BlurText'
 import DecryptedText from '@/components/reactbits/DecryptedText'
 
-const Orb = dynamic(() => import('@/components/reactbits/Orb'), { ssr: false })
+const FloatingLines = dynamic(() => import('@/components/reactbits/FloatingLines'), { ssr: false })
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Aurora Background */}
+      {/* FloatingLines Background */}
       <div className="absolute inset-0 z-0">
-        <Aurora
-          colorStops={['#5227FF', '#7c5cfc', '#06b6d4']}
-          amplitude={1.2}
-          blend={0.6}
-          speed={0.8}
+        <FloatingLines
+          linesGradient={['#7D74F9', '#675FCC', '#4B3BA0', '#121127']}
+          enabledWaves={['top', 'middle', 'bottom']}
+          lineCount={[8, 6, 4]}
+          lineDistance={[4, 3, 5]}
+          topWavePosition={{ x: 10.0, y: 0.5, rotate: -0.4 }}
+          middleWavePosition={{ x: 5.0, y: 0.0, rotate: 0.2 }}
+          bottomWavePosition={{ x: 2.0, y: -0.7, rotate: -1 }}
+          animationSpeed={0.8}
+          interactive
+          bendRadius={5.0}
+          bendStrength={-0.5}
+          mouseDamping={0.04}
+          parallax
+          parallaxStrength={0.15}
+          mixBlendMode="screen"
         />
       </div>
 
-      {/* Orb */}
-      <div className="absolute z-[1] w-[600px] h-[600px] lg:w-[800px] lg:h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30">
-        <Orb hue={10} hoverIntensity={0.3} rotateOnHover forceHoverState={false} backgroundColor="#050510" />
-      </div>
-
-      {/* Overlay gradient */}
-      <div className="absolute inset-0 z-[2] bg-gradient-to-b from-background/40 via-background/60 to-background" />
+      {/* Overlay gradient for readability */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-background/30 via-background/50 to-background" />
 
       {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center pt-32 pb-20" style={{ zIndex: 10 }}>
+      <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center pt-32 pb-20">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/5 mb-8">
-          <div className="w-1.5 h-1.5 rounded-full bg-accent-cool animate-pulse" />
+          <div className="w-1.5 h-1.5 rounded-full bg-accent-light animate-pulse" />
           <span className="text-xs font-medium text-accent-light tracking-wide uppercase">
             <DecryptedText
               text="AI Transformation Agency"
@@ -80,14 +85,6 @@ export default function Hero() {
           </Link>
         </div>
 
-        {/* Trust indicators */}
-        <div className="mt-16 flex items-center justify-center gap-8 text-xs text-muted-foreground">
-          <span>Enterprise-grade security</span>
-          <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
-          <span>SOC 2 compliant</span>
-          <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
-          <span>Results in weeks, not months</span>
-        </div>
       </div>
     </section>
   )
