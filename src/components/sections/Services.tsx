@@ -24,14 +24,14 @@ export default function Services() {
     <section id="services" className="section-spacing relative dot-grid">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16 lg:mb-20">
-          <p className="section-label mb-4">What We Do</p>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl heading-section">
+        <div className="max-w-5xl mx-auto text-center mb-20 lg:mb-28">
+          <p className="section-label mb-6">What We Do</p>
+          <h2 className="text-6xl sm:text-7xl lg:text-8xl xl:text-[7rem] 2xl:text-[8rem] heading-display uppercase">
             Every Phase. One Partner.
           </h2>
-          <p className="mt-6 text-xl text-muted leading-relaxed">
-            From strategy to deployment, we provide end-to-end AI transformation
-            services tailored to your industry and ambition.
+          <p className="mt-8 text-xl sm:text-2xl text-muted leading-relaxed max-w-3xl mx-auto">
+            From strategy to deployment — end-to-end AI transformation
+            tailored to your industry and ambition.
           </p>
         </div>
 
@@ -46,33 +46,33 @@ export default function Services() {
                 spotlightColor={spotlightColors[index]}
               >
                 <div className="relative z-10">
-                  <div className="w-14 h-14 rounded-xl overflow-hidden mb-6">
+                  <div className="w-20 h-20 rounded-2xl overflow-hidden mb-8">
                     <Image
                       src={iconSrc}
                       alt={service.title}
-                      width={56}
-                      height={56}
+                      width={80}
+                      height={80}
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <h3 className="text-2xl font-bold mb-3 heading-section">{service.title}</h3>
-                  <p className="text-muted text-lg leading-relaxed mb-6">
+                  <h3 className="text-3xl font-bold mb-4 heading-section">{service.title}</h3>
+                  <p className="text-muted text-xl leading-relaxed mb-8">
                     {service.description}
                   </p>
-                  <ul className="space-y-3 mb-6">
+                  <ul className="space-y-3 mb-8">
                     {service.features.map((feature) => (
                       <li
                         key={feature}
-                        className="text-base text-muted-foreground flex items-center gap-2 font-medium"
+                        className="text-lg text-foreground/80 flex items-center gap-3 font-medium"
                       >
-                        <div className="w-1 h-1 rounded-full bg-accent-light" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-accent-light" />
                         {feature}
                       </li>
                     ))}
                   </ul>
-                  <div className="flex items-center gap-2 text-sm text-accent-light opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-accent/10 border border-accent/20 text-accent-light font-semibold text-base group-hover:bg-accent/20 group-hover:border-accent/40 transition-all">
                     Learn more
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
               </SpotlightCard>

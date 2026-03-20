@@ -18,14 +18,14 @@ export default function Industries() {
     <section className="section-spacing relative section-elevated noise-overlay">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <p className="section-label mb-4">Industry Expertise</p>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl heading-section">
+        <div className="max-w-5xl mx-auto text-center mb-20 lg:mb-28">
+          <p className="section-label mb-6">Industry Expertise</p>
+          <h2 className="text-6xl sm:text-7xl lg:text-8xl xl:text-[7rem] 2xl:text-[8rem] heading-display uppercase">
             Fast. Efficient. Sector-Smart.
           </h2>
-          <p className="mt-6 text-xl text-muted leading-relaxed">
-            We understand the unique challenges and regulations of your industry.
-            Our AI solutions are tailored to deliver maximum impact.
+          <p className="mt-8 text-xl sm:text-2xl text-muted leading-relaxed max-w-3xl mx-auto">
+            We understand your industry's unique challenges. AI solutions
+            tailored to deliver maximum impact.
           </p>
         </div>
 

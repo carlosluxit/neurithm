@@ -7,7 +7,7 @@ import { LogoFull } from '@/components/ui/Logo'
 import DecryptedText from '@/components/reactbits/DecryptedText'
 
 const navLinks = [
-  { href: '#services', label: 'Services' },
+  { href: '/#services', label: 'Services' },
   { href: '/case-studies', label: 'Case Studies' },
   { href: '/assessment', label: 'AI Assessment' },
   { href: '/calculator', label: 'ROI Calculator' },
@@ -46,7 +46,7 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-muted hover:text-foreground transition-colors duration-200"
+                className="text-base font-bold text-muted hover:text-foreground transition-colors duration-200"
               >
                 <DecryptedText
                   text={link.label}

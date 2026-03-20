@@ -74,7 +74,6 @@ export default function Hero() {
             staggerFrom="first"
             transition={{ type: 'spring', damping: 30, stiffness: 200 }}
           />
-          <span>. From discovery to scaling — synchronized to your ambition.</span>
         </div>
 
         {/* CTAs */}

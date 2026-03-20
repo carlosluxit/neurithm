@@ -15,14 +15,14 @@ export default function Process() {
     <section id="process" className="section-spacing relative section-raised line-pattern">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16 lg:mb-20">
-          <p className="section-label mb-4">Our Approach</p>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl heading-section">
+        <div className="max-w-5xl mx-auto text-center mb-20 lg:mb-28">
+          <p className="section-label mb-6">Our Approach</p>
+          <h2 className="text-6xl sm:text-7xl lg:text-8xl xl:text-[7rem] 2xl:text-[8rem] heading-display uppercase">
             AI Adoption, Step by Step
           </h2>
-          <p className="mt-6 text-xl text-muted leading-relaxed">
-            A clear, four-phase roadmap for AI adoption. Each phase builds on
-            the last, ensuring sustainable transformation with measurable results.
+          <p className="mt-8 text-xl sm:text-2xl text-muted leading-relaxed max-w-3xl mx-auto">
+            A clear, four-phase roadmap. Each phase builds on
+            the last — sustainable transformation with measurable results.
           </p>
         </div>
 

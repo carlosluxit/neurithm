@@ -91,16 +91,16 @@ export default function Demos() {
     <section id="demos" className="section-spacing relative">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16 lg:mb-20">
-          <p className="section-label mb-4">
+        <div className="max-w-5xl mx-auto text-center mb-20 lg:mb-28">
+          <p className="section-label mb-6">
             See It In Action
           </p>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl heading-section">
+          <h2 className="text-6xl sm:text-7xl lg:text-8xl xl:text-[7rem] 2xl:text-[8rem] heading-display uppercase">
             Interactive AI Demos
           </h2>
-          <p className="mt-6 text-lg text-muted leading-relaxed">
+          <p className="mt-8 text-xl sm:text-2xl text-muted leading-relaxed max-w-3xl mx-auto">
             Experience the power of our AI solutions firsthand.
-            These are live demos of what we build for clients.
+            Live demos of what we build for clients.
           </p>
         </div>
 

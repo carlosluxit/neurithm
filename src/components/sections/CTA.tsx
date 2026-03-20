@@ -25,14 +25,14 @@ export default function CTA() {
 
           <div className="mb-6">
             <TrueFocus
-              sentence="Expect Results. Get More."
+              sentence="Your AI Edge Starts Here."
               manualMode={false}
               blurAmount={4}
               borderColor="#7c5cfc"
               glowColor="rgba(124, 92, 252, 0.6)"
               animationDuration={0.6}
               pauseBetweenAnimations={1.5}
-              className="text-5xl md:text-6xl lg:text-7xl heading-section justify-center"
+              className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl heading-display uppercase justify-center"
             />
           </div>
 
