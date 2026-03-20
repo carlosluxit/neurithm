@@ -1,7 +1,11 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+function getResendClient() {
+  const key = process.env.RESEND_API_KEY
+  if (!key || key === 're_your_resend_api_key') return null
+  return new Resend(key)
+}
 
 const emailTemplates = {
   assessment: (name: string, score?: number) => ({
@@ -97,6 +101,12 @@ export async function POST(request: Request) {
 
     if (!to) {
       return NextResponse.json({ error: 'Email address required' }, { status: 400 })
+    }
+
+    const resend = getResendClient()
+    if (!resend) {
+      console.warn('Resend API key not configured, skipping email')
+      return NextResponse.json({ success: true, skipped: true })
     }
 
     const templateFn = emailTemplates[source as keyof typeof emailTemplates] || emailTemplates.assessment
