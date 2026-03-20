@@ -95,7 +95,7 @@ export default function Demos() {
           <p className="section-label mb-4">
             See It In Action
           </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl heading-section">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl heading-section">
             Interactive AI Demos
           </h2>
           <p className="mt-6 text-lg text-muted leading-relaxed">

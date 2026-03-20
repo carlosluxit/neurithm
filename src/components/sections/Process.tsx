@@ -17,10 +17,10 @@ export default function Process() {
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16 lg:mb-20">
           <p className="section-label mb-4">Our Approach</p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl heading-section">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl heading-section">
             AI Adoption, Step by Step
           </h2>
-          <p className="mt-6 text-lg text-muted leading-relaxed">
+          <p className="mt-6 text-xl text-muted leading-relaxed">
             A clear, four-phase roadmap for AI adoption. Each phase builds on
             the last, ensuring sustainable transformation with measurable results.
           </p>
@@ -48,11 +48,11 @@ export default function Process() {
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-semibold mb-3">{phase.title}</h3>
-                  <p className="text-sm text-muted leading-relaxed mb-4">
+                  <h3 className="text-2xl font-bold mb-3 heading-section">{phase.title}</h3>
+                  <p className="text-base text-muted leading-relaxed mb-4">
                     {phase.description}
                   </p>
-                  <div className="text-xs text-accent-light font-medium">
+                  <div className="text-sm text-accent-light font-medium">
                     {phase.duration}
                   </div>
                 </div>

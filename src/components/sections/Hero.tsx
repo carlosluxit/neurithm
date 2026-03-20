@@ -37,13 +37,13 @@ export default function Hero() {
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-background/30 via-background/50 to-background" />
 
       {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center pt-32 pb-20">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 text-center pt-32 pb-20">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/5 mb-8">
           <div className="w-1.5 h-1.5 rounded-full bg-accent-light animate-pulse" />
           <span className="section-label">
             <DecryptedText
-              text="AI Transformation Agency"
+              text="AI Transformation Partners"
               speed={40}
               maxIterations={15}
               sequential
@@ -58,13 +58,13 @@ export default function Hero() {
         <BlurText
           text="EVERY REVOLUTION NEEDS A RHYTHM"
           delay={80}
-          className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl heading-display uppercase"
+          className="text-6xl sm:text-7xl lg:text-8xl xl:text-[7rem] 2xl:text-[8rem] heading-display uppercase"
           animateBy="words"
           direction="bottom"
         />
 
         {/* Subheadline with Rotating Text */}
-        <div className="mt-8 text-lg sm:text-xl text-muted max-w-2xl mx-auto leading-relaxed">
+        <div className="mt-10 text-xl sm:text-2xl text-muted max-w-3xl mx-auto leading-relaxed">
           <span>Neurithm empowers enterprises to </span>
           <RotatingText
             texts={['harness AI strategically', 'automate intelligently', 'scale efficiently', 'transform boldly']}

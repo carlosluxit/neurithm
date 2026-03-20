@@ -32,11 +32,11 @@ export default function CTA() {
               glowColor="rgba(124, 92, 252, 0.6)"
               animationDuration={0.6}
               pauseBetweenAnimations={1.5}
-              className="text-4xl md:text-5xl lg:text-6xl heading-section justify-center"
+              className="text-5xl md:text-6xl lg:text-7xl heading-section justify-center"
             />
           </div>
 
-          <p className="text-lg text-muted leading-relaxed mb-10 max-w-2xl mx-auto">
+          <p className="text-xl text-muted leading-relaxed mb-10 max-w-2xl mx-auto">
             Smarter decisions, lower costs, and faster AI launches — powered by
             data clarity and agile execution. Take the first step with a free
             AI readiness assessment.

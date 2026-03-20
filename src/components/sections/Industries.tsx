@@ -20,10 +20,10 @@ export default function Industries() {
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
           <p className="section-label mb-4">Industry Expertise</p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl heading-section">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl heading-section">
             Fast. Efficient. Sector-Smart.
           </h2>
-          <p className="mt-6 text-lg text-muted leading-relaxed">
+          <p className="mt-6 text-xl text-muted leading-relaxed">
             We understand the unique challenges and regulations of your industry.
             Our AI solutions are tailored to deliver maximum impact.
           </p>
@@ -45,8 +45,8 @@ export default function Industries() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <h4 className="font-medium text-sm mb-2">{industry.name}</h4>
-              <p className="text-xs text-muted leading-relaxed">{industry.description}</p>
+              <h4 className="font-semibold text-base mb-2">{industry.name}</h4>
+              <p className="text-sm text-muted leading-relaxed">{industry.description}</p>
             </div>
           ))}
         </div>

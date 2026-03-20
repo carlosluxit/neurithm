@@ -26,10 +26,10 @@ export default function Services() {
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16 lg:mb-20">
           <p className="section-label mb-4">What We Do</p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl heading-section">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl heading-section">
             Every Phase. One Partner.
           </h2>
-          <p className="mt-6 text-lg text-muted leading-relaxed">
+          <p className="mt-6 text-xl text-muted leading-relaxed">
             From strategy to deployment, we provide end-to-end AI transformation
             services tailored to your industry and ambition.
           </p>
@@ -56,7 +56,7 @@ export default function Services() {
                     />
                   </div>
                   <h3 className="text-2xl font-bold mb-3 heading-section">{service.title}</h3>
-                  <p className="text-muted text-base leading-relaxed mb-6">
+                  <p className="text-muted text-lg leading-relaxed mb-6">
                     {service.description}
                   </p>
                   <ul className="space-y-3 mb-6">
