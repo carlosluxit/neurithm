@@ -1,23 +1,26 @@
-import { type ComponentPropsWithoutRef, type ElementType, type ReactNode } from 'react'
+import { type CSSProperties, type ElementType, type ReactNode } from 'react'
 
-type StarBorderProps<T extends ElementType = 'button'> = {
-  as?: T
+type StarBorderProps = {
+  as?: ElementType
   className?: string
   color?: string
   speed?: string
   thickness?: number
   children?: ReactNode
-} & Omit<ComponentPropsWithoutRef<T>, 'as' | 'className' | 'color' | 'children'>
+  style?: CSSProperties
+  [key: string]: unknown
+}
 
-export default function StarBorder<T extends ElementType = 'button'>({
+export default function StarBorder({
   as,
   className = '',
   color = '#9b7fff',
   speed = '6s',
   thickness = 1,
   children,
+  style,
   ...rest
-}: StarBorderProps<T>) {
+}: StarBorderProps) {
   const Component = as || 'button'
 
   return (
@@ -25,7 +28,7 @@ export default function StarBorder<T extends ElementType = 'button'>({
       className={`star-border-container ${className}`}
       style={{
         padding: `${thickness}px 0`,
-        ...(rest as Record<string, unknown>).style,
+        ...style,
       }}
       {...rest}
     >
