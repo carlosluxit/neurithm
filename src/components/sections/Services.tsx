@@ -34,8 +34,7 @@ export default function Services() {
             What We Do
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl heading-section">
-            Every Phase.{' '}
-            <span className="gradient-text-multi">One Partner.</span>
+            Every Phase. One Partner.
           </h2>
           <p className="mt-6 text-lg text-muted leading-relaxed">
             From strategy to deployment, we provide end-to-end AI transformation

@@ -21,8 +21,7 @@ export default function CTA() {
           </div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl heading-section mb-6">
-            Expect Results.{' '}
-            <span className="gradient-text-multi">Get More.</span>
+            Expect Results. Get More.
           </h2>
 
           <p className="text-lg text-muted leading-relaxed mb-10 max-w-2xl mx-auto">

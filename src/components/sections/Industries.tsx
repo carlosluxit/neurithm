@@ -38,8 +38,7 @@ export default function Industries() {
             Industry Expertise
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl heading-section">
-            Fast. Efficient.{' '}
-            <span className="gradient-text-warm">Sector-Smart.</span>
+            Fast. Efficient. Sector-Smart.
           </h2>
           <p className="mt-6 text-lg text-muted leading-relaxed">
             We understand the unique challenges and regulations of your industry.

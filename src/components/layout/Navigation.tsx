@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
-import { LogoMark } from '@/components/ui/Logo'
+import { LogoFull } from '@/components/ui/Logo'
 import DecryptedText from '@/components/reactbits/DecryptedText'
 
 const navLinks = [
@@ -36,12 +36,8 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-18">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <LogoMark className="w-9 h-9" />
-            <span className="text-lg font-semibold tracking-tight">
-              <span className="text-foreground">Neu</span>
-              <span className="text-accent-light">Rithm</span>
-            </span>
+          <Link href="/" className="flex items-center group">
+            <LogoFull className="h-8" />
           </Link>
 
           {/* Desktop Links */}

@@ -27,8 +27,7 @@ export default function Process() {
             Our Approach
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl heading-section">
-            AI Adoption,{' '}
-            <span className="gradient-text-cool">Step by Step</span>
+            AI Adoption, Step by Step
           </h2>
           <p className="mt-6 text-lg text-muted leading-relaxed">
             A clear, four-phase roadmap for AI adoption. Each phase builds on
