@@ -2,9 +2,12 @@
 
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import dynamic from 'next/dynamic'
 import Aurora from '@/components/reactbits/Aurora'
 import BlurText from '@/components/reactbits/BlurText'
 import DecryptedText from '@/components/reactbits/DecryptedText'
+
+const Orb = dynamic(() => import('@/components/reactbits/Orb'), { ssr: false })
 
 export default function Hero() {
   return (
@@ -19,11 +22,16 @@ export default function Hero() {
         />
       </div>
 
+      {/* Orb */}
+      <div className="absolute z-[1] w-[600px] h-[600px] lg:w-[800px] lg:h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30">
+        <Orb hue={10} hoverIntensity={0.3} rotateOnHover forceHoverState={false} backgroundColor="#050510" />
+      </div>
+
       {/* Overlay gradient */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-background/40 via-background/60 to-background" />
+      <div className="absolute inset-0 z-[2] bg-gradient-to-b from-background/40 via-background/60 to-background" />
 
       {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center pt-32 pb-20">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center pt-32 pb-20" style={{ zIndex: 10 }}>
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/5 mb-8">
           <div className="w-1.5 h-1.5 rounded-full bg-accent-cool animate-pulse" />
