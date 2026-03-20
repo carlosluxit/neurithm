@@ -1,0 +1,52 @@
+'use client'
+
+import Link from 'next/link'
+import { ArrowRight, Sparkles } from 'lucide-react'
+
+export default function CTA() {
+  return (
+    <section id="contact" className="section-spacing relative overflow-hidden">
+      {/* Background orbs */}
+      <div className="orb-gradient orb-purple w-[600px] h-[600px] -left-64 top-0 opacity-20" />
+      <div className="orb-gradient orb-blue w-[400px] h-[400px] right-0 bottom-0 opacity-15" />
+
+      <div className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10">
+        <div className="glass-card rounded-3xl p-12 lg:p-16 text-center gradient-border">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/5 mb-8">
+            <Sparkles className="w-3.5 h-3.5 text-accent-light" />
+            <span className="text-xs font-medium text-accent-light tracking-wide uppercase">
+              Start Your Transformation
+            </span>
+          </div>
+
+          <h2 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6">
+            Expect Results.{' '}
+            <span className="gradient-text">Get More.</span>
+          </h2>
+
+          <p className="text-lg text-muted leading-relaxed mb-10 max-w-2xl mx-auto">
+            Smarter decisions, lower costs, and faster AI launches — powered by
+            data clarity and agile execution. Take the first step with a free
+            AI readiness assessment.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/assessment"
+              className="btn-primary text-base py-4 px-8 inline-flex items-center gap-3 group"
+            >
+              Get Your Free AI Score
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+            <Link
+              href="/calculator"
+              className="btn-secondary text-base py-4 px-8"
+            >
+              Calculate ROI First
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

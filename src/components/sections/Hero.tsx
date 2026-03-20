@@ -1,0 +1,86 @@
+'use client'
+
+import Link from 'next/link'
+import { ArrowRight, Zap } from 'lucide-react'
+import Aurora from '@/components/reactbits/Aurora'
+import BlurText from '@/components/reactbits/BlurText'
+import DecryptedText from '@/components/reactbits/DecryptedText'
+
+export default function Hero() {
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Aurora Background */}
+      <div className="absolute inset-0 z-0">
+        <Aurora
+          colorStops={['#5227FF', '#7c5cfc', '#3b82f6']}
+          amplitude={1.2}
+          blend={0.6}
+          speed={0.8}
+        />
+      </div>
+
+      {/* Overlay gradient */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-background/40 via-background/60 to-background" />
+
+      {/* Content */}
+      <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center pt-32 pb-20">
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/5 mb-8">
+          <Zap className="w-3.5 h-3.5 text-accent-light" />
+          <span className="text-xs font-medium text-accent-light tracking-wide uppercase">
+            <DecryptedText
+              text="AI Transformation Agency"
+              speed={40}
+              maxIterations={15}
+              sequential
+              animateOn="view"
+              className="text-accent-light"
+              encryptedClassName="text-accent/40"
+            />
+          </span>
+        </div>
+
+        {/* Main Headline */}
+        <BlurText
+          text="Every Revolution Needs a Rhythm"
+          delay={80}
+          className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05]"
+          animateBy="words"
+          direction="bottom"
+        />
+
+        {/* Subheadline */}
+        <p className="mt-8 text-lg sm:text-xl text-muted max-w-2xl mx-auto leading-relaxed">
+          Neurithm empowers enterprises to harness AI strategically, intelligently,
+          and efficiently. From discovery to scaling — synchronized to your ambition.
+        </p>
+
+        {/* CTAs */}
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Link
+            href="/assessment"
+            className="btn-primary text-base py-4 px-8 inline-flex items-center gap-3 group"
+          >
+            Get Your AI Readiness Score
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </Link>
+          <Link
+            href="/calculator"
+            className="btn-secondary text-base py-4 px-8 inline-flex items-center gap-3"
+          >
+            Calculate Your ROI
+          </Link>
+        </div>
+
+        {/* Trust indicators */}
+        <div className="mt-16 flex items-center justify-center gap-8 text-xs text-muted-foreground">
+          <span>Enterprise-grade security</span>
+          <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+          <span>SOC 2 compliant</span>
+          <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+          <span>Results in weeks, not months</span>
+        </div>
+      </div>
+    </section>
+  )
+}
