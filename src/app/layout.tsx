@@ -102,6 +102,7 @@ export default function RootLayout({
         <Navigation />
         <main className="flex-1">{children}</main>
         <Footer />
+        <script src="https://cdn.touchup.dev/script.js" data-site="1282700f-ea01-4ea1-921f-2eef3f973910" defer></script>
       </body>
     </html>
   );

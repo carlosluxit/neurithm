@@ -8,6 +8,7 @@ import DecryptedText from '@/components/reactbits/DecryptedText'
 
 const navLinks = [
   { href: '/#services', label: 'Services' },
+  { href: '/#industries', label: 'Industries' },
   { href: '/case-studies', label: 'Case Studies' },
   { href: '/assessment', label: 'AI Assessment' },
   { href: '/calculator', label: 'ROI Calculator' },

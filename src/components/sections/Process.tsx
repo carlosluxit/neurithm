@@ -1,14 +1,6 @@
 'use client'
 
-import Image from 'next/image'
 import { PHASES } from '@/lib/constants'
-
-const phaseIcons = [
-  '/icons/process-discovery.png',
-  '/icons/process-strategy.png',
-  '/icons/process-implementation.png',
-  '/icons/process-scaling.png',
-]
 
 export default function Process() {
   return (
@@ -35,17 +27,8 @@ export default function Process() {
             {PHASES.map((phase, index) => (
               <div key={phase.title} className="relative group">
                 <div className="glass-card rounded-2xl p-8 h-full transition-all duration-300 hover:border-accent/20">
-                  <div className="flex items-center gap-4 mb-6">
-                    <span className="text-5xl lg:text-6xl font-black text-accent/40">{phase.number}</span>
-                    <div className="w-11 h-11 rounded-xl overflow-hidden">
-                      <Image
-                        src={phaseIcons[index]}
-                        alt={phase.title}
-                        width={44}
-                        height={44}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                  <div className="mb-6">
+                    <span className="text-7xl lg:text-8xl font-black text-white/90 drop-shadow-[0_0_30px_rgba(155,127,255,0.4)]">{phase.number}</span>
                   </div>
 
                   <h3 className="text-2xl font-bold mb-3 heading-section">{phase.title}</h3>

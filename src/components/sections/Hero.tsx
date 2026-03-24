@@ -16,7 +16,7 @@ export default function Hero() {
       {/* FloatingLines Background */}
       <div className="absolute inset-0 z-0">
         <FloatingLines
-          linesGradient={['#7D74F9', '#675FCC', '#4B3BA0', '#121127']}
+          linesGradient={['#3AABF5', '#2490D4', '#1670A8', '#121127']}
           enabledWaves={['top', 'middle', 'bottom']}
           lineCount={[8, 6, 4]}
           lineDistance={[4, 3, 5]}
@@ -44,7 +44,7 @@ export default function Hero() {
           <div className="w-1.5 h-1.5 rounded-full bg-accent-light animate-pulse" />
           <span className="section-label">
             <DecryptedText
-              text="AI Transformation Partners"
+              text="IT Solutions & AI Transformation"
               speed={40}
               maxIterations={15}
               sequential
@@ -57,7 +57,7 @@ export default function Hero() {
 
         {/* Main Headline */}
         <BlurText
-          text="EVERY REVOLUTION NEEDS A RHYTHM"
+          text="TECHNOLOGY AT YOUR SERVICE"
           delay={80}
           className="text-6xl sm:text-7xl lg:text-8xl xl:text-[7rem] 2xl:text-[8rem] heading-display uppercase"
           animateBy="words"
@@ -70,7 +70,7 @@ export default function Hero() {
           <div className="flex justify-center">
             <div className="text-left" style={{ minWidth: '16ch' }}>
               <RotatingText
-                texts={['harness AI strategically', 'automate intelligently', 'scale efficiently', 'transform boldly']}
+                texts={['harness AI strategically', 'automate intelligently', 'elevate guest experiences', 'transform boldly']}
                 mainClassName="text-accent-light font-semibold inline-flex justify-start"
                 rotationInterval={3000}
                 staggerDuration={0.02}
@@ -83,7 +83,7 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <StarBorder as="a" href="/assessment" color="#9b7fff" speed="5s" thickness={2}>
+          <StarBorder as="a" href="/assessment" color="#52B5F7" speed="5s" thickness={2}>
             <span className="inline-flex items-center gap-3 text-base font-medium group">
               Get Your AI Readiness Score
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

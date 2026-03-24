@@ -252,13 +252,8 @@ export default function CalculatorPage() {
       <div className="max-w-2xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/5 mb-6">
-            <Calculator className="w-3.5 h-3.5 text-accent-light" />
-            <span className="text-xs font-medium text-accent-light tracking-wide uppercase">
-              Free Tool
-            </span>
-          </div>
-          <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-4 heading-display">
+          <p className="section-label mb-6">Free Tool</p>
+          <h1 className="text-5xl lg:text-6xl font-bold tracking-tight mb-4 heading-display uppercase">
             AI ROI Calculator
           </h1>
           <p className="text-lg text-muted max-w-xl mx-auto">

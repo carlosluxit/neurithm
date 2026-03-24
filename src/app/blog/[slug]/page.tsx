@@ -128,6 +128,49 @@ function parseMarkdown(content: string) {
       continue
     }
 
+    // markdown table
+    if (line.trimStart().startsWith('|') && line.trimEnd().endsWith('|')) {
+      const tableLines: string[] = []
+      while (i < lines.length && lines[i].trimStart().startsWith('|') && lines[i].trimEnd().endsWith('|')) {
+        tableLines.push(lines[i])
+        i++
+      }
+      // Parse header, separator, and body rows
+      const parseRow = (row: string) =>
+        row.split('|').slice(1, -1).map((cell) => cell.trim())
+      const headerCells = parseRow(tableLines[0])
+      // Skip separator row (index 1), rest are body rows
+      const bodyRows = tableLines.slice(2).map(parseRow)
+
+      elements.push(
+        <div key={key++} className="my-6 overflow-x-auto rounded-xl border border-border">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-border bg-surface">
+                {headerCells.map((cell, ci) => (
+                  <th key={ci} className="px-5 py-3 text-left text-xs font-semibold text-foreground uppercase tracking-wider">
+                    {renderInline(cell)}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {bodyRows.map((row, ri) => (
+                <tr key={ri} className="border-b border-border last:border-b-0">
+                  {row.map((cell, ci) => (
+                    <td key={ci} className="px-5 py-3 text-muted leading-relaxed">
+                      {renderInline(cell)}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>,
+      )
+      continue
+    }
+
     // paragraph (collect consecutive non-special lines)
     const paraLines: string[] = []
     while (
@@ -136,7 +179,8 @@ function parseMarkdown(content: string) {
       !lines[i].startsWith('## ') &&
       !lines[i].startsWith('### ') &&
       !lines[i].trimStart().startsWith('- ') &&
-      !/^\d+\.\s/.test(lines[i].trimStart())
+      !/^\d+\.\s/.test(lines[i].trimStart()) &&
+      !(lines[i].trimStart().startsWith('|') && lines[i].trimEnd().endsWith('|'))
     ) {
       paraLines.push(lines[i])
       i++

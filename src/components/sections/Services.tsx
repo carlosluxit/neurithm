@@ -13,10 +13,10 @@ const iconMap: Record<string, string> = {
 }
 
 const spotlightColors = [
-  'rgba(124, 92, 252, 0.15)',
+  'rgba(46, 163, 242, 0.15)',
   'rgba(129, 140, 248, 0.15)',
   'rgba(192, 132, 252, 0.15)',
-  'rgba(124, 92, 252, 0.15)',
+  'rgba(46, 163, 242, 0.15)',
 ]
 
 export default function Services() {
