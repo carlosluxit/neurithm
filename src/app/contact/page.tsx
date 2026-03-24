@@ -132,9 +132,14 @@ export default function ContactPage() {
         <div className="orb-gradient orb-indigo w-[400px] h-[400px] -left-32 bottom-0 opacity-15" />
 
         <div className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10 text-center pt-20">
-          <p className="section-label mb-6">Get in Touch</p>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/5 mb-8">
+            <MessageSquare className="w-3.5 h-3.5 text-accent-light" />
+            <span className="text-xs font-medium text-accent-light tracking-wide uppercase">
+              Get in Touch
+            </span>
+          </div>
 
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[0.9] heading-display uppercase">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.08] heading-display">
             Let&apos;s Build Something Intelligent
           </h1>
 

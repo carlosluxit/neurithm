@@ -87,26 +87,6 @@ export default function BlogPage() {
   const [wpForm, setWpForm] = useState({ name: '', email: '', company: '' })
   const [wpSubmitting, setWpSubmitting] = useState(false)
   const [wpSuccess, setWpSuccess] = useState(false)
-  const [nlEmail, setNlEmail] = useState('')
-  const [nlSubmitting, setNlSubmitting] = useState(false)
-  const [nlSuccess, setNlSuccess] = useState(false)
-
-  const handleSubscribe = async () => {
-    if (!nlEmail) return
-    setNlSubmitting(true)
-    try {
-      await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: nlEmail }),
-      })
-      setNlSuccess(true)
-    } catch {
-      setNlSuccess(true)
-    } finally {
-      setNlSubmitting(false)
-    }
-  }
 
   const handleWhitepaperDownload = async () => {
     setWpSubmitting(true)
@@ -132,8 +112,10 @@ export default function BlogPage() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <p className="section-label mb-6">Insights & Resources</p>
-          <h1 className="text-5xl lg:text-6xl font-bold tracking-tight mb-6 heading-display uppercase">
+          <p className="text-base font-medium text-accent-light tracking-widest uppercase mb-4">
+            Insights & Resources
+          </p>
+          <h1 className="text-5xl lg:text-6xl font-bold tracking-tight mb-6 heading-display">
             Behind the Breakthrough
           </h1>
           <p className="text-xl text-muted leading-relaxed">
@@ -204,7 +186,7 @@ export default function BlogPage() {
         <div>
           <div className="text-center mb-10">
             <h3 className="text-3xl font-bold mb-4 heading-section">
-              Resources & Whitepapers
+              Gated Resources & Whitepapers
             </h3>
             <p className="text-muted text-lg">In-depth research and frameworks for AI transformation leaders.</p>
           </div>
@@ -244,29 +226,16 @@ export default function BlogPage() {
             Get weekly insights on AI transformation, new case studies, and actionable
             frameworks delivered to your inbox.
           </p>
-          {nlSuccess ? (
-            <div className="flex items-center justify-center gap-2 text-success">
-              <CheckCircle2 className="w-5 h-5" />
-              <span className="font-medium">You&apos;re subscribed! Check your inbox.</span>
-            </div>
-          ) : (
-            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="your@email.com"
-                className="flex-1"
-                value={nlEmail}
-                onChange={(e) => setNlEmail(e.target.value)}
-              />
-              <button
-                onClick={handleSubscribe}
-                disabled={!nlEmail || nlSubmitting}
-                className="btn-primary py-3 px-6 text-base whitespace-nowrap disabled:opacity-30 disabled:cursor-not-allowed"
-              >
-                {nlSubmitting ? 'Subscribing...' : 'Subscribe'}
-              </button>
-            </div>
-          )}
+          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <input
+              type="email"
+              placeholder="your@email.com"
+              className="flex-1"
+            />
+            <button className="btn-primary py-3 px-6 text-base whitespace-nowrap">
+              Subscribe
+            </button>
+          </div>
         </div>
       </div>
 

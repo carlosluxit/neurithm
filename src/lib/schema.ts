@@ -3,7 +3,7 @@ export function organizationSchema() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Neurithm',
-    description: 'IT Solutions & AI Transformation — empowering enterprises with end-to-end technology solutions across industries.',
+    description: 'AI Transformation Agency — empowering enterprises to harness AI strategically, intelligently, and efficiently.',
     url: 'https://neurithm.ai',
     logo: 'https://neurithm.ai/logo.png',
     sameAs: [],
@@ -11,15 +11,6 @@ export function organizationSchema() {
       '@type': 'ContactPoint',
       contactType: 'sales',
       email: 'hello@neurithm.ai',
-      telephone: '1-800-915-0774',
-    },
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: '2200 Rue Stanley, Berkeley 3',
-      addressLocality: 'Montreal',
-      addressRegion: 'QC',
-      postalCode: 'H3A 1R6',
-      addressCountry: 'CA',
     },
     offers: [
       {
@@ -34,8 +25,8 @@ export function organizationSchema() {
       },
       {
         '@type': 'Offer',
-        name: 'Hospitality Technology Solutions',
-        description: 'Comprehensive IT solutions for hotels and hospitality properties.',
+        name: 'AI Agent Development',
+        description: 'Custom AI agent development for automation, customer service, sales, and operations.',
       },
     ],
   }
@@ -60,14 +51,14 @@ export function serviceSchema() {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
     name: 'Neurithm',
-    description: 'IT solutions, AI transformation consulting, agent development, and managed services.',
+    description: 'AI transformation consulting, agent development, and process automation.',
     url: 'https://neurithm.ai',
     priceRange: '$$$$',
     areaServed: 'Global',
-    serviceType: ['AI Consulting', 'AI Agent Development', 'Process Automation', 'Managed IT Services', 'Hospitality Technology'],
+    serviceType: ['AI Consulting', 'AI Agent Development', 'Process Automation', 'AI Training'],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: 'Technology & AI Services',
+      name: 'AI Transformation Services',
       itemListElement: [
         {
           '@type': 'Offer',
@@ -97,16 +88,8 @@ export function serviceSchema() {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'Hospitality Technology',
-            description: 'End-to-end hospitality IT — networking, VoIP, entertainment, security, and managed support.',
-          },
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Managed IT Services',
-            description: 'Comprehensive managed IT support, helpdesk, security management, and cloud solutions.',
+            name: 'Training & Enablement',
+            description: 'AI skills training, literacy workshops, and change management.',
           },
         },
       ],

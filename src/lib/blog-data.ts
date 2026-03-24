@@ -769,7 +769,7 @@ With benefits and costs quantified, build your business case across three scenar
 4. **Using vendor benchmarks as your projections.** Vendor case studies feature their best outcomes. Your results will vary based on data quality, use case complexity, and organizational readiness.
 5. **Ignoring ongoing costs.** The implementation cost is just the beginning. LLM inference, monitoring, retraining, and maintenance are perpetual costs.
 
-## Neurithm.s Approach
+## Neurithm's Approach
 
 We build custom ROI models for every engagement, tailored to the client's specific processes, cost structure, and strategic goals. Our models are transparent — every assumption is documented, every benchmark is sourced, and every projection can be stress-tested.
 
@@ -785,7 +785,7 @@ If you are building an AI business case, start with our free ROI estimation tool
       { id: 'quantifying-costs', title: 'Quantifying Costs' },
       { id: 'building-the-business-case', title: 'Building the Business Case' },
       { id: 'common-mistakes-in-ai-roi-calculation', title: 'Common Mistakes' },
-      { id: 'neurithms-approach', title: "Neurithm.s Approach" },
+      { id: 'neurithms-approach', title: "Neurithm's Approach" },
     ],
     relatedSlugs: ['ai-readiness-assessment-guide', 'ai-agents-revenue-use-cases'],
   },

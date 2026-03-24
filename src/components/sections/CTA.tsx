@@ -29,8 +29,8 @@ export default function CTA() {
               sentence="Your AI Edge Starts Here."
               manualMode={false}
               blurAmount={4}
-              borderColor="#2EA3F2"
-              glowColor="rgba(46, 163, 242, 0.6)"
+              borderColor="#7c5cfc"
+              glowColor="rgba(124, 92, 252, 0.6)"
               animationDuration={0.6}
               pauseBetweenAnimations={1.5}
               className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl heading-display uppercase justify-center"
@@ -44,7 +44,7 @@ export default function CTA() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <StarBorder as="a" href="/assessment" color="#52B5F7" speed="5s" thickness={2}>
+            <StarBorder as="a" href="/assessment" color="#9b7fff" speed="5s" thickness={2}>
               <span className="inline-flex items-center gap-3 text-base font-medium group">
                 Get Your Free AI Score
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
