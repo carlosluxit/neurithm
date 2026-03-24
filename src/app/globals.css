@@ -9,11 +9,11 @@
   --color-border-hover: rgba(255, 255, 255, 0.2);
   --color-card: rgba(255, 255, 255, 0.06);
   --color-card-hover: rgba(255, 255, 255, 0.1);
-  --color-accent: #7c5cfc;
-  --color-accent-light: #9b7fff;
-  --color-accent-dark: #5a3dd6;
-  --color-accent-glow: rgba(124, 92, 252, 0.2);
-  --color-accent-glow-strong: rgba(124, 92, 252, 0.4);
+  --color-accent: #2EA3F2;
+  --color-accent-light: #52B5F7;
+  --color-accent-dark: #1A7CC4;
+  --color-accent-glow: rgba(46, 163, 242, 0.2);
+  --color-accent-glow-strong: rgba(46, 163, 242, 0.4);
   --color-surface: #0c0c20;
   --color-surface-raised: #121230;
   --color-accent-warm: #c084fc;
@@ -399,6 +399,44 @@ select:focus {
   animation: slide-up 0.8s ease-out forwards;
 }
 
+/* Voice waveform bars */
+@keyframes waveform-bar {
+  0%, 100% { transform: scaleY(0.2); }
+  25% { transform: scaleY(0.6); }
+  50% { transform: scaleY(1); }
+  75% { transform: scaleY(0.45); }
+}
+
+.waveform-bar {
+  transform-origin: center;
+  animation: waveform-bar var(--wave-duration, 1.8s) ease-in-out infinite;
+  animation-delay: var(--wave-delay, 0s);
+}
+
+.waveform-muted .waveform-bar {
+  animation-play-state: paused;
+  transform: scaleY(0.15);
+  opacity: 0.3;
+}
+
+/* Smooth transcript entry */
+@keyframes transcript-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.animate-transcript-in {
+  animation: transcript-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 /* Star Border */
 .star-border-container {
   display: inline-block;
@@ -479,7 +517,7 @@ select:focus {
   --glow-y: 50%;
   --glow-intensity: 0;
   --glow-radius: 200px;
-  --glow-color: 124, 92, 252;
+  --glow-color: 46, 163, 242;
 }
 
 .magic-bento-card:hover {

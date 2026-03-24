@@ -13,15 +13,15 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'About Neurithm — The Team Behind the Transformation',
+  title: 'About Luxit — The Team Behind the Transformation',
   description:
-    'Neurithm empowers enterprises to harness AI strategically. Learn about our mission, values, and the 4-phase methodology that drives lasting transformation.',
+    'Luxit empowers enterprises to harness AI strategically. Learn about our mission, values, and the 4-phase methodology that drives lasting transformation.',
   openGraph: {
-    title: 'About Neurithm — The Team Behind the Transformation',
+    title: 'About Luxit — The Team Behind the Transformation',
     description:
       'Founded on the belief that AI transformation should be synchronized to each organization\'s unique ambition and pace.',
     type: 'website',
-    siteName: 'Neurithm',
+    siteName: 'Luxit',
   },
 }
 
@@ -95,19 +95,14 @@ export default function AboutPage() {
         <div className="orb-gradient orb-indigo w-[400px] h-[400px] -left-32 bottom-0 opacity-15" />
 
         <div className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10 text-center pt-20">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/5 mb-8">
-            <Users className="w-3.5 h-3.5 text-accent-light" />
-            <span className="text-xs font-medium text-accent-light tracking-wide uppercase">
-              About Neurithm
-            </span>
-          </div>
+          <p className="section-label mb-6">About Luxit</p>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.08] heading-display">
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[0.9] heading-display uppercase">
             The Team Behind the Transformation
           </h1>
 
           <p className="mt-8 text-lg sm:text-xl text-muted max-w-2xl mx-auto leading-relaxed">
-            Neurithm empowers enterprises to harness AI strategically. Founded
+            Luxit empowers enterprises to harness AI strategically. Founded
             on the belief that AI transformation should be synchronized to each
             organization&apos;s unique ambition and pace.
           </p>
@@ -118,6 +113,7 @@ export default function AboutPage() {
       <section className="section-spacing relative">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
+            <p className="section-label mb-6">Our Values</p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 heading-section">
               What We Stand For
             </h2>
@@ -152,6 +148,7 @@ export default function AboutPage() {
 
         <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
+            <p className="section-label mb-6">Our Methodology</p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 heading-section">
               Our 4-Phase Approach
             </h2>

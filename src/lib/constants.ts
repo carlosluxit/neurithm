@@ -1,9 +1,9 @@
 export const SITE = {
-  name: 'Neurithm',
-  tagline: 'AI Transformation synchronized to your ambition',
-  description: 'Neurithm empowers enterprises to harness AI strategically, intelligently, and efficiently. From discovery to scaling, we synchronize AI transformation to your ambition.',
-  url: 'https://neurithm.ai',
-  email: 'hello@neurithm.ai',
+  name: 'Luxit',
+  tagline: 'IT Solutions & AI Transformation at Your Service',
+  description: 'Luxit empowers enterprises with end-to-end technology solutions — from AI strategy and automation to hospitality IT infrastructure. We transform operations across industries with precision and innovation.',
+  url: 'https://luxit.io',
+  email: 'hello@luxit.io',
 } as const
 
 export const SERVICES = [
@@ -68,6 +68,7 @@ export const STATS = [
 ] as const
 
 export const INDUSTRIES = [
+  'Hospitality',
   'Healthcare',
   'Financial Services',
   'Real Estate',
@@ -76,6 +77,41 @@ export const INDUSTRIES = [
   'Manufacturing',
   'Professional Services',
   'Technology',
+] as const
+
+export const HOSPITALITY_SERVICES = [
+  {
+    title: 'Network & Wi-Fi Solutions',
+    description: 'Future-proof network infrastructure and reliable Wi-Fi systems with secure guest and employee segments.',
+  },
+  {
+    title: 'VoIP & Communications',
+    description: 'Elevate guest communications with cutting-edge VoIP solutions for high-quality interactions.',
+  },
+  {
+    title: 'In-Room Entertainment',
+    description: 'Tailor-made entertainment systems from interactive options to streaming services for memorable stays.',
+  },
+  {
+    title: 'Security & Access Control',
+    description: 'Comprehensive facility security with advanced CCTV surveillance and access control systems.',
+  },
+  {
+    title: 'Digital Signage & Wayfinding',
+    description: 'Engage and guide guests with interactive digital signage and wayfinding solutions.',
+  },
+  {
+    title: 'Meeting Rooms & Conferencing',
+    description: 'Transform conference spaces with cutting-edge technology for premium event hosting.',
+  },
+  {
+    title: 'Technology Procurement',
+    description: 'Streamlined supplier selection and provisioning for maximum cost efficiency and economies of scale.',
+  },
+  {
+    title: 'Managed IT Support',
+    description: 'Proactive IT support, responsive help desk, and back-office optimization for your property.',
+  },
 ] as const
 
 export const ASSESSMENT_QUESTIONS = [

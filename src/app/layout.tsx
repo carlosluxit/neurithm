@@ -24,11 +24,11 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: "Neurithm — AI Transformation Synchronized to Your Ambition",
-    template: "%s | Neurithm",
+    default: "Luxit — IT Solutions & AI Transformation at Your Service",
+    template: "%s | Luxit",
   },
   description:
-    "Neurithm empowers enterprises to harness AI strategically, intelligently, and efficiently. AI consulting, agent development, process automation, and team enablement.",
+    "Luxit empowers enterprises with end-to-end technology solutions — from AI strategy and automation to hospitality IT infrastructure. IT consulting, AI agents, process automation, and managed services.",
   keywords: [
     "AI transformation",
     "AI consulting",
@@ -36,28 +36,29 @@ export const metadata: Metadata = {
     "business automation",
     "AI strategy",
     "enterprise AI",
-    "AI readiness assessment",
-    "AI ROI calculator",
+    "hospitality technology",
+    "managed IT services",
+    "IT solutions",
     "process automation",
     "AI agent development",
-    "AI transformation agency",
-    "machine learning consulting",
+    "technology consulting",
     "intelligent automation",
+    "hotel technology",
   ],
-  metadataBase: new URL("https://neurithm.ai"),
+  metadataBase: new URL("https://luxit.io"),
   openGraph: {
-    title: "Neurithm — AI Transformation Synchronized to Your Ambition",
+    title: "Luxit — IT Solutions & AI Transformation at Your Service",
     description:
-      "From discovery to scaling, Neurithm synchronizes AI transformation to your ambition. Get your free AI readiness score.",
+      "End-to-end technology solutions for enterprises. AI strategy, automation, managed IT, and hospitality technology — all under one roof.",
     type: "website",
-    siteName: "Neurithm",
-    url: "https://neurithm.ai",
+    siteName: "Luxit",
+    url: "https://luxit.io",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Neurithm — AI Transformation",
+    title: "Luxit — IT Solutions & AI Transformation",
     description:
-      "Empowering enterprises to harness AI strategically, intelligently, and efficiently.",
+      "Empowering enterprises with technology solutions across every industry.",
   },
   robots: {
     index: true,
@@ -71,7 +72,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://neurithm.ai",
+    canonical: "https://luxit.io",
   },
 };
 
@@ -102,6 +103,7 @@ export default function RootLayout({
         <Navigation />
         <main className="flex-1">{children}</main>
         <Footer />
+        <script src="https://cdn.touchup.dev/script.js" data-site="1282700f-ea01-4ea1-921f-2eef3f973910" defer></script>
       </body>
     </html>
   );

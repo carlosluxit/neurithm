@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://neurithm.ai'
+  const baseUrl = 'https://luxit.io'
 
   const blogSlugs = [
     'ai-transformation-roadmap-2026',

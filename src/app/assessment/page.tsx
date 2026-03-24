@@ -73,12 +73,7 @@ export default function AssessmentPage() {
         <div className="max-w-6xl mx-auto px-6">
           {/* Hero header */}
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/5 mb-8">
-              <BarChart3 className="w-4 h-4 text-accent-light" />
-              <span className="text-sm font-medium text-accent-light tracking-wide uppercase">
-                Free Assessment
-              </span>
-            </div>
+            <p className="section-label mb-6">Free Assessment</p>
 
             <h1 className="text-5xl lg:text-7xl xl:text-8xl font-bold tracking-tight mb-6 heading-display uppercase">
               How AI-Ready<br />Are You?
@@ -383,7 +378,7 @@ export default function AssessmentPage() {
               />
               <defs>
                 <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#7c5cfc" />
+                  <stop offset="0%" stopColor="#2EA3F2" />
                   <stop offset="100%" stopColor="#3b82f6" />
                 </linearGradient>
               </defs>

@@ -12,37 +12,126 @@ import {
   ArrowRight,
   Zap,
   TrendingUp,
+  Phone,
+  Mic,
+  MicOff,
+  PhoneOff,
+  User,
+  Calendar,
+  ShoppingBag,
+  Headphones,
 } from 'lucide-react'
 import Link from 'next/link'
 
 const demos = [
   {
+    id: 'voice',
+    title: 'Voice Agents',
+    description: 'AI-powered phone agents for sales, support, and scheduling.',
+    icon: Phone,
+    color: 'from-accent/20 to-accent-light/20',
+  },
+  {
     id: 'chatbot',
     title: 'AI Support Agent',
     description: 'Real-time customer query handling with human-like understanding.',
     icon: MessageSquare,
-    color: 'from-blue-500/20 to-indigo-500/20',
+    color: 'from-accent/15 to-indigo-500/15',
   },
   {
     id: 'analytics',
     title: 'Smart Analytics',
     description: 'Transform raw data into actionable insights in seconds.',
     icon: BarChart3,
-    color: 'from-purple-500/20 to-pink-500/20',
+    color: 'from-purple-500/20 to-accent/20',
   },
   {
     id: 'content',
     title: 'Content Engine',
     description: 'On-brand content across channels with AI that knows your voice.',
     icon: FileText,
-    color: 'from-emerald-500/20 to-teal-500/20',
+    color: 'from-indigo-500/15 to-accent/15',
   },
   {
     id: 'workflow',
     title: 'Workflow Automation',
     description: 'End-to-end process automation with intelligent decision routing.',
     icon: Zap,
-    color: 'from-amber-500/20 to-orange-500/20',
+    color: 'from-accent/20 to-purple-500/20',
+  },
+]
+
+const voiceScenarios = [
+  {
+    id: 'sdr',
+    label: 'SDR Outbound',
+    icon: User,
+    caller: 'AI Sales Agent',
+    recipient: 'Marketing Director',
+    company: 'TechCorp Inc.',
+    duration: '2:34',
+    transcript: [
+      { speaker: 'agent', text: 'Hi Sarah, this is Alex from Luxit. I noticed TechCorp recently expanded your customer support team to 40 agents. Are you still handling ticket routing manually?' },
+      { speaker: 'customer', text: 'Actually yes, it\'s been a pain point. How did you know about that?' },
+      { speaker: 'agent', text: 'We work with companies scaling their support operations. Our AI routing system cut ticket resolution time by 62% for a similar-sized team at Meridian Health. Would a 15-minute demo next Tuesday work?' },
+      { speaker: 'customer', text: 'That\'s impressive. Tuesday afternoon works, send me an invite.' },
+      { speaker: 'agent', text: 'Perfect, I\'ll send a calendar invite for 2 PM EST with a brief overview. Looking forward to showing you the results, Sarah.' },
+    ],
+    metrics: { sentiment: 'Positive', outcome: 'Meeting Booked', confidence: '94%' },
+  },
+  {
+    id: 'appointment',
+    label: 'Appointment Verification',
+    icon: Calendar,
+    caller: 'AI Scheduler',
+    recipient: 'Patient',
+    company: 'Apex Medical Group',
+    duration: '1:12',
+    transcript: [
+      { speaker: 'agent', text: 'Hello, this is a courtesy call from Apex Medical Group. Am I speaking with James Rodriguez?' },
+      { speaker: 'customer', text: 'Yes, that\'s me.' },
+      { speaker: 'agent', text: 'Great, James. I\'m confirming your appointment with Dr. Chen this Thursday, March 26th at 10:30 AM. Can you still make it?' },
+      { speaker: 'customer', text: 'Actually, can we push it to the afternoon?' },
+      { speaker: 'agent', text: 'Absolutely. I have 2:15 PM or 3:45 PM available with Dr. Chen that same day. Which works better?' },
+      { speaker: 'customer', text: '3:45 please.' },
+      { speaker: 'agent', text: 'Done — rescheduled to Thursday March 26th at 3:45 PM. You\'ll get a confirmation text shortly. Is there anything else I can help with?' },
+    ],
+    metrics: { sentiment: 'Neutral', outcome: 'Rescheduled', confidence: '98%' },
+  },
+  {
+    id: 'concierge',
+    label: 'Concierge Service',
+    icon: Headphones,
+    caller: 'AI Concierge',
+    recipient: 'Hotel Guest',
+    company: 'The Laurent Hotel',
+    duration: '1:48',
+    transcript: [
+      { speaker: 'agent', text: 'Good evening and welcome to The Laurent. This is your AI concierge. How can I make your stay exceptional tonight?' },
+      { speaker: 'customer', text: 'Hi, we just checked in. Looking for a great Italian restaurant nearby for two, maybe something with a view?' },
+      { speaker: 'agent', text: 'Wonderful taste. I\'d recommend Terrazza — it\'s a 7-minute walk, rooftop seating overlooking the harbor. They have a seasonal truffle menu right now that guests love. Shall I reserve a table?' },
+      { speaker: 'customer', text: 'Yes, 8 PM if possible.' },
+      { speaker: 'agent', text: 'Reserved — 8 PM, table for two, rooftop section. I\'ve also arranged a complimentary aperitivo on arrival since you\'re a Laurent guest. I\'ll send walking directions to your room tablet.' },
+    ],
+    metrics: { sentiment: 'Positive', outcome: 'Reservation Made', confidence: '97%' },
+  },
+  {
+    id: 'sales',
+    label: 'Inbound Sales',
+    icon: ShoppingBag,
+    caller: 'AI Sales Agent',
+    recipient: 'Inbound Lead',
+    company: 'CloudSync Solutions',
+    duration: '3:05',
+    transcript: [
+      { speaker: 'customer', text: 'Hi, I saw your website. We\'re looking for an automation solution for our logistics team, about 200 shipments a day.' },
+      { speaker: 'agent', text: 'Thanks for reaching out! 200 shipments daily — are you currently tracking those manually, or do you have a system that\'s just not keeping up?' },
+      { speaker: 'customer', text: 'We use spreadsheets and it\'s a nightmare. We\'re losing packages and customers are complaining.' },
+      { speaker: 'agent', text: 'I hear that a lot. Our AI routing engine processes shipments in real time — one client at your volume reduced lost packages by 94% in the first month. What\'s your biggest pain: tracking accuracy, delivery speed, or customer notifications?' },
+      { speaker: 'customer', text: 'All three honestly. What would this cost us?' },
+      { speaker: 'agent', text: 'For 200 daily shipments, you\'re looking at the Growth tier — $890/month. But based on your loss rate, most clients at your scale see ROI within 3 weeks. I can set up a pilot with your real data this week. Want me to connect you with our solutions team?' },
+    ],
+    metrics: { sentiment: 'High Intent', outcome: 'Qualified Lead', confidence: '91%' },
   },
 ]
 
@@ -64,10 +153,14 @@ const workflowSteps = [
 ]
 
 export default function Demos() {
-  const [activeDemo, setActiveDemo] = useState('chatbot')
+  const [activeDemo, setActiveDemo] = useState('voice')
   const [chatStep, setChatStep] = useState(0)
   const [isTyping, setIsTyping] = useState(false)
   const [analyticsAnimated, setAnalyticsAnimated] = useState(false)
+  const [activeVoiceScenario, setActiveVoiceScenario] = useState('sdr')
+  const [voiceStep, setVoiceStep] = useState(0)
+  const [callActive, setCallActive] = useState(true)
+  const [isMuted, setIsMuted] = useState(false)
 
   useEffect(() => {
     if (activeDemo === 'analytics') {
@@ -76,6 +169,22 @@ export default function Demos() {
       return () => clearTimeout(timer)
     }
   }, [activeDemo])
+
+  const currentScenario = voiceScenarios.find(s => s.id === activeVoiceScenario) ?? voiceScenarios[0]
+
+  useEffect(() => {
+    setVoiceStep(0)
+    setCallActive(true)
+    setIsMuted(false)
+  }, [activeVoiceScenario])
+
+  useEffect(() => {
+    if (activeDemo !== 'voice' || !callActive) return
+    if (voiceStep >= currentScenario.transcript.length - 1) return
+    const delay = currentScenario.transcript[voiceStep].speaker === 'agent' ? 2200 : 1800
+    const timer = setTimeout(() => setVoiceStep(prev => prev + 1), delay)
+    return () => clearTimeout(timer)
+  }, [activeDemo, voiceStep, callActive, currentScenario])
 
   const advanceChat = () => {
     if (chatStep < chatMessages.length - 1 && !isTyping) {
@@ -156,15 +265,153 @@ export default function Demos() {
                 </div>
                 <div className="flex-1 flex justify-center">
                   <div className="px-4 py-1 rounded-md bg-surface text-xs text-muted">
-                    neurithm.ai / demo / {activeDemo}
+                    luxit.io / demo / {activeDemo}
                   </div>
                 </div>
               </div>
 
+              {/* Voice Agent Demo */}
+              {activeDemo === 'voice' && (
+                <div className="p-6 h-[520px] flex flex-col overflow-hidden">
+                  {/* Scenario tabs */}
+                  <div className="flex gap-2 mb-5 overflow-x-auto pb-1 flex-shrink-0">
+                    {voiceScenarios.map((scenario) => {
+                      const ScIcon = scenario.icon
+                      return (
+                        <button
+                          key={scenario.id}
+                          onClick={() => setActiveVoiceScenario(scenario.id)}
+                          className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
+                            activeVoiceScenario === scenario.id
+                              ? 'bg-accent/15 text-accent-light border border-accent/30'
+                              : 'bg-surface border border-border text-muted hover:text-foreground hover:border-border-hover'
+                          }`}
+                        >
+                          <ScIcon className="w-3.5 h-3.5" />
+                          {scenario.label}
+                        </button>
+                      )
+                    })}
+                  </div>
+
+                  {/* Call header */}
+                  <div className="flex items-center justify-between mb-5 flex-shrink-0">
+                    <div className="flex items-center gap-3">
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center ${callActive ? 'bg-green-500/20' : 'bg-surface border border-border'}`}>
+                        <Phone className={`w-5 h-5 ${callActive ? 'text-green-400' : 'text-muted'}`} />
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium">{currentScenario.caller}</p>
+                        <p className="text-xs text-muted">{currentScenario.company} → {currentScenario.recipient}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      {callActive && (
+                        <div className="flex items-center gap-1.5">
+                          <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                          <span className="text-xs text-green-400 font-mono">{currentScenario.duration}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Waveform visualization */}
+                  {callActive && (
+                    <div className={`flex items-center justify-center gap-[3px] h-8 mb-5 flex-shrink-0 ${isMuted ? 'waveform-muted' : ''}`}>
+                      {Array.from({ length: 40 }).map((_, i) => {
+                        // Speech-like pattern: clusters of activity with natural pauses
+                        const seed = Math.sin(i * 1.7 + 3) * 0.5 + 0.5
+                        const cluster = Math.sin(i * 0.4) * 0.5 + 0.5
+                        const maxHeight = Math.round(Math.max(4, seed * cluster * 28 + 4))
+                        const duration = Math.round((1.6 + Math.sin(i * 0.9) * 0.6) * 100) / 100
+                        const delay = Math.round(i * 8) / 100
+                        return (
+                          <div
+                            key={i}
+                            className="waveform-bar rounded-full bg-accent-light/70"
+                            style={{
+                              width: '3px',
+                              height: `${maxHeight}px`,
+                              '--wave-duration': `${duration}s`,
+                              '--wave-delay': `${delay}s`,
+                            } as React.CSSProperties}
+                          />
+                        )
+                      })}
+                    </div>
+                  )}
+
+                  {/* Live transcript */}
+                  <div
+                    className="space-y-3 flex-1 overflow-y-auto mb-5 min-h-0 scroll-smooth"
+                    ref={(el) => { if (el) el.scrollTop = el.scrollHeight }}
+                  >
+                    {currentScenario.transcript.slice(0, voiceStep + 1).map((line, i) => (
+                      <div
+                        key={`${currentScenario.id}-${i}`}
+                        className={`flex gap-3 ${i === voiceStep ? 'animate-transcript-in' : ''}`}
+                      >
+                        <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                          line.speaker === 'agent' ? 'bg-accent/20' : 'bg-surface-raised border border-border'
+                        }`}>
+                          {line.speaker === 'agent' ? (
+                            <Bot className="w-3 h-3 text-accent-light" />
+                          ) : (
+                            <User className="w-3 h-3 text-muted" />
+                          )}
+                        </div>
+                        <div>
+                          <p className="text-[10px] text-muted mb-0.5 uppercase tracking-wider">
+                            {line.speaker === 'agent' ? currentScenario.caller : currentScenario.recipient}
+                          </p>
+                          <p className="text-sm leading-relaxed">{line.text}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Call controls + metrics */}
+                  <div className="flex items-center justify-between pt-4 border-t border-border mt-auto flex-shrink-0">
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => setIsMuted(!isMuted)}
+                        className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
+                          isMuted ? 'bg-red-500/20 text-red-400' : 'bg-surface border border-border text-muted hover:text-foreground'
+                        }`}
+                      >
+                        {isMuted ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+                      </button>
+                      <button
+                        onClick={() => setCallActive(!callActive)}
+                        className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
+                          callActive ? 'bg-red-500/20 text-red-400 hover:bg-red-500/30' : 'bg-green-500/20 text-green-400 hover:bg-green-500/30'
+                        }`}
+                      >
+                        {callActive ? <PhoneOff className="w-4 h-4" /> : <Phone className="w-4 h-4" />}
+                      </button>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="text-right">
+                        <p className="text-[10px] text-muted">Sentiment</p>
+                        <p className="text-xs font-medium text-success">{currentScenario.metrics.sentiment}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-[10px] text-muted">Outcome</p>
+                        <p className="text-xs font-medium">{currentScenario.metrics.outcome}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-[10px] text-muted">Confidence</p>
+                        <p className="text-xs font-medium text-accent-light">{currentScenario.metrics.confidence}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Chat Demo */}
               {activeDemo === 'chatbot' && (
-                <div className="p-6 min-h-[420px] flex flex-col">
-                  <div className="flex-1 space-y-4 overflow-y-auto">
+                <div className="p-6 h-[520px] flex flex-col">
+                  <div className="flex-1 space-y-4 overflow-y-auto min-h-0">
                     {chatMessages.slice(0, chatStep + 1).map((msg, i) => (
                       <div
                         key={i}
@@ -224,7 +471,7 @@ export default function Demos() {
 
               {/* Analytics Demo */}
               {activeDemo === 'analytics' && (
-                <div className="p-6 min-h-[420px]">
+                <div className="p-6 h-[520px] overflow-y-auto">
                   <div className="flex items-center gap-3 mb-6">
                     <Sparkles className="w-5 h-5 text-accent-light" />
                     <h4 className="font-medium text-sm">AI-Generated Insights</h4>
@@ -272,7 +519,7 @@ export default function Demos() {
 
               {/* Content Demo */}
               {activeDemo === 'content' && (
-                <div className="p-6 min-h-[420px]">
+                <div className="p-6 h-[520px] overflow-y-auto">
                   <div className="flex items-center gap-3 mb-6">
                     <FileText className="w-5 h-5 text-accent-light" />
                     <h4 className="font-medium text-sm">Multi-Channel Content Generation</h4>
@@ -321,7 +568,7 @@ export default function Demos() {
 
               {/* Workflow Demo */}
               {activeDemo === 'workflow' && (
-                <div className="p-6 min-h-[420px]">
+                <div className="p-6 h-[520px] overflow-y-auto">
                   <div className="flex items-center gap-3 mb-6">
                     <Zap className="w-5 h-5 text-accent-light" />
                     <h4 className="font-medium text-sm">Intelligent Document Processing</h4>

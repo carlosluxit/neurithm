@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
+import { supabase } from '@/lib/supabase'
 
 function getResendClient() {
   const key = process.env.RESEND_API_KEY
@@ -12,18 +13,16 @@ function baseLayout(content: string) {
     <div style="font-family: system-ui, -apple-system, sans-serif; max-width: 600px; margin: 0 auto; background: #050510; color: #f0f0f5;">
       <div style="padding: 40px;">
         <div style="text-align: center; margin-bottom: 32px;">
-          <h1 style="font-size: 24px; font-weight: 700; margin: 0;">
-            <span style="color: #f0f0f5;">Neu</span><span style="color: #9b7fff;">Rithm</span>
-          </h1>
+          <img src="https://luxit.io/logo.svg" alt="Luxit" width="180" height="42" style="display: inline-block;" />
           <p style="color: #6a6a7a; font-size: 12px; margin: 8px 0 0 0;">AI Transformation, synchronized.</p>
         </div>
         ${content}
         <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08);">
           <p style="color: #6a6a7a; font-size: 12px; text-align: center; margin: 0;">
-            &copy; ${new Date().getFullYear()} Neurithm. All rights reserved.
+            &copy; ${new Date().getFullYear()} Luxit. All rights reserved.
           </p>
           <p style="color: #6a6a7a; font-size: 11px; text-align: center; margin: 8px 0 0 0;">
-            <a href="https://neurithm.ai" style="color: #9b7fff; text-decoration: none;">neurithm.ai</a>
+            <a href="https://luxit.io" style="color: #52B5F7; text-decoration: none;">luxit.io</a>
           </p>
         </div>
       </div>
@@ -43,7 +42,7 @@ function metricBlock(label: string, value: string, color = '#f0f0f5') {
 function ctaButton(text: string, href: string) {
   return `
     <div style="text-align: center; margin: 32px 0;">
-      <a href="${href}" style="display: inline-block; background: linear-gradient(135deg, #7c5cfc 0%, #5a3dd6 100%); color: white; padding: 14px 32px; border-radius: 12px; text-decoration: none; font-weight: 500; font-size: 15px;">
+      <a href="${href}" style="display: inline-block; background: linear-gradient(135deg, #2EA3F2 0%, #1A7CC4 100%); color: white; padding: 14px 32px; border-radius: 12px; text-decoration: none; font-weight: 500; font-size: 15px;">
         ${text}
       </a>
     </div>
@@ -77,7 +76,7 @@ const emailTemplates = {
     let level = 'AI-Exploring'
     let levelColor = '#8a8a9a'
     if (s >= 80) { level = 'AI-Ready Leader'; levelColor = '#34d399' }
-    else if (s >= 60) { level = 'AI-Prepared'; levelColor = '#9b7fff' }
+    else if (s >= 60) { level = 'AI-Prepared'; levelColor = '#52B5F7' }
     else if (s >= 40) { level = 'AI-Emerging'; levelColor = '#fbbf24' }
 
     return {
@@ -90,7 +89,7 @@ const emailTemplates = {
           Hi ${name || 'there'}, here are your personalized AI readiness results.
         </p>
 
-        <div style="background: rgba(124, 92, 252, 0.1); border: 1px solid rgba(124, 92, 252, 0.2); border-radius: 16px; padding: 32px; text-align: center; margin-bottom: 24px;">
+        <div style="background: rgba(46, 163, 242, 0.1); border: 1px solid rgba(46, 163, 242, 0.2); border-radius: 16px; padding: 32px; text-align: center; margin-bottom: 24px;">
           <p style="font-size: 56px; font-weight: 700; color: #f0f0f5; margin: 0;">${s}</p>
           <p style="font-size: 14px; color: #8a8a9a; margin: 4px 0 12px 0;">out of 100</p>
           <p style="font-size: 18px; font-weight: 600; color: ${levelColor}; margin: 0;">${level}</p>
@@ -114,21 +113,21 @@ const emailTemplates = {
           <h3 style="font-size: 16px; font-weight: 600; margin: 0 0 16px 0;">Recommended Next Steps</h3>
           <table style="width: 100%; border-collapse: collapse;">
             <tr>
-              <td style="padding: 8px 0; color: #9b7fff; font-size: 14px; font-weight: 600; width: 24px; vertical-align: top;">1.</td>
+              <td style="padding: 8px 0; color: #52B5F7; font-size: 14px; font-weight: 600; width: 24px; vertical-align: top;">1.</td>
               <td style="padding: 8px 0; color: #8a8a9a; font-size: 14px;">Schedule a free Discovery Call to discuss your specific challenges</td>
             </tr>
             <tr>
-              <td style="padding: 8px 0; color: #9b7fff; font-size: 14px; font-weight: 600; vertical-align: top;">2.</td>
+              <td style="padding: 8px 0; color: #52B5F7; font-size: 14px; font-weight: 600; vertical-align: top;">2.</td>
               <td style="padding: 8px 0; color: #8a8a9a; font-size: 14px;">Try our AI ROI Calculator to estimate potential savings</td>
             </tr>
             <tr>
-              <td style="padding: 8px 0; color: #9b7fff; font-size: 14px; font-weight: 600; vertical-align: top;">3.</td>
+              <td style="padding: 8px 0; color: #52B5F7; font-size: 14px; font-weight: 600; vertical-align: top;">3.</td>
               <td style="padding: 8px 0; color: #8a8a9a; font-size: 14px;">Read our AI Transformation Roadmap for a step-by-step guide</td>
             </tr>
           </table>
         </div>
 
-        ${ctaButton('Book a Free Discovery Call', 'https://neurithm.ai/contact')}
+        ${ctaButton('Book a Free Discovery Call', 'https://luxit.io/contact')}
       `),
     }
   },
@@ -146,7 +145,7 @@ const emailTemplates = {
     const employees = data?.employees || 0
 
     return {
-      subject: `Your AI ROI Projection: $${Math.round(netSavings / 1000)}K Annual Savings — Neurithm`,
+      subject: `Your AI ROI Projection: $${Math.round(netSavings / 1000)}K Annual Savings — Luxit`,
       html: baseLayout(`
         <h2 style="font-size: 24px; font-weight: 700; text-align: center; margin-bottom: 8px;">
           Your AI ROI Report
@@ -155,10 +154,10 @@ const emailTemplates = {
           Hi ${name || 'there'}, here's your personalized AI ROI projection based on ${employees} employees.
         </p>
 
-        <div style="background: rgba(124, 92, 252, 0.1); border: 1px solid rgba(124, 92, 252, 0.2); border-radius: 16px; padding: 24px; margin-bottom: 24px;">
+        <div style="background: rgba(46, 163, 242, 0.1); border: 1px solid rgba(46, 163, 242, 0.2); border-radius: 16px; padding: 24px; margin-bottom: 24px;">
           <div style="display: flex; text-align: center;">
             ${metricBlock('Annual Savings', `$${Math.round(annualSavings / 1000)}K`, '#34d399')}
-            ${metricBlock('ROI', `${roi}%`, '#9b7fff')}
+            ${metricBlock('ROI', `${roi}%`, '#52B5F7')}
             ${metricBlock('Payback', `${payback} mo`, '#f0f0f5')}
             ${metricBlock('FTE Saved', `${fte}`, '#f0f0f5')}
           </div>
@@ -212,43 +211,55 @@ const emailTemplates = {
           </table>
         </div>
 
-        ${ctaButton('Discuss Your ROI Opportunity', 'https://neurithm.ai/contact')}
+        ${ctaButton('Discuss Your ROI Opportunity', 'https://luxit.io/contact')}
       `),
     }
   },
 
-  whitepaper: (name: string, _score?: number, _data?: unknown) => ({
-    subject: 'Your AI Transformation Guide — Neurithm',
-    html: baseLayout(`
-      <h2 style="font-size: 24px; font-weight: 700; text-align: center; margin-bottom: 8px;">
-        Your Guide is Ready
-      </h2>
-      <p style="color: #8a8a9a; text-align: center; font-size: 15px; margin-bottom: 32px;">
-        Hi ${name || 'there'}, thank you for downloading our AI Transformation Guide.
-      </p>
+  whitepaper: (name: string, _score?: number, data?: Record<string, unknown>) => {
+    const wpId = (data as Record<string, string>)?.whitepaper_id || 'state-of-ai-2026'
+    const wpMap: Record<string, { title: string; file: string }> = {
+      'state-of-ai-2026': { title: 'The State of AI Transformation 2026', file: 'state-of-ai-2026.pdf' },
+      'agent-architecture': { title: 'AI Agent Architecture Patterns', file: 'agent-architecture.pdf' },
+      'ai-governance': { title: 'Enterprise AI Governance Framework', file: 'ai-governance.pdf' },
+    }
+    const wp = wpMap[wpId] || wpMap['state-of-ai-2026']
+    const downloadUrl = `https://luxit.io/whitepapers/${wp.file}`
 
-      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 24px; margin-bottom: 24px;">
-        <h3 style="font-size: 16px; font-weight: 600; margin: 0 0 12px 0;">What's Inside</h3>
-        <table style="width: 100%; border-collapse: collapse;">
-          <tr><td style="padding: 6px 0; color: #9b7fff; font-size: 14px;">&#x2713;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;">Industry benchmarks and adoption rates</td></tr>
-          <tr><td style="padding: 6px 0; color: #9b7fff; font-size: 14px;">&#x2713;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;">Step-by-step transformation framework</td></tr>
-          <tr><td style="padding: 6px 0; color: #9b7fff; font-size: 14px;">&#x2713;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;">ROI calculation methodology</td></tr>
-          <tr><td style="padding: 6px 0; color: #9b7fff; font-size: 14px;">&#x2713;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;">Real-world case studies and results</td></tr>
-          <tr><td style="padding: 6px 0; color: #9b7fff; font-size: 14px;">&#x2713;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;">AI governance best practices</td></tr>
-        </table>
-      </div>
+    return {
+      subject: `Your Download: ${wp.title} — Luxit`,
+      html: baseLayout(`
+        <h2 style="font-size: 24px; font-weight: 700; text-align: center; margin-bottom: 8px;">
+          Your Guide is Ready
+        </h2>
+        <p style="color: #8a8a9a; text-align: center; font-size: 15px; margin-bottom: 32px;">
+          Hi ${name || 'there'}, thank you for requesting <strong style="color: #f0f0f5;">${wp.title}</strong>.
+        </p>
 
-      <div style="background: rgba(124, 92, 252, 0.1); border: 1px solid rgba(124, 92, 252, 0.2); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 24px;">
-        <p style="font-size: 14px; color: #9b7fff; margin: 0 0 8px 0;">Want a personalized assessment?</p>
-        <p style="font-size: 13px; color: #8a8a9a; margin: 0 0 16px 0;">Get your AI readiness score in 2 minutes</p>
-      </div>
+        ${ctaButton('Download PDF', downloadUrl)}
 
-      ${ctaButton('Take the AI Assessment', 'https://neurithm.ai/assessment')}
-    `),
-  }),
+        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 24px; margin-bottom: 24px;">
+          <h3 style="font-size: 16px; font-weight: 600; margin: 0 0 12px 0;">What's Inside</h3>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr><td style="padding: 6px 0; color: #52B5F7; font-size: 14px;">&#x2713;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;">Industry benchmarks and adoption rates</td></tr>
+            <tr><td style="padding: 6px 0; color: #52B5F7; font-size: 14px;">&#x2713;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;">Step-by-step transformation frameworks</td></tr>
+            <tr><td style="padding: 6px 0; color: #52B5F7; font-size: 14px;">&#x2713;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;">ROI calculation methodology</td></tr>
+            <tr><td style="padding: 6px 0; color: #52B5F7; font-size: 14px;">&#x2713;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;">Real-world case studies and results</td></tr>
+          </table>
+        </div>
+
+        <div style="background: rgba(46, 163, 242, 0.1); border: 1px solid rgba(46, 163, 242, 0.2); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 24px;">
+          <p style="font-size: 14px; color: #52B5F7; margin: 0 0 8px 0;">Want a personalized assessment?</p>
+          <p style="font-size: 13px; color: #8a8a9a; margin: 0 0 16px 0;">Get your AI readiness score in 2 minutes</p>
+        </div>
+
+        ${ctaButton('Take the AI Assessment', 'https://luxit.io/assessment')}
+      `),
+    }
+  },
 
   contact: (name: string, _score?: number, _data?: unknown) => ({
-    subject: `Thank you for reaching out — Neurithm`,
+    subject: `Thank you for reaching out — Luxit`,
     html: baseLayout(`
       <h2 style="font-size: 24px; font-weight: 700; text-align: center; margin-bottom: 8px;">
         We've Received Your Message
@@ -260,13 +271,13 @@ const emailTemplates = {
       <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 24px; margin-bottom: 24px;">
         <h3 style="font-size: 16px; font-weight: 600; margin: 0 0 12px 0;">While You Wait</h3>
         <table style="width: 100%; border-collapse: collapse;">
-          <tr><td style="padding: 6px 0; color: #9b7fff; font-size: 14px;">&#x2192;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;"><a href="https://neurithm.ai/assessment" style="color: #9b7fff; text-decoration: none;">Take the AI Readiness Assessment</a></td></tr>
-          <tr><td style="padding: 6px 0; color: #9b7fff; font-size: 14px;">&#x2192;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;"><a href="https://neurithm.ai/calculator" style="color: #9b7fff; text-decoration: none;">Calculate Your AI ROI</a></td></tr>
-          <tr><td style="padding: 6px 0; color: #9b7fff; font-size: 14px;">&#x2192;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;"><a href="https://neurithm.ai/blog" style="color: #9b7fff; text-decoration: none;">Read Our Latest Insights</a></td></tr>
+          <tr><td style="padding: 6px 0; color: #52B5F7; font-size: 14px;">&#x2192;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;"><a href="https://luxit.io/assessment" style="color: #52B5F7; text-decoration: none;">Take the AI Readiness Assessment</a></td></tr>
+          <tr><td style="padding: 6px 0; color: #52B5F7; font-size: 14px;">&#x2192;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;"><a href="https://luxit.io/calculator" style="color: #52B5F7; text-decoration: none;">Calculate Your AI ROI</a></td></tr>
+          <tr><td style="padding: 6px 0; color: #52B5F7; font-size: 14px;">&#x2192;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;"><a href="https://luxit.io/blog" style="color: #52B5F7; text-decoration: none;">Read Our Latest Insights</a></td></tr>
         </table>
       </div>
 
-      ${ctaButton('Explore Our Case Studies', 'https://neurithm.ai/case-studies')}
+      ${ctaButton('Explore Our Case Studies', 'https://luxit.io/case-studies')}
     `),
   }),
 }
@@ -291,7 +302,7 @@ export async function POST(request: Request) {
     const template = templateFn(name, score, calculator_data || assessment_data)
 
     const { data, error } = await resend.emails.send({
-      from: 'Neurithm <hello@neurithm.ai>',
+      from: 'Luxit <onboarding@resend.dev>',
       to: [to],
       subject: template.subject,
       html: template.html,
@@ -299,8 +310,31 @@ export async function POST(request: Request) {
 
     if (error) {
       console.error('Resend error:', error)
+      // Log failed email
+      try {
+        await supabase.from('email_logs').insert([{
+          lead_id: body.lead_id || null,
+          template: templateKey,
+          subject: template.subject,
+          to_email: to,
+          status: 'failed',
+          metadata: { error: error.message },
+        }])
+      } catch { /* ignore logging failures */ }
       return NextResponse.json({ error: 'Failed to send email' }, { status: 500 })
     }
+
+    // Log successful email
+    try {
+      await supabase.from('email_logs').insert([{
+        lead_id: body.lead_id || null,
+        template: templateKey,
+        subject: template.subject,
+        to_email: to,
+        status: 'sent',
+        resend_id: data?.id || null,
+      }])
+    } catch { /* ignore logging failures */ }
 
     return NextResponse.json({ success: true, data })
   } catch {

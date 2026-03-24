@@ -2,15 +2,24 @@ export function organizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Neurithm',
-    description: 'AI Transformation Agency — empowering enterprises to harness AI strategically, intelligently, and efficiently.',
-    url: 'https://neurithm.ai',
-    logo: 'https://neurithm.ai/logo.png',
+    name: 'Luxit Technologies',
+    description: 'IT Solutions & AI Transformation — empowering enterprises with end-to-end technology solutions across industries.',
+    url: 'https://luxit.io',
+    logo: 'https://luxit.io/logo.png',
     sameAs: [],
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'sales',
-      email: 'hello@neurithm.ai',
+      email: 'hello@luxit.io',
+      telephone: '1-800-915-0774',
+    },
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '2200 Rue Stanley, Berkeley 3',
+      addressLocality: 'Montreal',
+      addressRegion: 'QC',
+      postalCode: 'H3A 1R6',
+      addressCountry: 'CA',
     },
     offers: [
       {
@@ -25,8 +34,8 @@ export function organizationSchema() {
       },
       {
         '@type': 'Offer',
-        name: 'AI Agent Development',
-        description: 'Custom AI agent development for automation, customer service, sales, and operations.',
+        name: 'Hospitality Technology Solutions',
+        description: 'Comprehensive IT solutions for hotels and hospitality properties.',
       },
     ],
   }
@@ -36,11 +45,11 @@ export function websiteSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Neurithm',
-    url: 'https://neurithm.ai',
+    name: 'Luxit',
+    url: 'https://luxit.io',
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://neurithm.ai/blog?q={search_term_string}',
+      target: 'https://luxit.io/blog?q={search_term_string}',
       'query-input': 'required name=search_term_string',
     },
   }
@@ -50,15 +59,15 @@ export function serviceSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
-    name: 'Neurithm',
-    description: 'AI transformation consulting, agent development, and process automation.',
-    url: 'https://neurithm.ai',
+    name: 'Luxit Technologies',
+    description: 'IT solutions, AI transformation consulting, agent development, and managed services.',
+    url: 'https://luxit.io',
     priceRange: '$$$$',
     areaServed: 'Global',
-    serviceType: ['AI Consulting', 'AI Agent Development', 'Process Automation', 'AI Training'],
+    serviceType: ['AI Consulting', 'AI Agent Development', 'Process Automation', 'Managed IT Services', 'Hospitality Technology'],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: 'AI Transformation Services',
+      name: 'Technology & AI Services',
       itemListElement: [
         {
           '@type': 'Offer',
@@ -88,8 +97,16 @@ export function serviceSchema() {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'Training & Enablement',
-            description: 'AI skills training, literacy workshops, and change management.',
+            name: 'Hospitality Technology',
+            description: 'End-to-end hospitality IT — networking, VoIP, entertainment, security, and managed support.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Managed IT Services',
+            description: 'Comprehensive managed IT support, helpdesk, security management, and cloud solutions.',
           },
         },
       ],
@@ -132,8 +149,8 @@ export function articleSchema(article: {
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Neurithm',
-      url: 'https://neurithm.ai',
+      name: 'Luxit Technologies',
+      url: 'https://luxit.io',
     },
   }
 }

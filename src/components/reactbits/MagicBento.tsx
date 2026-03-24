@@ -4,7 +4,7 @@ import { useRef, useEffect, useCallback, useState, type ReactNode } from 'react'
 import { gsap } from 'gsap'
 
 const DEFAULT_SPOTLIGHT_RADIUS = 300
-const DEFAULT_GLOW_COLOR = '124, 92, 252'
+const DEFAULT_GLOW_COLOR = '46, 163, 242'
 const MOBILE_BREAKPOINT = 768
 
 const calculateSpotlightValues = (radius: number) => ({

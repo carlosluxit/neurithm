@@ -14,7 +14,7 @@ type StarBorderProps = {
 export default function StarBorder({
   as,
   className = '',
-  color = '#9b7fff',
+  color = '#52B5F7',
   speed = '6s',
   thickness = 1,
   children,

@@ -64,8 +64,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'hello@neurithm.ai',
-    href: 'mailto:hello@neurithm.ai',
+    value: 'hello@luxit.io',
+    href: 'mailto:hello@luxit.io',
   },
   {
     icon: Clock,
@@ -132,14 +132,9 @@ export default function ContactPage() {
         <div className="orb-gradient orb-indigo w-[400px] h-[400px] -left-32 bottom-0 opacity-15" />
 
         <div className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10 text-center pt-20">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/5 mb-8">
-            <MessageSquare className="w-3.5 h-3.5 text-accent-light" />
-            <span className="text-xs font-medium text-accent-light tracking-wide uppercase">
-              Get in Touch
-            </span>
-          </div>
+          <p className="section-label mb-6">Get in Touch</p>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.08] heading-display">
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[0.9] heading-display uppercase">
             Let&apos;s Build Something Intelligent
           </h1>
 
@@ -403,7 +398,7 @@ export default function ContactPage() {
               Frequently Asked Questions
             </h2>
             <p className="text-muted text-lg">
-              Common questions about working with Neurithm.
+              Common questions about working with Luxit.
             </p>
           </div>
 
@@ -448,10 +443,10 @@ export default function ContactPage() {
             For partnerships, press, or enterprise-scale engagements, email us
             directly at{' '}
             <a
-              href="mailto:hello@neurithm.ai"
+              href="mailto:hello@luxit.io"
               className="text-accent-light hover:underline"
             >
-              hello@neurithm.ai
+              hello@luxit.io
             </a>
           </p>
         </div>

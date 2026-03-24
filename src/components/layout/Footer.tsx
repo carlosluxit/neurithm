@@ -35,8 +35,8 @@ export default function Footer() {
               <LogoFull className="h-9" />
             </Link>
             <p className="text-sm text-muted leading-relaxed mb-6 max-w-xs">
-              {SITE.tagline}. Empowering enterprises to harness AI strategically,
-              intelligently, and efficiently.
+              {SITE.tagline}. Technology solutions and AI transformation
+              for enterprises across every industry.
             </p>
           </div>
 
@@ -104,10 +104,10 @@ export default function Footer() {
         {/* Bottom */}
         <div className="mt-16 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} Neurithm. All rights reserved.
+            &copy; {new Date().getFullYear()} Luxit Technologies Inc. All rights reserved.
           </p>
           <p className="text-xs text-muted-foreground">
-            AI Transformation, synchronized.
+            IT Solutions & AI Transformation at Your Service.
           </p>
         </div>
       </div>

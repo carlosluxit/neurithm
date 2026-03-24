@@ -20,7 +20,7 @@ export interface Whitepaper {
   topics: string[]
 }
 
-const author = { name: 'Neurithm Team', role: 'AI Transformation Experts' }
+const author = { name: 'Luxit Team', role: 'AI Transformation Experts' }
 
 export const BLOG_POSTS: BlogPost[] = [
   {
@@ -35,7 +35,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author,
     content: `AI transformation is no longer a competitive advantage — it is table stakes. According to Gartner's latest forecast, 75% of enterprises will have shifted from piloting AI to operationalizing it by the end of 2026, up from just 54% in 2024. Yet McKinsey's 2025 Global AI Survey found that only 1 in 4 organizations report capturing meaningful value from their AI investments. The gap between ambition and execution has never been wider.
 
-At Neurithm, we have guided dozens of organizations through this journey. This roadmap distills what we have learned into a repeatable, phase-by-phase framework that any enterprise can adapt.
+At Luxit, we have guided dozens of organizations through this journey. This roadmap distills what we have learned into a repeatable, phase-by-phase framework that any enterprise can adapt.
 
 ## Phase 1: Strategic Assessment (Weeks 1-4)
 
@@ -112,7 +112,7 @@ Based on our experience across 50+ engagements, these are the five most frequent
 
 AI transformation in 2026 is achievable for any organization willing to invest in a structured, phase-by-phase approach. The companies that succeed are not necessarily the ones with the largest budgets — they are the ones with the clearest problem definitions, the strongest data foundations, and the most disciplined execution frameworks.
 
-At Neurithm, we have seen organizations generate 3-7x ROI within 12 months of their first production deployment. The key is starting with a realistic assessment, building on proven patterns, and maintaining the discipline to scale methodically rather than chaotically.
+At Luxit, we have seen organizations generate 3-7x ROI within 12 months of their first production deployment. The key is starting with a realistic assessment, building on proven patterns, and maintaining the discipline to scale methodically rather than chaotically.
 
 Ready to begin your AI transformation? Start with our free AI Readiness Assessment to understand exactly where you stand today.`,
     tableOfContents: [
@@ -243,7 +243,7 @@ The AI agents generating real revenue share three characteristics:
 
 If you are evaluating AI agents for your organization, start with use cases where you have clean data, measurable outcomes, and a willing business sponsor. The implementation timeline for most of these use cases is 6-12 weeks from kickoff to production.
 
-Neurithm specializes in helping organizations identify, prioritize, and deploy AI agents that generate measurable ROI. Contact us to discuss which use cases align with your strategic priorities.`,
+Luxit specializes in helping organizations identify, prioritize, and deploy AI agents that generate measurable ROI. Contact us to discuss which use cases align with your strategic priorities.`,
     tableOfContents: [
       { id: '1-customer-service-agents', title: '1. Customer Service Agents' },
       { id: '2-lead-qualification--nurturing', title: '2. Lead Qualification & Nurturing' },
@@ -464,7 +464,7 @@ If you are evaluating OpenClaw for your organization, we recommend this sequence
 4. Plan production architecture based on your scale, compliance, and latency requirements
 5. Deploy to production with full monitoring and governance from day one
 
-Neurithm provides OpenClaw deployment services including architecture design, security hardening, governance framework setup, and ongoing operational support. Contact us to discuss your requirements.`,
+Luxit provides OpenClaw deployment services including architecture design, security hardening, governance framework setup, and ongoing operational support. Contact us to discuss your requirements.`,
     tableOfContents: [
       { id: 'why-openclaw-for-enterprise', title: 'Why OpenClaw for Enterprise' },
       { id: 'architecture-overview', title: 'Architecture Overview' },
@@ -490,7 +490,7 @@ Neurithm provides OpenClaw deployment services including architecture design, se
     author,
     content: `Every successful AI initiative starts with the same question: "Are we actually ready for this?" The answer is almost never a simple yes or no. AI readiness is multidimensional — an organization can have world-class data infrastructure but no internal AI talent, or a visionary executive sponsor but fragmented data across dozens of legacy systems.
 
-At Neurithm, we evaluate AI readiness across five interconnected dimensions. Each dimension is scored independently, and the composite picture reveals not just whether you are ready, but exactly where to invest to close your readiness gaps.
+At Luxit, we evaluate AI readiness across five interconnected dimensions. Each dimension is scored independently, and the composite picture reveals not just whether you are ready, but exactly where to invest to close your readiness gaps.
 
 ## Dimension 1: Data Infrastructure
 
@@ -604,7 +604,7 @@ Even organizations that score well on the first four dimensions can fail if AI i
 
 ## Take the Full Assessment
 
-This article provides a simplified version of our assessment framework. Neurithm offers a comprehensive, free AI Readiness Assessment that evaluates your organization across 50+ criteria, provides a detailed gap analysis, and generates a prioritized action plan.
+This article provides a simplified version of our assessment framework. Luxit offers a comprehensive, free AI Readiness Assessment that evaluates your organization across 50+ criteria, provides a detailed gap analysis, and generates a prioritized action plan.
 
 The full assessment takes approximately 30 minutes and produces a customized report comparing your readiness to industry benchmarks. No commitment required — it is a tool we built to help organizations make informed decisions about their AI journey.`,
     tableOfContents: [
@@ -630,7 +630,7 @@ The full assessment takes approximately 30 minutes and produces a customized rep
     author,
     content: `AI vendors love to throw around impressive ROI numbers. "300% ROI in 6 months!" "10x productivity gains!" These claims are rarely wrong — they are just rarely applicable to your specific situation. Calculating the real ROI of AI requires a disciplined methodology that accounts for all costs, measures all benefits, and applies appropriate timeframes.
 
-This article lays out the exact methodology we use at Neurithm to help organizations build credible, defensible AI business cases. No hand-waving, no inflated projections — just transparent math.
+This article lays out the exact methodology we use at Luxit to help organizations build credible, defensible AI business cases. No hand-waving, no inflated projections — just transparent math.
 
 ## The ROI Formula
 
@@ -769,7 +769,7 @@ With benefits and costs quantified, build your business case across three scenar
 4. **Using vendor benchmarks as your projections.** Vendor case studies feature their best outcomes. Your results will vary based on data quality, use case complexity, and organizational readiness.
 5. **Ignoring ongoing costs.** The implementation cost is just the beginning. LLM inference, monitoring, retraining, and maintenance are perpetual costs.
 
-## Neurithm's Approach
+## Luxit's Approach
 
 We build custom ROI models for every engagement, tailored to the client's specific processes, cost structure, and strategic goals. Our models are transparent — every assumption is documented, every benchmark is sourced, and every projection can be stress-tested.
 
@@ -785,7 +785,7 @@ If you are building an AI business case, start with our free ROI estimation tool
       { id: 'quantifying-costs', title: 'Quantifying Costs' },
       { id: 'building-the-business-case', title: 'Building the Business Case' },
       { id: 'common-mistakes-in-ai-roi-calculation', title: 'Common Mistakes' },
-      { id: 'neurithms-approach', title: "Neurithm's Approach" },
+      { id: 'luxits-approach', title: "Luxit's Approach" },
     ],
     relatedSlugs: ['ai-readiness-assessment-guide', 'ai-agents-revenue-use-cases'],
   },
@@ -995,7 +995,7 @@ If you are exploring multi-agent architectures, here is our recommended approach
 
 Multi-agent systems represent the next evolution in enterprise AI automation. The frameworks are ready, the patterns are proven, and the ROI is real. The organizations that master this architecture now will have a significant competitive advantage as AI-native business processes become the norm.
 
-Neurithm helps organizations design, build, and deploy multi-agent systems for complex enterprise workflows. Contact us to discuss how multi-agent architecture can transform your operations.`,
+Luxit helps organizations design, build, and deploy multi-agent systems for complex enterprise workflows. Contact us to discuss how multi-agent architecture can transform your operations.`,
     tableOfContents: [
       { id: 'the-case-for-multi-agent-architecture', title: 'The Case for Multi-Agent Architecture' },
       { id: 'framework-landscape', title: 'Framework Landscape' },
@@ -1048,7 +1048,7 @@ export const WHITEPAPERS: Whitepaper[] = [
     id: 'industry-ai-benchmarks-2026',
     title: 'AI ROI Benchmarks by Industry: 2026 Data Report',
     description:
-      'Quantitative benchmarks for AI return on investment across 12 industries and 30+ use cases. Includes implementation timelines, cost ranges, performance metrics, and success rate data. Built from anonymized data across Neurithm engagements and supplemented with published industry research from McKinsey, Gartner, Forrester, and IDC.',
+      'Quantitative benchmarks for AI return on investment across 12 industries and 30+ use cases. Includes implementation timelines, cost ranges, performance metrics, and success rate data. Built from anonymized data across Luxit engagements and supplemented with published industry research from McKinsey, Gartner, Forrester, and IDC.',
     pages: '28',
     topics: [
       'ROI benchmarks by industry',
