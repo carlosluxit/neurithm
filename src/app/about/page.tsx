@@ -183,7 +183,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Bar */}
-      <section className="relative py-16 border-y border-border">
+      <section aria-label="Company statistics" className="relative py-16 border-y border-border">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat) => (

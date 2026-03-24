@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 import { Resend } from 'resend'
+import { validateSubscribeInput } from '@/lib/validation'
 
 function getResendClient() {
   const key = process.env.RESEND_API_KEY
@@ -59,11 +60,13 @@ function welcomeEmail(name: string) {
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { email, name } = body
+    const { valid, errors, data: validated } = validateSubscribeInput(body)
 
-    if (!email) {
-      return NextResponse.json({ error: 'Email is required' }, { status: 400 })
+    if (!valid) {
+      return NextResponse.json({ error: 'Validation failed', details: errors }, { status: 400 })
     }
+
+    const { email, name } = validated
 
     // Insert into subscribers table
     const { error: dbError } = await supabase

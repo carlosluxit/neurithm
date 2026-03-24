@@ -9,7 +9,7 @@ const TrueFocus = dynamic(() => import('@/components/reactbits/TrueFocus'), { ss
 
 export default function CTA() {
   return (
-    <section id="contact" className="section-spacing relative overflow-hidden">
+    <section id="contact" aria-label="Call to action" className="section-spacing relative overflow-hidden">
       {/* Background orbs — purple family */}
       <div className="orb-gradient orb-purple w-[600px] h-[600px] -left-64 top-0 opacity-20" />
       <div className="orb-gradient orb-indigo w-[400px] h-[400px] right-0 bottom-0 opacity-15" />

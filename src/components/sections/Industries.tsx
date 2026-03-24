@@ -45,7 +45,7 @@ export default function Industries() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <h4 className="font-bold text-xl mb-3 heading-section">{industry.name}</h4>
+              <h3 className="font-bold text-xl mb-3 heading-section">{industry.name}</h3>
               <p className="text-base text-muted leading-relaxed">{industry.description}</p>
             </div>
           ))}

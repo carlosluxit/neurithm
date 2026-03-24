@@ -1,26 +1,22 @@
 import { NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
+import { validateLeadInput } from '@/lib/validation'
 
 export async function POST(request: Request) {
   try {
     const body = await request.json()
+    const { valid, errors, data } = validateLeadInput(body)
+
+    if (!valid) {
+      return NextResponse.json({ error: 'Validation failed', details: errors }, { status: 400 })
+    }
 
     const lead = {
-      name: body.name || '',
-      email: body.email || '',
-      company: body.company || '',
-      role: body.role || '',
-      industry: body.industry || '',
-      company_size: body.company_size || '',
-      phone: body.phone || '',
-      source: body.source || 'contact',
-      score: body.score || null,
-      assessment_data: body.assessment_data || null,
-      calculator_data: body.calculator_data || null,
+      ...data,
       status: 'new',
     }
 
-    const { data, error } = await supabase
+    const { data: inserted, error } = await supabase
       .from('leads')
       .insert([lead])
       .select()
@@ -41,9 +37,9 @@ export async function POST(request: Request) {
             name: lead.name,
             source: lead.source,
             score: lead.score,
-            lead_id: data?.[0]?.id,
-            calculator_data: body.calculator_data || null,
-            assessment_data: body.assessment_data || null,
+            lead_id: inserted?.[0]?.id,
+            calculator_data: data.calculator_data || null,
+            assessment_data: data.assessment_data || null,
           }),
         })
       } catch (emailError) {
@@ -51,25 +47,8 @@ export async function POST(request: Request) {
       }
     }
 
-    return NextResponse.json({ success: true, data })
+    return NextResponse.json({ success: true, data: inserted })
   } catch {
     return NextResponse.json({ error: 'Invalid request' }, { status: 400 })
-  }
-}
-
-export async function GET() {
-  try {
-    const { data, error } = await supabase
-      .from('leads')
-      .select('*')
-      .order('created_at', { ascending: false })
-
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 })
-    }
-
-    return NextResponse.json({ data })
-  } catch {
-    return NextResponse.json({ error: 'Failed to fetch leads' }, { status: 500 })
   }
 }

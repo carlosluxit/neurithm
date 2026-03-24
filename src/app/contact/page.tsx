@@ -152,7 +152,7 @@ export default function ContactPage() {
       </section>
 
       {/* Form + Sidebar */}
-      <section className="relative pb-24">
+      <section aria-label="Contact form" className="relative pb-24">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Form */}

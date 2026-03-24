@@ -229,15 +229,15 @@ export default function Demos() {
                       : 'border-border bg-card hover:bg-card-hover hover:border-border-hover'
                   }`}
                 >
-                  <div className="flex items-start gap-3">
-                    <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${demo.color} flex items-center justify-center flex-shrink-0`}>
+                  <span className="flex items-start gap-3">
+                    <span className={`w-9 h-9 rounded-lg bg-gradient-to-br ${demo.color} flex items-center justify-center flex-shrink-0`}>
                       <Icon className="w-4 h-4 text-foreground" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-sm mb-0.5">{demo.title}</h4>
-                      <p className="text-xs text-muted leading-relaxed">{demo.description}</p>
-                    </div>
-                  </div>
+                    </span>
+                    <span className="block">
+                      <span className="font-medium text-sm mb-0.5 block">{demo.title}</span>
+                      <span className="text-xs text-muted leading-relaxed block">{demo.description}</span>
+                    </span>
+                  </span>
                 </button>
               )
             })}
@@ -474,7 +474,7 @@ export default function Demos() {
                 <div className="p-6 h-[520px] overflow-y-auto">
                   <div className="flex items-center gap-3 mb-6">
                     <Sparkles className="w-5 h-5 text-accent-light" />
-                    <h4 className="font-medium text-sm">AI-Generated Insights</h4>
+                    <h3 className="font-medium text-sm">AI-Generated Insights</h3>
                     <span className="text-[10px] px-2 py-0.5 rounded-full bg-success/10 text-success border border-success/20">Live</span>
                   </div>
                   <div className="space-y-3">
@@ -522,7 +522,7 @@ export default function Demos() {
                 <div className="p-6 h-[520px] overflow-y-auto">
                   <div className="flex items-center gap-3 mb-6">
                     <FileText className="w-5 h-5 text-accent-light" />
-                    <h4 className="font-medium text-sm">Multi-Channel Content Generation</h4>
+                    <h3 className="font-medium text-sm">Multi-Channel Content Generation</h3>
                   </div>
                   <div className="space-y-4">
                     <div className="p-4 rounded-xl bg-surface border border-border">
@@ -571,7 +571,7 @@ export default function Demos() {
                 <div className="p-6 h-[520px] overflow-y-auto">
                   <div className="flex items-center gap-3 mb-6">
                     <Zap className="w-5 h-5 text-accent-light" />
-                    <h4 className="font-medium text-sm">Intelligent Document Processing</h4>
+                    <h3 className="font-medium text-sm">Intelligent Document Processing</h3>
                     <span className="text-[10px] px-2 py-0.5 rounded-full bg-accent/10 text-accent-light border border-accent/20">Processing</span>
                   </div>
                   <div className="space-y-1">

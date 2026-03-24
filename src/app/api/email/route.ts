@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { supabase } from '@/lib/supabase'
+import { validateEmailInput } from '@/lib/validation'
 
 function getResendClient() {
   const key = process.env.RESEND_API_KEY
@@ -285,11 +286,13 @@ const emailTemplates = {
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { to, name, source, score, calculator_data, assessment_data } = body
+    const { valid, errors } = validateEmailInput(body)
 
-    if (!to) {
-      return NextResponse.json({ error: 'Email address required' }, { status: 400 })
+    if (!valid) {
+      return NextResponse.json({ error: 'Validation failed', details: errors }, { status: 400 })
     }
+
+    const { to, name, source, score, calculator_data, assessment_data } = body
 
     const resend = getResendClient()
     if (!resend) {

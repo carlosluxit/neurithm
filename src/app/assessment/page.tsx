@@ -212,14 +212,14 @@ export default function AssessmentPage() {
                       : 'border-border bg-card hover:bg-card-hover hover:border-border-hover'
                   }`}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                  <span className="flex items-start gap-4">
+                    <span className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-0.5 ${
                       isSelected ? 'border-accent bg-accent' : 'border-border'
                     }`}>
                       {isSelected && <CheckCircle2 className="w-4 h-4 text-white" />}
-                    </div>
+                    </span>
                     <span className="text-sm leading-relaxed">{option.label}</span>
-                  </div>
+                  </span>
                 </button>
               )
             })}

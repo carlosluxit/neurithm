@@ -1,20 +1,23 @@
 import { NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
+import { validateWhitepaperInput } from '@/lib/validation'
 
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { name, email, company, whitepaper_id } = body
+    const { valid, errors, data: validated } = validateWhitepaperInput(body)
 
-    if (!email || !whitepaper_id) {
-      return NextResponse.json({ error: 'Email and whitepaper ID required' }, { status: 400 })
+    if (!valid) {
+      return NextResponse.json({ error: 'Validation failed', details: errors }, { status: 400 })
     }
+
+    const { email, name, company, whitepaper_id } = validated
 
     // Save lead
     await supabase.from('leads').insert([{
-      name: name || '',
+      name,
       email,
-      company: company || '',
+      company,
       source: 'whitepaper',
       status: 'new',
       assessment_data: { whitepaper_id },

@@ -334,7 +334,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Filter Tabs */}
-      <section className="relative z-10 max-w-6xl mx-auto px-6 py-12">
+      <section aria-label="Filter by industry" className="relative z-10 max-w-6xl mx-auto px-6 py-12">
         <div className="flex items-center gap-4 flex-wrap justify-center">
           <Filter className="w-5 h-5 text-muted" />
           {industries.map((industry) => (
@@ -354,7 +354,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Case Study Cards */}
-      <section className="relative z-10 max-w-6xl mx-auto px-6 pb-24">
+      <section aria-label="Case study overview cards" className="relative z-10 max-w-6xl mx-auto px-6 pb-24">
         <div className="grid md:grid-cols-2 gap-8">
           {filteredStudies.map((study) => (
             <a

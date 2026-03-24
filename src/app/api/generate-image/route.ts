@@ -1,8 +1,14 @@
 import { NextResponse } from 'next/server'
+import { validateImagePrompt } from '@/lib/validation'
 
 export async function POST(request: Request) {
   try {
-    const { prompt } = await request.json()
+    const body = await request.json()
+    const { valid, error, prompt } = validateImagePrompt(body.prompt)
+
+    if (!valid) {
+      return NextResponse.json({ error: error || 'Invalid prompt' }, { status: 400 })
+    }
 
     const falKey = process.env.FAL_KEY
     if (!falKey || falKey === 'your_fal_key') {
@@ -26,8 +32,8 @@ export async function POST(request: Request) {
     })
 
     if (!response.ok) {
-      const error = await response.text()
-      console.error('Fal AI error:', error)
+      const err = await response.text()
+      console.error('Fal AI error:', err)
       return NextResponse.json({ error: 'Image generation failed' }, { status: 500 })
     }
 
