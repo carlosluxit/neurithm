@@ -13,7 +13,7 @@ function baseLayout(content: string) {
     <div style="font-family: system-ui, -apple-system, sans-serif; max-width: 600px; margin: 0 auto; background: #050510; color: #f0f0f5;">
       <div style="padding: 40px;">
         <div style="text-align: center; margin-bottom: 32px;">
-          <img src="https://neurithm.ai/logo.svg" alt="Neurithm" width="180" height="42" style="display: inline-block;" />
+          <img src="https://neurithm.dev/logo.svg" alt="Neurithm" width="180" height="42" style="display: inline-block;" />
           <p style="color: #6a6a7a; font-size: 12px; margin: 8px 0 0 0;">AI Transformation, synchronized.</p>
         </div>
         ${content}
@@ -22,7 +22,7 @@ function baseLayout(content: string) {
             &copy; ${new Date().getFullYear()} Neurithm. All rights reserved.
           </p>
           <p style="color: #6a6a7a; font-size: 11px; text-align: center; margin: 8px 0 0 0;">
-            <a href="https://neurithm.ai" style="color: #52B5F7; text-decoration: none;">neurithm.ai</a>
+            <a href="https://neurithm.dev" style="color: #52B5F7; text-decoration: none;">neurithm.dev</a>
           </p>
         </div>
       </div>
@@ -127,7 +127,7 @@ const emailTemplates = {
           </table>
         </div>
 
-        ${ctaButton('Book a Free Discovery Call', 'https://neurithm.ai/contact')}
+        ${ctaButton('Book a Free Discovery Call', 'https://neurithm.dev/contact')}
       `),
     }
   },
@@ -211,7 +211,7 @@ const emailTemplates = {
           </table>
         </div>
 
-        ${ctaButton('Discuss Your ROI Opportunity', 'https://neurithm.ai/contact')}
+        ${ctaButton('Discuss Your ROI Opportunity', 'https://neurithm.dev/contact')}
       `),
     }
   },
@@ -224,7 +224,7 @@ const emailTemplates = {
       'ai-governance': { title: 'Enterprise AI Governance Framework', file: 'ai-governance.pdf' },
     }
     const wp = wpMap[wpId] || wpMap['state-of-ai-2026']
-    const downloadUrl = `https://neurithm.ai/whitepapers/${wp.file}`
+    const downloadUrl = `https://neurithm.dev/whitepapers/${wp.file}`
 
     return {
       subject: `Your Download: ${wp.title} — Neurithm`,
@@ -253,7 +253,7 @@ const emailTemplates = {
           <p style="font-size: 13px; color: #8a8a9a; margin: 0 0 16px 0;">Get your AI readiness score in 2 minutes</p>
         </div>
 
-        ${ctaButton('Take the AI Assessment', 'https://neurithm.ai/assessment')}
+        ${ctaButton('Take the AI Assessment', 'https://neurithm.dev/assessment')}
       `),
     }
   },
@@ -271,13 +271,13 @@ const emailTemplates = {
       <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 24px; margin-bottom: 24px;">
         <h3 style="font-size: 16px; font-weight: 600; margin: 0 0 12px 0;">While You Wait</h3>
         <table style="width: 100%; border-collapse: collapse;">
-          <tr><td style="padding: 6px 0; color: #52B5F7; font-size: 14px;">&#x2192;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;"><a href="https://neurithm.ai/assessment" style="color: #52B5F7; text-decoration: none;">Take the AI Readiness Assessment</a></td></tr>
-          <tr><td style="padding: 6px 0; color: #52B5F7; font-size: 14px;">&#x2192;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;"><a href="https://neurithm.ai/calculator" style="color: #52B5F7; text-decoration: none;">Calculate Your AI ROI</a></td></tr>
-          <tr><td style="padding: 6px 0; color: #52B5F7; font-size: 14px;">&#x2192;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;"><a href="https://neurithm.ai/blog" style="color: #52B5F7; text-decoration: none;">Read Our Latest Insights</a></td></tr>
+          <tr><td style="padding: 6px 0; color: #52B5F7; font-size: 14px;">&#x2192;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;"><a href="https://neurithm.dev/assessment" style="color: #52B5F7; text-decoration: none;">Take the AI Readiness Assessment</a></td></tr>
+          <tr><td style="padding: 6px 0; color: #52B5F7; font-size: 14px;">&#x2192;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;"><a href="https://neurithm.dev/calculator" style="color: #52B5F7; text-decoration: none;">Calculate Your AI ROI</a></td></tr>
+          <tr><td style="padding: 6px 0; color: #52B5F7; font-size: 14px;">&#x2192;</td><td style="padding: 6px 0; color: #8a8a9a; font-size: 14px;"><a href="https://neurithm.dev/blog" style="color: #52B5F7; text-decoration: none;">Read Our Latest Insights</a></td></tr>
         </table>
       </div>
 
-      ${ctaButton('Explore Our Case Studies', 'https://neurithm.ai/case-studies')}
+      ${ctaButton('Explore Our Case Studies', 'https://neurithm.dev/case-studies')}
     `),
   }),
 }

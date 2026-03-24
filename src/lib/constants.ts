@@ -2,8 +2,8 @@ export const SITE = {
   name: 'Neurithm',
   tagline: 'AI Transformation synchronized to your ambition',
   description: 'Neurithm empowers enterprises to harness AI strategically, intelligently, and efficiently. From discovery to scaling, we synchronize AI transformation to your ambition.',
-  url: 'https://neurithm.ai',
-  email: 'hello@neurithm.ai',
+  url: 'https://neurithm.dev',
+  email: 'hello@neurithm.dev',
 } as const
 
 export const SERVICES = [

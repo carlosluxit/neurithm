@@ -15,7 +15,7 @@ function welcomeEmail(name: string) {
       <div style="font-family: system-ui, -apple-system, sans-serif; max-width: 600px; margin: 0 auto; background: #050510; color: #f0f0f5;">
         <div style="padding: 40px;">
           <div style="text-align: center; margin-bottom: 32px;">
-            <img src="https://neurithm.ai/logo.svg" alt="Neurithm" width="180" height="42" style="display: inline-block;" />
+            <img src="https://neurithm.dev/logo.svg" alt="Neurithm" width="180" height="42" style="display: inline-block;" />
             <p style="color: #6a6a7a; font-size: 12px; margin: 8px 0 0 0;">AI Transformation, synchronized.</p>
           </div>
 
@@ -37,7 +37,7 @@ function welcomeEmail(name: string) {
           </div>
 
           <div style="text-align: center; margin: 32px 0;">
-            <a href="https://neurithm.ai/assessment" style="display: inline-block; background: linear-gradient(135deg, #2EA3F2 0%, #1A7CC4 100%); color: white; padding: 14px 32px; border-radius: 12px; text-decoration: none; font-weight: 500; font-size: 15px;">
+            <a href="https://neurithm.dev/assessment" style="display: inline-block; background: linear-gradient(135deg, #2EA3F2 0%, #1A7CC4 100%); color: white; padding: 14px 32px; border-radius: 12px; text-decoration: none; font-weight: 500; font-size: 15px;">
               Take the AI Readiness Assessment
             </a>
           </div>
@@ -47,7 +47,7 @@ function welcomeEmail(name: string) {
               &copy; ${new Date().getFullYear()} Neurithm. All rights reserved.
             </p>
             <p style="color: #6a6a7a; font-size: 11px; text-align: center; margin: 8px 0 0 0;">
-              <a href="https://neurithm.ai" style="color: #52B5F7; text-decoration: none;">neurithm.ai</a>
+              <a href="https://neurithm.dev" style="color: #52B5F7; text-decoration: none;">neurithm.dev</a>
             </p>
           </div>
         </div>

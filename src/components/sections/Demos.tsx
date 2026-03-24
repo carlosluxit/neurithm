@@ -265,7 +265,7 @@ export default function Demos() {
                 </div>
                 <div className="flex-1 flex justify-center">
                   <div className="px-4 py-1 rounded-md bg-surface text-xs text-muted">
-                    neurithm.ai / demo / {activeDemo}
+                    neurithm.dev / demo / {activeDemo}
                   </div>
                 </div>
               </div>

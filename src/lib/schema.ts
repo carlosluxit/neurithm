@@ -4,13 +4,13 @@ export function organizationSchema() {
     '@type': 'Organization',
     name: 'Neurithm',
     description: 'AI Transformation Agency — empowering enterprises to harness AI strategically, intelligently, and efficiently.',
-    url: 'https://neurithm.ai',
-    logo: 'https://neurithm.ai/logo.png',
+    url: 'https://neurithm.dev',
+    logo: 'https://neurithm.dev/logo.png',
     sameAs: [],
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'sales',
-      email: 'hello@neurithm.ai',
+      email: 'hello@neurithm.dev',
     },
     offers: [
       {
@@ -37,10 +37,10 @@ export function websiteSchema() {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Neurithm',
-    url: 'https://neurithm.ai',
+    url: 'https://neurithm.dev',
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://neurithm.ai/blog?q={search_term_string}',
+      target: 'https://neurithm.dev/blog?q={search_term_string}',
       'query-input': 'required name=search_term_string',
     },
   }
@@ -52,7 +52,7 @@ export function serviceSchema() {
     '@type': 'ProfessionalService',
     name: 'Neurithm',
     description: 'AI transformation consulting, agent development, and process automation.',
-    url: 'https://neurithm.ai',
+    url: 'https://neurithm.dev',
     priceRange: '$$$$',
     areaServed: 'Global',
     serviceType: ['AI Consulting', 'AI Agent Development', 'Process Automation', 'AI Training'],
@@ -133,7 +133,7 @@ export function articleSchema(article: {
     publisher: {
       '@type': 'Organization',
       name: 'Neurithm',
-      url: 'https://neurithm.ai',
+      url: 'https://neurithm.dev',
     },
   }
 }

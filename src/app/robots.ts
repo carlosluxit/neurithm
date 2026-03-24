@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/admin/'],
       },
     ],
-    sitemap: 'https://neurithm.ai/sitemap.xml',
+    sitemap: 'https://neurithm.dev/sitemap.xml',
   }
 }

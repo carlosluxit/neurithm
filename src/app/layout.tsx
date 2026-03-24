@@ -44,14 +44,14 @@ export const metadata: Metadata = {
     "machine learning consulting",
     "intelligent automation",
   ],
-  metadataBase: new URL("https://neurithm.ai"),
+  metadataBase: new URL("https://neurithm.dev"),
   openGraph: {
     title: "Neurithm — AI Transformation Synchronized to Your Ambition",
     description:
       "From discovery to scaling, Neurithm synchronizes AI transformation to your ambition. Get your free AI readiness score.",
     type: "website",
     siteName: "Neurithm",
-    url: "https://neurithm.ai",
+    url: "https://neurithm.dev",
   },
   twitter: {
     card: "summary_large_image",
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://neurithm.ai",
+    canonical: "https://neurithm.dev",
   },
 };
 

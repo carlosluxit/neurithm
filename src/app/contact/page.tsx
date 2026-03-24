@@ -64,8 +64,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'hello@neurithm.ai',
-    href: 'mailto:hello@neurithm.ai',
+    value: 'hello@neurithm.dev',
+    href: 'mailto:hello@neurithm.dev',
   },
   {
     icon: Clock,
@@ -448,10 +448,10 @@ export default function ContactPage() {
             For partnerships, press, or enterprise-scale engagements, email us
             directly at{' '}
             <a
-              href="mailto:hello@neurithm.ai"
+              href="mailto:hello@neurithm.dev"
               className="text-accent-light hover:underline"
             >
-              hello@neurithm.ai
+              hello@neurithm.dev
             </a>
           </p>
         </div>
