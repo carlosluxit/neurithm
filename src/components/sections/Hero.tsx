@@ -65,16 +65,20 @@ export default function Hero() {
         />
 
         {/* Subheadline with Rotating Text */}
-        <div className="mt-10 text-2xl sm:text-3xl lg:text-4xl text-muted max-w-4xl mx-auto leading-relaxed text-center">
-          <div>Neurithm empowers enterprises to</div>
-          <RotatingText
-            texts={['harness AI strategically', 'automate intelligently', 'scale efficiently', 'transform boldly']}
-            mainClassName="text-accent-light font-semibold inline-flex justify-center"
-            rotationInterval={3000}
-            staggerDuration={0.02}
-            staggerFrom="first"
-            transition={{ type: 'spring', damping: 30, stiffness: 200 }}
-          />
+        <div className="mt-10 text-2xl sm:text-3xl lg:text-4xl text-muted max-w-4xl mx-auto leading-relaxed">
+          <div className="text-center">Neurithm empowers enterprises to</div>
+          <div className="flex justify-center">
+            <div className="text-left" style={{ minWidth: '16ch' }}>
+              <RotatingText
+                texts={['harness AI strategically', 'automate intelligently', 'scale efficiently', 'transform boldly']}
+                mainClassName="text-accent-light font-semibold inline-flex justify-start"
+                rotationInterval={3000}
+                staggerDuration={0.02}
+                staggerFrom="first"
+                transition={{ type: 'spring', damping: 30, stiffness: 200 }}
+              />
+            </div>
+          </div>
         </div>
 
         {/* CTAs */}

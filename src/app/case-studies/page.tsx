@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
+import dynamic from 'next/dynamic'
 import {
   Building2,
   TrendingUp,
@@ -13,6 +13,8 @@ import {
   Filter,
 } from 'lucide-react'
 import Link from 'next/link'
+
+const Orb = dynamic(() => import('@/components/reactbits/Orb'), { ssr: false })
 
 const industries = ['All', 'Healthcare', 'Financial Services', 'E-Commerce', 'Legal'] as const
 type Industry = (typeof industries)[number]
@@ -308,14 +310,20 @@ export default function CaseStudiesPage() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden min-h-[70vh] flex items-center">
-        {/* Orbs */}
-        <div className="orb-gradient orb-purple w-[700px] h-[700px] -top-48 -right-48 absolute opacity-30 animate-pulse-glow" />
-        <div className="orb-gradient orb-indigo w-[500px] h-[500px] -bottom-32 -left-32 absolute opacity-20" />
-        <div className="orb-gradient orb-blue w-[400px] h-[400px] top-1/3 left-1/4 absolute opacity-10" />
+        {/* Interactive Orb background */}
+        <div className="absolute inset-0 z-0 opacity-80">
+          <Orb
+            hue={260}
+            hoverIntensity={8}
+            rotateOnHover
+            forceHoverState={false}
+            backgroundColor="#050510"
+          />
+        </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 text-center pt-32 pb-20">
           <p className="section-label mb-6">Proven Outcomes</p>
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl xl:text-[7rem] 2xl:text-[8rem] heading-display uppercase mb-8">
+          <h1 className="text-4xl sm:text-6xl lg:text-8xl xl:text-[7rem] 2xl:text-[8rem] heading-display uppercase mb-8">
             Real Results. Real Transformation.
           </h1>
           <p className="text-2xl sm:text-3xl text-muted leading-relaxed max-w-3xl mx-auto">
@@ -326,8 +334,8 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Filter Tabs */}
-      <section className="relative z-10 max-w-6xl mx-auto px-6 pb-16">
-        <div className="flex items-center gap-3 flex-wrap justify-center">
+      <section className="relative z-10 max-w-6xl mx-auto px-6 py-12">
+        <div className="flex items-center gap-4 flex-wrap justify-center">
           <Filter className="w-5 h-5 text-muted" />
           {industries.map((industry) => (
             <button
@@ -352,43 +360,49 @@ export default function CaseStudiesPage() {
             <a
               key={study.id}
               href={`#${study.id}`}
-              className="glass-card rounded-2xl p-10 group transition-all duration-500 hover:scale-[1.02] hover:glow-sm block"
+              className="rounded-2xl overflow-hidden group transition-all duration-500 hover:scale-[1.02] block bg-[#0f0f1a] border border-white/[0.08] hover:border-accent/20"
             >
-              <div className="flex items-start justify-between mb-6">
-                <div className="w-16 h-16 rounded-2xl overflow-hidden">
-                  <Image
-                    src={study.icon}
-                    alt={study.industry}
-                    width={64}
-                    height={64}
-                    className="w-full h-full object-cover"
-                  />
+              {/* Visual header — results dashboard */}
+              <div className="relative h-56 bg-[#141422] border-b border-white/[0.06] p-8 flex flex-col justify-end overflow-hidden">
+                <div className="absolute top-0 right-0 w-56 h-56 orb-gradient orb-purple opacity-15 -translate-y-1/3 translate-x-1/3" />
+                <div className="relative z-10 grid grid-cols-2 gap-6">
+                  {study.results.slice(0, 2).map((result) => (
+                    <div key={result.label}>
+                      <p className="text-5xl font-extrabold text-white heading-display">
+                        {result.value}
+                      </p>
+                      <p className="text-sm text-muted mt-1 font-medium">
+                        {result.label}
+                      </p>
+                    </div>
+                  ))}
                 </div>
-                <span className="text-sm font-bold px-4 py-1.5 rounded-full glass-card text-accent-light uppercase tracking-wider">
+              </div>
+
+              {/* Content */}
+              <div className="p-8">
+                <span className="section-label text-accent-light">
                   {study.industry}
                 </span>
-              </div>
-              <h3 className="text-3xl font-bold mb-3 heading-section group-hover:text-accent-light transition-colors">
-                {study.headline}
-              </h3>
-              <p className="text-lg text-muted mb-8">
-                {study.company}
-              </p>
-              <div className="grid grid-cols-2 gap-6 mb-8">
-                {study.results.slice(0, 2).map((result) => (
-                  <div key={result.label}>
-                    <p className="text-4xl font-extrabold text-white heading-display">
-                      {result.value}
-                    </p>
-                    <p className="text-base text-muted mt-1">
-                      {result.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-accent/10 border border-accent/20 text-accent-light font-semibold text-base group-hover:bg-accent/20 group-hover:border-accent/40 transition-all">
-                Read full case study
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                <h3 className="text-3xl font-bold mt-3 mb-2 heading-section text-white group-hover:text-accent-light transition-colors">
+                  {study.headline}
+                </h3>
+                <p className="text-lg text-muted mb-6">
+                  {study.company}
+                </p>
+
+                {/* Feature-list rows */}
+                <div className="space-y-0 border-t border-white/[0.06]">
+                  {study.results.map((result) => (
+                    <div
+                      key={result.label}
+                      className="flex items-center justify-between py-3.5 border-b border-white/[0.06] last:border-b-0"
+                    >
+                      <span className="text-base text-foreground/80">{result.description}</span>
+                      <span className="text-base font-bold text-accent-light ml-4 whitespace-nowrap">{result.value}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </a>
           ))}
@@ -398,7 +412,7 @@ export default function CaseStudiesPage() {
       {/* Light contrast summary */}
       <section className="section-light py-24 lg:py-32">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-6xl sm:text-7xl lg:text-8xl xl:text-[9rem] font-black tracking-tight leading-[0.85] uppercase heading-display mb-10">
+          <h2 className="text-6xl sm:text-7xl lg:text-8xl xl:text-[7rem] 2xl:text-[8rem] font-black tracking-tight leading-[0.85] uppercase heading-display mb-10">
             Measurable
             <br />
             Impact
@@ -442,25 +456,14 @@ export default function CaseStudiesPage() {
 
           <div className="max-w-5xl mx-auto px-6 relative z-10">
             {/* Header */}
-            <div className="flex flex-col sm:flex-row items-start gap-6 mb-16">
-              <div className="w-20 h-20 rounded-2xl overflow-hidden shrink-0">
-                <Image
-                  src={study.icon}
-                  alt={study.industry}
-                  width={80}
-                  height={80}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div>
-                <span className="section-label inline-block mb-3">
-                  {study.industry}
-                </span>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold heading-display uppercase mb-3">
-                  {study.headline}
-                </h2>
-                <p className="text-xl text-muted">{study.company}</p>
-              </div>
+            <div className="mb-16">
+              <span className="section-label inline-block mb-4">
+                {study.industry}
+              </span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold heading-display uppercase mb-4">
+                {study.headline}
+              </h2>
+              <p className="text-xl text-muted">{study.company}</p>
             </div>
 
             {/* Company Profile */}
