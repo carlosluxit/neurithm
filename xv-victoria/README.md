@@ -22,7 +22,7 @@ var CONFIG = {
 ```
 
 - **WhatsApp**: si `whatsapp` queda vacío, el invitado elige a quién enviar el mensaje.
-- **Música**: reemplace `assets/musica.m4a` (es el audio del video, en bucle).
+- **Música**: reemplace `assets/musica.mp3` (es el audio del video, en bucle).
 - **Textos**: están en `index.html`.
 - **Vista previa al compartir**: tras publicar, cambie `assets/og.jpg` en las etiquetas `og:image` por la URL completa (ej. `https://su-dominio.com/assets/og.jpg`). `og-plantilla.html` es la plantilla con la que se generó esa imagen.
 
