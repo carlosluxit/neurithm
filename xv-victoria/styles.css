@@ -35,6 +35,8 @@ html {
 }
 body {
   margin: 0;
+  background: var(--lino) url("assets/lino.jpg") repeat;
+  background-size: 256px auto;
   font-family: var(--serif);
   color: var(--texto);
   font-size: 17px;

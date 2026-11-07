@@ -237,8 +237,14 @@
     }
     if (mensaje) txt += '\n\nMensaje para Victoria: ' + mensaje;
     var url = 'https://wa.me/' + CONFIG.whatsapp.replace(/\D/g, '') + '?text=' + encodeURIComponent(txt);
-    var w = window.open(url, '_blank');
-    if (w) { try { w.opener = null; } catch (e) {} } else { location.href = url; }
+    // Un enlace real abre WhatsApp (app o web) en una pestaña nueva; window.open se bloquea en algunos navegadores.
+    var enlace = document.createElement('a');
+    enlace.href = url;
+    enlace.target = '_blank';
+    enlace.rel = 'noopener';
+    document.body.appendChild(enlace);
+    enlace.click();
+    enlace.remove();
     gracias.hidden = false;
   });
 })();
