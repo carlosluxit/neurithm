@@ -9,8 +9,9 @@
     fin: '2026-12-27T00:00:00-05:00',
     titulo: 'XV Años de Victoria',
     lugar: 'Salón Social, Doral Cartagena',
-    // Número de WhatsApp que recibe las confirmaciones: código de país + número, sin "+" ni espacios.
-    // Ejemplo: '573001234567'. Si se deja vacío, WhatsApp le pedirá al invitado elegir el contacto.
+    // Las confirmaciones se guardan en la base de datos y se ven en /admin.
+    // Opcional: número de WhatsApp de la familia (código de país + número, sin "+" ni espacios,
+    // ej. '573001234567'). Si se llena, tras confirmar aparece el botón "Avisar también por WhatsApp".
     whatsapp: '',
     // Enlace de Google Maps. Puede reemplazarlo por el enlace exacto de "Compartir" del lugar.
     mapa: 'https://www.google.com/maps/search/?api=1&query=Sal%C3%B3n%20Social%20Doral%20Cartagena'
@@ -207,44 +208,130 @@
     else window.addEventListener('resize', medir);
   }
 
-  /* ---------- Confirmación por WhatsApp ---------- */
+  /* ---------- Confirmación de asistencia (se guarda en el servidor) ---------- */
   var form = $('#rsvp');
   var campoPersonas = $('#campo-personas');
-  var error = $('#rsvp-error');
-  var gracias = $('#rsvp-gracias');
-  $$('input[name="asiste"]', form).forEach(function (r) {
-    r.addEventListener('change', function () { campoPersonas.hidden = form.asiste.value === 'no'; });
-  });
-  form.addEventListener('submit', function (ev) {
-    ev.preventDefault();
-    var nombre = form.nombre.value.trim();
-    if (!nombre) {
-      error.hidden = false;
-      form.nombre.focus();
-      return;
-    }
-    error.hidden = true;
-    var asiste = form.asiste.value === 'si';
-    var personas = parseInt(form.personas.value, 10) || 1;
-    var mensaje = form.mensaje.value.trim();
-    var txt = '¡Hola! Soy ' + nombre + '.\n';
-    if (asiste) {
+  var errorGeneral = $('#rsvp-error');
+  var boton = $('#rsvp-enviar');
+  var panelOk = $('#rsvp-ok');
+  var previo = $('#rsvp-previo');
+  var abiertoEn = Date.now();
+  var GUARDADO = 'xv-victoria-rsvp';
+
+  function leerGuardado() { try { return JSON.parse(localStorage.getItem(GUARDADO) || 'null'); } catch (e) { return null; } }
+  function guardar(v) { try { localStorage.setItem(GUARDADO, JSON.stringify(v)); } catch (e) { /* sin almacenamiento */ } }
+
+  function textoWhatsApp(r) {
+    var txt = '¡Hola! Soy ' + r.nombre + '.\n';
+    if (r.asiste) {
       txt += 'Confirmo mi asistencia a los XV años de Victoria 🌸\n' +
         'Sábado 26 de diciembre · 7:00 p. m. · ' + CONFIG.lugar + '\n' +
-        (personas === 1 ? 'Asistiré 1 persona.' : 'Asistiremos ' + personas + ' personas.');
+        (r.personas === 1 ? 'Asistiré 1 persona.' : 'Asistiremos ' + r.personas + ' personas.');
     } else {
       txt += 'Con cariño te cuento que no podré asistir a los XV años de Victoria. ¡Le deseo una noche maravillosa! 🌸';
     }
-    if (mensaje) txt += '\n\nMensaje para Victoria: ' + mensaje;
-    var url = 'https://wa.me/' + CONFIG.whatsapp.replace(/\D/g, '') + '?text=' + encodeURIComponent(txt);
-    // Un enlace real abre WhatsApp (app o web) en una pestaña nueva; window.open se bloquea en algunos navegadores.
-    var enlace = document.createElement('a');
-    enlace.href = url;
-    enlace.target = '_blank';
-    enlace.rel = 'noopener';
-    document.body.appendChild(enlace);
-    enlace.click();
-    enlace.remove();
-    gracias.hidden = false;
+    return txt;
+  }
+
+  function mostrarConfirmado(r, nuevo) {
+    var primerNombre = r.nombre.split(' ')[0];
+    $('#rsvp-ok-titulo').textContent = '¡Gracias, ' + primerNombre + '!';
+    $('#rsvp-ok-texto').textContent = r.asiste
+      ? (nuevo === false ? 'Actualizamos tu confirmación: ' : 'Tu confirmación quedó registrada: ') +
+        (r.personas === 1 ? '1 persona' : r.personas + ' personas') + '. ¡Nos vemos el sábado 26 de diciembre!'
+      : (nuevo === false ? 'Actualizamos tu respuesta. ' : 'Recibimos tu respuesta. ') + 'Te vamos a extrañar; gracias por avisarnos con cariño.';
+    var wa = $('#rsvp-whatsapp');
+    if (CONFIG.whatsapp) {
+      wa.href = 'https://wa.me/' + CONFIG.whatsapp.replace(/\D/g, '') + '?text=' + encodeURIComponent(textoWhatsApp(r));
+      wa.hidden = false;
+    }
+    form.hidden = true;
+    panelOk.hidden = false;
+    panelOk.focus({ preventScroll: true });
+  }
+
+  function limpiarErrores() {
+    errorGeneral.hidden = true;
+    $$('.err', form).forEach(function (e) { e.hidden = true; e.textContent = ''; });
+    $$('[aria-invalid]', form).forEach(function (e) { e.removeAttribute('aria-invalid'); });
+  }
+  function errorCampo(nombre, texto) {
+    var el = $('#err-' + nombre);
+    var campo = form.elements[nombre];
+    if (el) { el.textContent = texto; el.hidden = false; }
+    if (campo && campo.setAttribute) campo.setAttribute('aria-invalid', 'true');
+  }
+  function errorTexto(texto) { errorGeneral.textContent = texto; errorGeneral.hidden = false; }
+
+  // Si ya confirmó desde este dispositivo, se lo recordamos.
+  var anterior = leerGuardado();
+  if (anterior && anterior.nombre) {
+    previo.textContent = 'Ya enviaste tu confirmación como «' + anterior.nombre + '». Si quieres cambiarla, envía el formulario de nuevo con el mismo nombre.';
+    previo.hidden = false;
+    form.nombre.value = anterior.nombre;
+  }
+
+  $$('input[name="asiste"]', form).forEach(function (r) {
+    r.addEventListener('change', function () { campoPersonas.hidden = form.asiste.value === 'no'; });
+  });
+  $('#rsvp-cambiar').addEventListener('click', function () {
+    panelOk.hidden = true;
+    form.hidden = false;
+    form.nombre.focus();
+  });
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    limpiarErrores();
+    var nombre = form.nombre.value.trim().replace(/\s+/g, ' ');
+    if (nombre.length < 2) { errorCampo('nombre', 'Escribe tu nombre completo.'); form.nombre.focus(); return; }
+
+    var datos = {
+      nombre: nombre,
+      asiste: form.asiste.value,
+      personas: parseInt(form.personas.value, 10) || 1,
+      telefono: form.telefono.value.trim(),
+      mensaje: form.mensaje.value.trim(),
+      sitio_web: form.sitio_web.value,
+      ms: Date.now() - abiertoEn
+    };
+
+    boton.disabled = true;
+    boton.classList.add('enviando');
+    boton.querySelector('span').textContent = 'Enviando…';
+
+    fetch('/api/rsvp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(datos),
+      credentials: 'same-origin'
+    })
+      .then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (cuerpo) { return { res: res, cuerpo: cuerpo }; });
+      })
+      .then(function (r) {
+        if (r.res.ok && r.cuerpo.ok) {
+          var resumen = { nombre: nombre, asiste: datos.asiste === 'si', personas: datos.asiste === 'si' ? datos.personas : 0 };
+          guardar(resumen);
+          previo.hidden = true;
+          mostrarConfirmado(resumen, r.cuerpo.nuevo);
+          return;
+        }
+        if (r.res.status === 400 && r.cuerpo.errores) {
+          Object.keys(r.cuerpo.errores).forEach(function (k) { errorCampo(k, r.cuerpo.errores[k]); });
+          var primero = $('[aria-invalid="true"]', form);
+          if (primero) primero.focus();
+          return;
+        }
+        errorTexto(r.cuerpo.error || 'No pudimos guardar tu confirmación. Intenta de nuevo en unos minutos.');
+      })
+      .catch(function () {
+        errorTexto('No pudimos enviar tu confirmación. Revisa tu conexión a internet e inténtalo de nuevo.');
+      })
+      .then(function () {
+        boton.disabled = false;
+        boton.classList.remove('enviando');
+        boton.querySelector('span').textContent = 'Enviar confirmación';
+      });
   });
 })();

@@ -183,15 +183,15 @@
             <figcaption><strong>Hombres</strong>Pantalón y camisa manga larga en tonos claros</figcaption>
           </figure>
         </div>
-        <div class="paleta" data-reveal>
-          <p class="mini-titulo">Inspiración en tonos claros</p>
-          <ul>
-            <li style="--c:#f4eee2">Marfil</li>
-            <li style="--c:#e8d9c1">Arena</li>
-            <li style="--c:#efd4d4">Rosa palo</li>
-            <li style="--c:#f3dccb">Durazno</li>
-            <li style="--c:#d9e4ee">Celeste</li>
-            <li style="--c:#e3dcec">Lavanda</li>
+        <div class="inspiracion" data-reveal>
+          <p class="mini-titulo">Algunas ideas para inspirarte</p>
+          <ul class="galeria">
+            <li><img src="assets/vestimenta/mujer-rosa.webp" alt="Mujer con vestido largo rosa palo" width="322" height="400" loading="lazy"></li>
+            <li><img src="assets/vestimenta/hombre-blanco.webp" alt="Hombre con pantalón beige y camisa blanca de manga larga" width="322" height="400" loading="lazy"></li>
+            <li><img src="assets/vestimenta/mujer-lavanda.webp" alt="Mujer con vestido largo lavanda" width="322" height="400" loading="lazy"></li>
+            <li><img src="assets/vestimenta/hombre-celeste.webp" alt="Hombre con pantalón gris claro y camisa celeste de manga larga" width="322" height="400" loading="lazy"></li>
+            <li><img src="assets/vestimenta/mujer-floral.webp" alt="Mujer con vestido largo de flores en tonos marfil y salvia" width="322" height="400" loading="lazy"></li>
+            <li><img src="assets/vestimenta/hombre-durazno.webp" alt="Hombre con pantalón crema y camisa durazno de manga larga" width="322" height="400" loading="lazy"></li>
           </ul>
         </div>
       </div>
@@ -222,32 +222,59 @@
         <p class="antetitulo" data-reveal>Me encantaría contar contigo</p>
         <h2 id="confirmar-titulo" class="titulo" data-reveal>Confirma tu asistencia</h2>
         <form class="arco-card formulario" id="rsvp" data-reveal novalidate>
-          <label class="campo">
+          <p class="previo" id="rsvp-previo" hidden></p>
+          <label class="campo" for="rsvp-nombre">
             <span>Nombre completo</span>
-            <input name="nombre" type="text" autocomplete="name" required placeholder="Escribe tu nombre">
+            <input id="rsvp-nombre" name="nombre" type="text" autocomplete="name" required maxlength="80" placeholder="Escribe tu nombre y apellido" aria-describedby="err-nombre">
+            <small class="err" id="err-nombre" hidden></small>
           </label>
           <fieldset class="campo opciones">
             <legend>¿Nos acompañas?</legend>
             <label><input type="radio" name="asiste" value="si" checked> <span>¡Sí, allí estaré!</span></label>
             <label><input type="radio" name="asiste" value="no"> <span>No podré asistir</span></label>
           </fieldset>
-          <label class="campo" id="campo-personas">
-            <span>Número de personas</span>
-            <select name="personas">
+          <label class="campo" id="campo-personas" for="rsvp-personas">
+            <span>¿Cuántas personas asistirán? <em>(contándote)</em></span>
+            <select id="rsvp-personas" name="personas" aria-describedby="err-personas">
               <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
             </select>
+            <small class="err" id="err-personas" hidden></small>
           </label>
-          <label class="campo">
+          <label class="campo" for="rsvp-telefono">
+            <span>Celular <em>(opcional, por si necesitamos avisarte algo)</em></span>
+            <input id="rsvp-telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" maxlength="25" placeholder="300 123 4567" aria-describedby="err-telefono">
+            <small class="err" id="err-telefono" hidden></small>
+          </label>
+          <label class="campo" for="rsvp-mensaje">
             <span>Un mensaje para Victoria <em>(opcional)</em></span>
-            <textarea name="mensaje" rows="3" maxlength="400" placeholder="Escribe tus buenos deseos"></textarea>
+            <textarea id="rsvp-mensaje" name="mensaje" rows="3" maxlength="500" placeholder="Escribe tus buenos deseos" aria-describedby="err-mensaje"></textarea>
+            <small class="err" id="err-mensaje" hidden></small>
           </label>
-          <p class="error" id="rsvp-error" role="alert" hidden>Por favor escribe tu nombre.</p>
-          <button class="boton ancho" type="submit">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.5-4.3a8.5 8.5 0 1 1 15.5-4.6z"/><path d="M9 8.5c0 3.5 2.6 6.5 6.5 6.8l1-1.6-2.1-1.1-.9.9c-1.2-.5-2.2-1.5-2.7-2.7l.9-.9-1.1-2.1z"/></svg>
-            Confirmar por WhatsApp
+          <!-- Campo trampa para bots: las personas no lo ven -->
+          <div class="trampa" aria-hidden="true">
+            <label for="rsvp-sitio">No llenes este campo</label>
+            <input id="rsvp-sitio" name="sitio_web" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <p class="error" id="rsvp-error" role="alert" hidden></p>
+          <button class="boton ancho" id="rsvp-enviar" type="submit">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            <span>Enviar confirmación</span>
           </button>
-          <p class="gracias" id="rsvp-gracias" role="status" hidden>¡Gracias! Solo falta enviar el mensaje en WhatsApp.</p>
+          <p class="mini nota-form">Si te equivocas, vuelve a enviar el formulario con el mismo nombre y actualizaremos tu respuesta.</p>
         </form>
+
+        <div class="arco-card confirmado" id="rsvp-ok" tabindex="-1" hidden>
+          <svg class="icono" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 54s-20-12.4-20-27a11 11 0 0 1 20-6.3A11 11 0 0 1 52 27c0 14.6-20 27-20 27z"/></svg>
+          <h3 id="rsvp-ok-titulo">¡Gracias!</h3>
+          <p class="dato" id="rsvp-ok-texto"></p>
+          <div class="botones">
+            <a class="boton" id="rsvp-whatsapp" href="#" target="_blank" rel="noopener" hidden>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.5-4.3a8.5 8.5 0 1 1 15.5-4.6z"/></svg>
+              Avisar también por WhatsApp
+            </a>
+            <button class="boton claro" id="rsvp-cambiar" type="button">Cambiar mi respuesta</button>
+          </div>
+        </div>
       </div>
     </section>
 
