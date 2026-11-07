@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Static invitation site (plain HTML/CSS/JS, not part of the Next.js app)
+    "xv-victoria/**",
   ]),
 ]);
 

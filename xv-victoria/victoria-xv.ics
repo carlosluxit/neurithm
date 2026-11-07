@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//XV Victoria//Invitacion//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:xv-victoria-20261226@invitacion
+DTSTAMP:20261107T120000Z
+DTSTART:20261227T000000Z
+DTEND:20261227T050000Z
+SUMMARY:XV Años de Victoria
+LOCATION:Salón Social\, Doral Cartagena
+DESCRIPTION:Vamos a celebrar mis XV años. Lluvia de sobres.\nCódigo de vestimenta — Mujeres: vestido largo. Hombres: pantalón y camisa manga larga en tonos claros.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Mañana: XV Años de Victoria
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR
