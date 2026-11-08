@@ -39,6 +39,14 @@ Las tablas (`rsvps`, `admin_sesiones`, `limites`) se crean solas la primera vez 
   y envíos instantáneos) y rechaza solicitudes de otros sitios.
 - De las IP solo se guarda un hash. Content-Security-Policy estricta y `noindex` en el panel y la API.
 
+## En línea
+
+- Invitación: https://xv-victoria-kappa.vercel.app
+- Panel: https://xv-victoria-kappa.vercel.app/admin
+- Proyecto de Vercel `xv-victoria` (equipo carlos-luxitio's projects) con base de datos Neon `xv-victoria-db` (plan gratis).
+- Para cambiar la contraseña del panel: Vercel → xv-victoria → Settings → Environment Variables →
+  `ADMIN_PASSWORD` → Edit, y luego Deployments → Redeploy.
+
 ## Publicar en Vercel
 
 1. Crear el proyecto con **Root Directory = `xv-victoria`** (o `vercel deploy` desde esta carpeta).
