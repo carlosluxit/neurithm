@@ -62,6 +62,16 @@ create table if not exists limites (
   creado  timestamptz not null default now()
 );
 create index if not exists limites_clave_creado_idx on limites (clave, creado);
+
+-- Cupos de la invitación al momento de confirmar
+alter table rsvps add column if not exists cupos smallint;
+
+-- Última copia de la lista de invitados (por si Google Sheets no responde)
+create table if not exists invitados_copia (
+  id     smallint    primary key check (id = 1),
+  datos  jsonb       not null,
+  leido  timestamptz not null default now()
+);
 `;
 
 // Crea las tablas la primera vez (idempotente). Se ejecuta una sola vez por instancia.

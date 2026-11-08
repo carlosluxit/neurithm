@@ -1,5 +1,5 @@
 /* =========================================================
-   XV Años de Victoria — invitación web
+   15 Años de Victoria — invitación web
    Paleta y tipografía tomadas del video de la invitación.
    ========================================================= */
 
@@ -203,17 +203,25 @@ a { color: inherit; }
   position: relative;
   min-height: 100vh;
   min-height: 100svh;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+  padding-bottom: max(14px, env(safe-area-inset-bottom));
 }
 .escena {
   position: relative;
   /* Cabe en pantalla en vertical; en celulares horizontales o muy bajos no baja de 340px para que se pueda leer */
-  width: min(100vw, max(56.25vh, 340px));
-  width: min(100vw, max(56.25svh, 340px));
+  /* Se deja ~76px abajo para el botón "Desliza", que va debajo de la tarjeta y nunca encima */
+  width: min(100vw, (100vh - 76px) * .5625);
+  width: min(100vw, (100svh - 76px) * .5625);
   aspect-ratio: 9 / 16;
   container-type: inline-size;
+}
+/* Celular horizontal: la tarjeta no baja de 340px para que se pueda leer (se recorre con scroll) */
+@media (orientation: landscape) and (max-height: 600px) {
+  .escena { width: min(100vw, 340px); }
 }
 .tarjeta { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .tarjeta text { font-family: var(--serif); }
@@ -256,26 +264,30 @@ a { color: inherit; }
 @keyframes mecer-inv { from { opacity: 1; transform: rotate(0deg); } to { opacity: 1; transform: rotate(1.8deg); } }
 
 .desliza {
-  position: absolute;
-  left: 50%;
-  bottom: max(4px, env(safe-area-inset-bottom));
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0;
-  color: var(--dorado);
-  text-decoration: none;
-  font-size: 12px;
-  letter-spacing: .26em;
-  text-transform: uppercase;
-  padding: 6px 14px;
+  position: relative;
   z-index: 5;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  min-height: 44px;
+  padding: 10px 20px 10px 22px;
+  border-radius: 999px;
+  background: var(--verde);
+  color: #f7f1e3;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 22px -10px rgba(40, 46, 25, .75), 0 0 0 4px rgba(255, 255, 255, .55);
 }
-.desliza svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; animation: rebote 1.8s ease-in-out infinite; }
-.js .desliza { opacity: 0; }
-.js.abierta .desliza { opacity: 1; transition: opacity 1s ease 3s; }
-@keyframes rebote { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+.desliza:focus-visible { outline: 2px solid var(--dorado); outline-offset: 4px; }
+.desliza svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; animation: rebote 1.6s ease-in-out infinite; }
+.js .desliza { opacity: 0; transform: translateY(8px); }
+.js.abierta .desliza { opacity: 1; transform: none; transition: opacity .8s ease 2.2s, transform .8s ease 2.2s; }
+@keyframes rebote { 0%, 100% { transform: translateY(-1px); } 50% { transform: translateY(4px); } }
 
 /* =========================================================
    SECCIONES
@@ -287,7 +299,7 @@ a { color: inherit; }
 .contenido { position: relative; z-index: 1; max-width: 520px; margin: 0 auto; text-align: center; }
 
 .antetitulo {
-  margin: 0 0 4px;
+  margin: 0 0 10px;
   text-wrap: balance;
   font-size: 12.5px;
   letter-spacing: .24em;
@@ -491,9 +503,15 @@ a { color: inherit; }
 .texto strong { color: var(--verde); font-weight: 600; }
 
 /* --- Confirmación --- */
-.formulario { text-align: left; padding: 78px 24px 30px; }
+.formulario {
+  text-align: left;
+  padding: 72px 24px 30px;
+  /* Arco más bajo que en las otras tarjetas: así ningún campo toca la curva, en ningún ancho */
+  border-radius: 50% 50% 18px 18px / 90px 90px 18px 18px;
+}
+.formulario::before { border-radius: 50% 50% 12px 12px / 82px 82px 12px 12px; }
 .campo { display: block; margin: 0 0 18px; }
-.campo > span, .campo legend {
+.campo > span, .campo legend, .titulo-campo {
   display: block;
   margin-bottom: 7px;
   font-size: 12px;
@@ -576,7 +594,7 @@ a { color: inherit; }
 .cierre .flores-sup { left: auto; right: -2%; top: 0; width: min(40%, 300px); }
 .cierre .flores-inf { left: -2%; top: auto; bottom: 0; width: min(40%, 300px); }
 .cierre .contenido { width: 100%; z-index: 3; text-shadow: 0 0 18px rgba(240, 238, 232, .9); }
-.nombre-cierre { margin: 6px 0 4px; font-family: var(--script); font-size: clamp(72px, 22vw, 108px); line-height: 1.05; color: var(--verde); }
+.nombre-cierre { margin: 22px 0 10px; font-family: var(--script); font-size: clamp(72px, 22vw, 108px); line-height: 1.05; color: var(--verde); }
 .fecha-cierre { margin: 0; font-size: 14px; letter-spacing: .34em; color: var(--dorado); }
 
 /* --- Botón de música --- */
@@ -633,3 +651,48 @@ a { color: inherit; }
   .mariposa, .destellos, .lluvia { display: none; }
   .js .flores { opacity: 1; }
 }
+
+/* --- Nombre con sugerencias de la lista de invitados --- */
+.campo-nombre { position: relative; }
+.combo { position: relative; }
+.sugerencias {
+  position: absolute;
+  z-index: 20;
+  left: 0;
+  right: 0;
+  top: calc(100% + 6px);
+  max-height: 264px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: #fffdf8;
+  border: 1px solid rgba(154, 116, 40, .35);
+  border-radius: 14px;
+  box-shadow: 0 18px 36px -16px rgba(62, 71, 39, .45);
+}
+.sugerencias li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 46px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--texto);
+}
+.sugerencias li[aria-selected="true"], .sugerencias li:hover { background: rgba(79, 90, 51, .1); }
+.sug-nombre { min-width: 0; overflow-wrap: anywhere; }
+.sug-cupos { flex: none; font-size: 12.5px; font-weight: 600; color: var(--dorado); }
+.ayuda { display: block; margin-top: 6px; font-size: 13.5px; line-height: 1.45; color: var(--texto-suave); }
+.cupos-info {
+  margin: 8px 0 0;
+  padding: 8px 12px;
+  font-size: 14.5px;
+  color: var(--verde-osc);
+  background: rgba(79, 90, 51, .09);
+  border-radius: 10px;
+}
+.campo select:disabled { color: var(--texto-suave); background-color: rgba(255, 255, 255, .45); cursor: not-allowed; }

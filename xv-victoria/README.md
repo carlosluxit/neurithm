@@ -14,12 +14,24 @@ guardada en una base de datos y un panel privado para la familia.
 - **Panel** (`/admin`): totales (personas que asistirán, sí, no), lista con búsqueda y filtros,
   exportar a CSV (Excel / Google Sheets) y eliminar respuestas de prueba o duplicadas.
 
+## Lista de invitados (Google Sheets)
+
+- La lista se lee de la hoja **"15 años Victoria"** (columnas `Nombre`, `Apellido`, `Cupos`; `Cupos` vacío = 1).
+- La hoja debe estar compartida como "Cualquier persona con el enlace: Lector". Su ID vive en la variable
+  `INVITADOS_SHEET_ID` de Vercel, no en el código, para no publicar el enlace de la lista.
+- Los cambios en la hoja se ven en la página en ~1 minuto, sin volver a desplegar. Si Google no responde,
+  se usa la última copia guardada en la base de datos.
+- En el formulario, el invitado escribe al menos 3 letras, elige su nombre y los cupos se llenan solos.
+  El servidor rechaza nombres que no están en la lista y confirmaciones por más personas que sus cupos.
+- El panel muestra todos los invitados, quién no ha respondido ("Sin responder") y los cupos por confirmar.
+
 ## Estructura
 
 ```
 public/          sitio estático (invitación + panel en public/admin)
 api/             funciones de Vercel
-  rsvp.js          POST: guarda o actualiza una confirmación
+  rsvp.js          POST: guarda o actualiza una confirmación (valida lista y cupos)
+  invitados.js     GET: sugerencias de nombres para el formulario
   admin/           login, logout, sesion, rsvps (lista/eliminar), exportar (CSV)
 lib/             código compartido (base de datos, validación, sesiones, límites)
 tests/           pruebas de la API contra un Postgres real

@@ -1,4 +1,4 @@
-/* XV Años de Victoria — interacción de la invitación */
+/* 15 Años de Victoria — interacción de la invitación */
 (function () {
   'use strict';
 
@@ -7,7 +7,7 @@
     // Fecha y hora del evento (hora de Colombia, UTC-5)
     inicio: '2026-12-26T19:00:00-05:00',
     fin: '2026-12-27T00:00:00-05:00',
-    titulo: 'XV Años de Victoria',
+    titulo: '15 Años de Victoria',
     lugar: 'Salón Social, Doral Cartagena',
     // Las confirmaciones se guardan en la base de datos y se ven en /admin.
     // Opcional: número de WhatsApp de la familia (código de país + número, sin "+" ni espacios,
@@ -164,7 +164,7 @@
 
   /* ---------- Calendario y mapa ---------- */
   function utc(ms) { return new Date(ms).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); }
-  var detalles = 'Vamos a celebrar mis XV años. Lluvia de sobres.\n' +
+  var detalles = 'Vamos a celebrar mis 15 años. Lluvia de sobres.\n' +
     'Código de vestimenta — Mujeres: vestido largo. Hombres: pantalón y camisa manga larga en tonos claros.';
   var gcal = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
     '&text=' + encodeURIComponent(CONFIG.titulo) +
@@ -221,14 +221,155 @@
   function leerGuardado() { try { return JSON.parse(localStorage.getItem(GUARDADO) || 'null'); } catch (e) { return null; } }
   function guardar(v) { try { localStorage.setItem(GUARDADO, JSON.stringify(v)); } catch (e) { /* sin almacenamiento */ } }
 
+  /* --- Nombre con sugerencias de la lista de invitados (y cupos automáticos) --- */
+  var inNombre = $('#rsvp-nombre');
+  var listaSug = $('#sugerencias');
+  var inInvitado = $('#rsvp-invitado');
+  var infoCupos = $('#cupos-info');
+  var ayudaNombre = $('#ayuda-nombre');
+  var selPersonas = $('#rsvp-personas');
+  var modoLista = false;     // se activa si el servidor tiene lista de invitados
+  var seleccionado = null;   // { id, nombre, cupos }
+  var opciones = [];
+  var activo = -1;
+  var temporizador = null;
+  var consultaN = 0;
+  var AYUDA = 'Escribe al menos 3 letras y elige tu nombre de la lista.';
+
+  function clave(s) {
+    return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+      .replace(/[^a-z0-9ñ ]/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+  function opcionesPersonas(max, valor) {
+    selPersonas.textContent = '';
+    for (var i = 1; i <= max; i++) {
+      var o = document.createElement('option');
+      o.value = String(i); o.textContent = String(i);
+      selPersonas.appendChild(o);
+    }
+    selPersonas.value = String(valor || 1);
+  }
+  function sinNombreElegido() {
+    selPersonas.textContent = '';
+    var o = document.createElement('option');
+    o.value = ''; o.textContent = 'Primero elige tu nombre';
+    selPersonas.appendChild(o);
+    selPersonas.disabled = true;
+  }
+  function cerrarSug() {
+    listaSug.hidden = true;
+    listaSug.textContent = '';
+    inNombre.setAttribute('aria-expanded', 'false');
+    inNombre.removeAttribute('aria-activedescendant');
+    opciones = [];
+    activo = -1;
+  }
+  function marcarActivo(i) {
+    var items = $$('[role="option"]', listaSug);
+    items.forEach(function (li, k) { li.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+    activo = i;
+    if (items[i]) { inNombre.setAttribute('aria-activedescendant', items[i].id); items[i].scrollIntoView({ block: 'nearest' }); }
+  }
+  function elegir(inv) {
+    seleccionado = inv;
+    inNombre.value = inv.nombre;
+    inInvitado.value = inv.id;
+    cerrarSug();
+    selPersonas.disabled = false;
+    opcionesPersonas(inv.cupos, inv.cupos);
+    infoCupos.textContent = inv.cupos === 1 ? 'Tu invitación es para 1 persona.' : 'Tu invitación es para ' + inv.cupos + ' personas.';
+    infoCupos.hidden = false;
+    ayudaNombre.hidden = true;
+    var err = $('#err-nombre'); err.hidden = true; inNombre.removeAttribute('aria-invalid');
+  }
+  function quitarSeleccion() {
+    seleccionado = null;
+    inInvitado.value = '';
+    infoCupos.hidden = true;
+    ayudaNombre.hidden = false;
+    if (modoLista) sinNombreElegido();
+  }
+  function pintarSug(resultados, q) {
+    listaSug.textContent = '';
+    opciones = resultados;
+    activo = -1;
+    if (!resultados.length) {
+      cerrarSug();
+      ayudaNombre.textContent = 'No encontramos «' + q + '» en la lista. Revisa cómo lo escribiste (solo nombre o apellido también sirve).';
+      return;
+    }
+    ayudaNombre.textContent = AYUDA;
+    resultados.forEach(function (inv, k) {
+      var li = document.createElement('li');
+      li.id = 'sug-' + k;
+      li.setAttribute('role', 'option');
+      li.setAttribute('aria-selected', 'false');
+      var n = document.createElement('span'); n.className = 'sug-nombre'; n.textContent = inv.nombre;
+      var c = document.createElement('span'); c.className = 'sug-cupos'; c.textContent = inv.cupos === 1 ? '1 cupo' : inv.cupos + ' cupos';
+      li.appendChild(n); li.appendChild(c);
+      li.addEventListener('mousedown', function (e) { e.preventDefault(); });
+      li.addEventListener('click', function () { elegir(inv); });
+      listaSug.appendChild(li);
+    });
+    listaSug.hidden = false;
+    inNombre.setAttribute('aria-expanded', 'true');
+  }
+  function buscarInvitados() {
+    var q = inNombre.value.trim();
+    if (clave(q).replace(/ /g, '').length < 3) { cerrarSug(); ayudaNombre.textContent = AYUDA; return; }
+    var n = ++consultaN;
+    fetch('/api/invitados?q=' + encodeURIComponent(q), { credentials: 'same-origin' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (n !== consultaN) return; // llegó una respuesta vieja
+        if (d.ok === false) { ayudaNombre.textContent = d.error || AYUDA; return; }
+        pintarSug(d.resultados || [], q);
+      })
+      .catch(function () { if (n === consultaN) ayudaNombre.textContent = 'Sin conexión. Revisa tu internet e inténtalo de nuevo.'; });
+  }
+
+  // ¿Hay lista de invitados? (si no, el nombre es libre como antes)
+  fetch('/api/invitados', { credentials: 'same-origin' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      modoLista = Boolean(d && d.lista);
+      if (!modoLista) { ayudaNombre.hidden = true; inNombre.removeAttribute('role'); inNombre.placeholder = 'Nombre y apellido'; return; }
+      if (seleccionado) elegir(seleccionado); else sinNombreElegido();
+    })
+    .catch(function () { /* se resolverá al enviar */ });
+
+  inNombre.addEventListener('input', function () {
+    if (seleccionado && inNombre.value !== seleccionado.nombre) quitarSeleccion();
+    if (!modoLista) return;
+    clearTimeout(temporizador);
+    temporizador = setTimeout(buscarInvitados, 220);
+  });
+  inNombre.addEventListener('keydown', function (e) {
+    if (listaSug.hidden || !opciones.length) return;
+    if (e.key === 'ArrowDown') { e.preventDefault(); marcarActivo((activo + 1) % opciones.length); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); marcarActivo(activo <= 0 ? opciones.length - 1 : activo - 1); }
+    else if (e.key === 'Enter') { e.preventDefault(); elegir(opciones[activo > -1 ? activo : 0]); }
+    else if (e.key === 'Escape') { cerrarSug(); }
+  });
+  inNombre.addEventListener('blur', function () {
+    setTimeout(function () {
+      // Si escribió el nombre completo exacto, lo elegimos por él.
+      if (!seleccionado && opciones.length) {
+        var exacto = opciones.filter(function (o) { return o.id === clave(inNombre.value); })[0];
+        if (exacto) { elegir(exacto); return; }
+      }
+      cerrarSug();
+    }, 160);
+  });
+
   function textoWhatsApp(r) {
     var txt = '¡Hola! Soy ' + r.nombre + '.\n';
     if (r.asiste) {
-      txt += 'Confirmo mi asistencia a los XV años de Victoria 🌸\n' +
+      txt += 'Confirmo mi asistencia a los 15 años de Victoria 🌸\n' +
         'Sábado 26 de diciembre · 7:00 p. m. · ' + CONFIG.lugar + '\n' +
         (r.personas === 1 ? 'Asistiré 1 persona.' : 'Asistiremos ' + r.personas + ' personas.');
     } else {
-      txt += 'Con cariño te cuento que no podré asistir a los XV años de Victoria. ¡Le deseo una noche maravillosa! 🌸';
+      txt += 'Con cariño te cuento que no podré asistir a los 15 años de Victoria. ¡Le deseo una noche maravillosa! 🌸';
     }
     return txt;
   }
@@ -238,7 +379,8 @@
     $('#rsvp-ok-titulo').textContent = '¡Gracias, ' + primerNombre + '!';
     $('#rsvp-ok-texto').textContent = r.asiste
       ? (nuevo === false ? 'Actualizamos tu confirmación: ' : 'Tu confirmación quedó registrada: ') +
-        (r.personas === 1 ? '1 persona' : r.personas + ' personas') + '. ¡Nos vemos el sábado 26 de diciembre!'
+        (r.personas === 1 ? '1 persona' : r.personas + ' personas') +
+        (r.cupos ? ' de ' + r.cupos + (r.cupos === 1 ? ' cupo' : ' cupos') : '') + '. ¡Nos vemos el sábado 26 de diciembre!'
       : (nuevo === false ? 'Actualizamos tu respuesta. ' : 'Recibimos tu respuesta. ') + 'Te vamos a extrañar; gracias por avisarnos con cariño.';
     var wa = $('#rsvp-whatsapp');
     if (CONFIG.whatsapp) {
@@ -269,6 +411,7 @@
     previo.textContent = 'Ya enviaste tu confirmación como «' + anterior.nombre + '». Si quieres cambiarla, envía el formulario de nuevo con el mismo nombre.';
     previo.hidden = false;
     form.nombre.value = anterior.nombre;
+    if (anterior.id && anterior.cupos) seleccionado = { id: anterior.id, nombre: anterior.nombre, cupos: anterior.cupos };
   }
 
   $$('input[name="asiste"]', form).forEach(function (r) {
@@ -285,8 +428,14 @@
     limpiarErrores();
     var nombre = form.nombre.value.trim().replace(/\s+/g, ' ');
     if (nombre.length < 2) { errorCampo('nombre', 'Escribe tu nombre completo.'); form.nombre.focus(); return; }
+    if (modoLista && !seleccionado) {
+      errorCampo('nombre', 'Elige tu nombre de la lista de sugerencias (escribe al menos 3 letras).');
+      form.nombre.focus();
+      return;
+    }
 
     var datos = {
+      invitado: seleccionado ? seleccionado.id : '',
       nombre: nombre,
       asiste: form.asiste.value,
       personas: parseInt(form.personas.value, 10) || 1,
@@ -311,7 +460,13 @@
       })
       .then(function (r) {
         if (r.res.ok && r.cuerpo.ok) {
-          var resumen = { nombre: nombre, asiste: datos.asiste === 'si', personas: datos.asiste === 'si' ? datos.personas : 0 };
+          var resumen = {
+            nombre: r.cuerpo.nombre || nombre,
+            asiste: datos.asiste === 'si',
+            personas: datos.asiste === 'si' ? datos.personas : 0,
+            cupos: r.cuerpo.cupos || null,
+            id: seleccionado ? seleccionado.id : null
+          };
           guardar(resumen);
           previo.hidden = true;
           mostrarConfirmado(resumen, r.cuerpo.nuevo);

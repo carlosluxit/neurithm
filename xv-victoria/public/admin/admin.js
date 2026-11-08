@@ -1,4 +1,4 @@
-/* Panel de confirmaciones — XV años de Victoria */
+/* Panel de confirmaciones — 15 años de Victoria */
 (function () {
   'use strict';
 
@@ -57,8 +57,7 @@
   function pintar() {
     var q = normalizar(buscar.value.trim());
     var visibles = datos.filter(function (r) {
-      if (filtro === 'si' && !r.asiste) return false;
-      if (filtro === 'no' && r.asiste) return false;
+      if (filtro !== 'todos' && r.estado !== filtro) return false;
       if (!q) return true;
       return normalizar(r.nombre + ' ' + (r.telefono || '') + ' ' + (r.mensaje || '')).indexOf(q) > -1;
     });
@@ -76,14 +75,24 @@
         veces.textContent = 'Actualizó su respuesta ' + (r.veces - 1) + (r.veces === 2 ? ' vez' : ' veces');
         nombre.appendChild(veces);
       }
+      if (r.enLista === false) {
+        var fuera = document.createElement('span');
+        fuera.className = 'fuera';
+        fuera.textContent = 'No está en la lista de invitados';
+        nombre.appendChild(fuera);
+      }
       tr.appendChild(celda('c-nombre', nombre));
 
       var pill = document.createElement('span');
-      pill.className = 'pill ' + (r.asiste ? 'si' : 'no');
-      pill.textContent = r.asiste ? 'Asiste' : 'No asiste';
+      pill.className = 'pill ' + r.estado;
+      pill.textContent = r.estado === 'si' ? 'Asiste' : r.estado === 'no' ? 'No asiste' : 'Sin responder';
       tr.appendChild(celda('c-resp', pill));
 
-      tr.appendChild(celda('c-personas num', r.asiste ? String(r.personas) : ''));
+      var plural = function (n, uno, varios) { return n + ' ' + (n === 1 ? uno : varios); };
+      var txtPersonas = '';
+      if (r.estado === 'si') txtPersonas = r.cupos ? r.personas + ' de ' + plural(r.cupos, 'cupo', 'cupos') : plural(r.personas, 'persona', 'personas');
+      else if (r.estado === 'pendiente' && r.cupos) txtPersonas = plural(r.cupos, 'cupo', 'cupos');
+      tr.appendChild(celda('c-personas', txtPersonas));
 
       var tel = '';
       if (r.telefono) {
@@ -98,16 +107,18 @@
       msg.textContent = r.mensaje || '';
       tr.appendChild(celda('c-msg', r.mensaje ? msg : ''));
 
-      tr.appendChild(celda('c-fecha fecha', fmtFecha.format(new Date(r.actualizado))));
+      tr.appendChild(celda('c-fecha fecha', r.actualizado ? fmtFecha.format(new Date(r.actualizado)) : ''));
 
       var acc = celda('acciones', null);
-      var borrar = document.createElement('button');
-      borrar.type = 'button';
-      borrar.className = 'borrar';
-      borrar.textContent = 'Eliminar';
-      borrar.setAttribute('aria-label', 'Eliminar la respuesta de ' + r.nombre);
-      borrar.addEventListener('click', function () { pedirConfirmacion(acc, r); });
-      acc.appendChild(borrar);
+      if (r.id) {
+        var borrar = document.createElement('button');
+        borrar.type = 'button';
+        borrar.className = 'borrar';
+        borrar.textContent = 'Eliminar respuesta';
+        borrar.setAttribute('aria-label', 'Eliminar la respuesta de ' + r.nombre);
+        borrar.addEventListener('click', function () { pedirConfirmacion(acc, r); });
+        acc.appendChild(borrar);
+      }
       tr.appendChild(acc);
 
       filas.appendChild(tr);
@@ -149,14 +160,32 @@
       if (!res.ok) { mostrarAviso(res.cuerpo.error || 'No se pudieron cargar las confirmaciones.', true); return; }
       vistaAcceso.hidden = true;
       vistaPanel.hidden = false;
-      datos = res.cuerpo.rsvps || [];
-      var t = res.cuerpo.totales;
-      document.getElementById('t-personas').textContent = t.personas;
-      document.getElementById('t-personas-detalle').textContent =
-        t.asisten ? 'en ' + t.asisten + (t.asisten === 1 ? ' confirmación' : ' confirmaciones') : 'Todavía nadie ha confirmado';
-      document.getElementById('t-asisten').textContent = t.asisten;
-      document.getElementById('t-no').textContent = t.noAsisten;
-      document.getElementById('t-total').textContent = t.respuestas;
+      var c = res.cuerpo;
+      datos = c.filas || [];
+      var t = c.totales;
+      var $t = function (id, txt) { document.getElementById(id).textContent = txt; };
+      $t('t-personas', t.personas);
+      $t('t-asisten', t.asisten);
+      $t('t-no', t.noAsisten);
+      if (c.conLista) {
+        $t('t-personas-detalle', 'de ' + t.cupos + (t.cupos === 1 ? ' cupo invitado' : ' cupos invitados'));
+        $t('t-asisten-detalle', 'de ' + t.invitaciones + (t.invitaciones === 1 ? ' invitación' : ' invitaciones'));
+        $t('t-no-detalle', ' ');
+        $t('t-pend-etiqueta', 'Sin responder');
+        $t('t-pend', t.pendientes);
+        $t('t-pend-detalle', t.cuposPendientes + (t.cuposPendientes === 1 ? ' cupo por confirmar' : ' cupos por confirmar'));
+      } else {
+        $t('t-personas-detalle', t.asisten ? 'en ' + t.asisten + (t.asisten === 1 ? ' confirmación' : ' confirmaciones') : 'Todavía nadie ha confirmado');
+        $t('t-asisten-detalle', ' ');
+        $t('t-no-detalle', ' ');
+        $t('t-pend-etiqueta', 'Respuestas en total');
+        $t('t-pend', t.respuestas);
+        $t('t-pend-detalle', ' ');
+      }
+      document.getElementById('chip-pendiente').hidden = !c.conLista;
+      var hoja = document.getElementById('btn-hoja');
+      if (c.hojaUrl) { hoja.href = c.hojaUrl; hoja.hidden = false; } else hoja.hidden = true;
+      if (c.avisoLista) mostrarAviso('No se pudo leer la hoja de invitados: ' + c.avisoLista, true);
       pintar();
     }).catch(function () {
       mostrarAviso('No hay conexión con el servidor. Revisa tu internet y presiona Actualizar.', true);

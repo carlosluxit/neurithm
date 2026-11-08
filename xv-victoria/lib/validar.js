@@ -14,7 +14,7 @@ export function claveNombre(nombre) {
     .replace(/\s+/g, ' ').trim();
 }
 
-export function validarRsvp(datos) {
+export function validarRsvp(datos, { maxPersonas = MAX_PERSONAS, mensajePersonas } = {}) {
   const errores = {};
 
   const nombre = texto(datos.nombre).replace(/\s+/g, ' ');
@@ -30,8 +30,8 @@ export function validarRsvp(datos) {
   let personas = 0;
   if (asiste) {
     personas = Number(datos.personas);
-    if (!Number.isInteger(personas) || personas < 1 || personas > MAX_PERSONAS) {
-      errores.personas = `Elige entre 1 y ${MAX_PERSONAS} personas.`;
+    if (!Number.isInteger(personas) || personas < 1 || personas > maxPersonas) {
+      errores.personas = mensajePersonas || `Elige entre 1 y ${maxPersonas} personas.`;
     }
   }
 

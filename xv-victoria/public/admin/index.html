@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Panel · XV Victoria</title>
+  <title>Panel · 15 años de Victoria</title>
   <meta name="robots" content="noindex, nofollow">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#4f5a33">
@@ -16,7 +16,7 @@
   <main class="acceso" id="vista-acceso" hidden>
     <form class="tarjeta-acceso" id="form-acceso" novalidate>
       <img class="sello" src="/assets/sello.webp" alt="" width="220" height="274">
-      <p class="eyebrow">XV años de Victoria</p>
+      <p class="eyebrow">15 años de Victoria</p>
       <h1>Panel de confirmaciones</h1>
       <label class="campo" for="contrasena">
         <span>Contraseña</span>
@@ -32,7 +32,7 @@
   <div class="panel" id="vista-panel" hidden>
     <header class="barra">
       <div class="barra-titulo">
-        <p class="eyebrow">XV años de Victoria · 26 de diciembre</p>
+        <p class="eyebrow">15 años de Victoria · 26 de diciembre</p>
         <h1>Confirmaciones</h1>
       </div>
       <div class="barra-acciones">
@@ -43,6 +43,10 @@
         <a class="boton claro" id="btn-exportar" href="/api/admin/exportar">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 19h14"/></svg>
           Exportar CSV
+        </a>
+        <a class="boton claro" id="btn-hoja" href="#" target="_blank" rel="noopener" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="2"/><path d="M4 9h16M4 14.5h16M10 9v11.5"/></svg>
+          Editar lista de invitados
         </a>
         <button class="boton fantasma" id="btn-salir" type="button">Cerrar sesión</button>
       </div>
@@ -58,14 +62,17 @@
         <article class="cifra">
           <p class="etiqueta">Confirmaron que sí</p>
           <p class="valor" id="t-asisten">–</p>
+          <p class="detalle" id="t-asisten-detalle">&nbsp;</p>
         </article>
         <article class="cifra">
           <p class="etiqueta">No podrán asistir</p>
           <p class="valor" id="t-no">–</p>
+          <p class="detalle" id="t-no-detalle">&nbsp;</p>
         </article>
         <article class="cifra">
-          <p class="etiqueta">Respuestas en total</p>
-          <p class="valor" id="t-total">–</p>
+          <p class="etiqueta" id="t-pend-etiqueta">Sin responder</p>
+          <p class="valor" id="t-pend">–</p>
+          <p class="detalle" id="t-pend-detalle">&nbsp;</p>
         </article>
       </section>
 
@@ -76,6 +83,7 @@
             <button type="button" class="chip activo" data-filtro="todos" aria-pressed="true">Todos</button>
             <button type="button" class="chip" data-filtro="si" aria-pressed="false">Asisten</button>
             <button type="button" class="chip" data-filtro="no" aria-pressed="false">No asisten</button>
+            <button type="button" class="chip" data-filtro="pendiente" aria-pressed="false" id="chip-pendiente">Sin responder</button>
           </div>
           <label class="buscar" for="buscar">
             <span class="sr">Buscar invitado</span>
@@ -92,7 +100,7 @@
               <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Respuesta</th>
-                <th scope="col" class="num">Personas</th>
+                <th scope="col">Personas</th>
                 <th scope="col">Celular</th>
                 <th scope="col">Mensaje</th>
                 <th scope="col">Actualizado</th>

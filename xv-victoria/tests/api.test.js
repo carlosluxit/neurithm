@@ -131,7 +131,7 @@ test('flujo completo del administrador', { skip: omitir }, async () => {
   const d = await l.json();
   assert.ok(d.totales.respuestas >= 2);
   assert.equal(d.totales.noAsisten, 1);
-  const ana = d.rsvps.find((x) => x.nombre === 'ana maria PEREZ');
+  const ana = d.filas.find((x) => x.nombre === 'ana maria PEREZ');
   assert.ok(ana, 'debe mostrar el nombre más reciente');
 
   const csv = await exportar.GET(req('/api/admin/exportar', { method: 'GET', cookie }));
@@ -140,10 +140,10 @@ test('flujo completo del administrador', { skip: omitir }, async () => {
   const bytes = Buffer.from(await csv.arrayBuffer());
   assert.deepEqual([...bytes.subarray(0, 3)], [0xef, 0xbb, 0xbf], 'CSV con BOM para que Excel lea las tildes');
   const texto = bytes.subarray(3).toString('utf8');
-  assert.ok(texto.startsWith('"Nombre";"Asiste"'));
+  assert.ok(texto.startsWith('"Nombre";"Estado";"Cupos"'));
   assert.ok(texto.includes('"+57 300 123 4567"'), 'el celular no debe llevar apóstrofo');
 
-  const carlos = d.rsvps.find((x) => x.nombre === 'Carlos Gómez');
+  const carlos = d.filas.find((x) => x.nombre === 'Carlos Gómez');
   assert.equal((await lista.DELETE(req(`/api/admin/rsvps?id=${carlos.id}`, { method: 'DELETE', cookie, origin: 'https://malo.example' }))).status, 403);
   assert.equal((await lista.DELETE(req(`/api/admin/rsvps?id=${carlos.id}`, { method: 'DELETE', cookie }))).status, 200);
   assert.equal((await lista.DELETE(req(`/api/admin/rsvps?id=${carlos.id}`, { method: 'DELETE', cookie }))).status, 404);

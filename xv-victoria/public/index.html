@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>XV Años de Victoria</title>
-  <meta name="description" content="Vamos a celebrar mis XV años. Sábado 26 de diciembre, 7:00 p. m. — Salón Social, Doral Cartagena.">
+  <title>15 Años de Victoria</title>
+  <meta name="description" content="Vamos a celebrar mis 15 años. Sábado 26 de diciembre, 7:00 p. m. — Salón Social, Doral Cartagena.">
   <meta name="theme-color" content="#e8d3d3">
   <meta name="color-scheme" content="light">
 
   <!-- Vista previa al compartir por WhatsApp / redes.
        Si cambia de dominio, actualice estas dos URL. -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Mis XV Años · Victoria">
+  <meta property="og:title" content="Mis 15 Años · Victoria">
   <meta property="og:description" content="Sábado 26 de diciembre · 7:00 p. m. · Salón Social, Doral Cartagena">
   <meta property="og:image" content="https://xv-victoria-kappa.vercel.app/assets/og.jpg">
   <meta property="og:url" content="https://xv-victoria-kappa.vercel.app/">
@@ -50,7 +50,7 @@
       <img class="deco deco-inf" src="assets/flores-inf.webp" alt="" width="499" height="660" aria-hidden="true">
       <div class="escena">
         <svg class="tarjeta" viewBox="0 0 1080 1920" role="img" aria-labelledby="t-titulo t-desc">
-          <title id="t-titulo">Vamos a celebrar mis XV años — Victoria</title>
+          <title id="t-titulo">Vamos a celebrar mis 15 años — Victoria</title>
           <desc id="t-desc">Sábado 26 de diciembre a las 7:00 p. m. en el Salón Social, Doral Cartagena. Lluvia de sobres. Código de vestimenta: mujeres, vestido largo; hombres, pantalón y camisa manga larga en tonos claros.</desc>
           <defs>
             <path id="curva" d="M 241 761 A 299 299 0 0 1 839 761"/>
@@ -61,7 +61,7 @@
 
           <g class="t t1">
             <text class="dorado curvo"><textPath href="#curva" startOffset="50%" text-anchor="middle">VAMOS A CELEBRAR</textPath></text>
-            <text class="dorado sub" x="540" y="571" text-anchor="middle">MIS XV AÑOS</text>
+            <text class="dorado sub" x="540" y="571" text-anchor="middle">MIS 15 AÑOS</text>
           </g>
 
           <g clip-path="url(#trazo)">
@@ -224,11 +224,21 @@
         <h2 id="confirmar-titulo" class="titulo" data-reveal>Confirma tu asistencia</h2>
         <form class="arco-card formulario" id="rsvp" data-reveal novalidate>
           <p class="previo" id="rsvp-previo" hidden></p>
-          <label class="campo" for="rsvp-nombre">
-            <span>Nombre completo</span>
-            <input id="rsvp-nombre" name="nombre" type="text" autocomplete="name" required maxlength="80" placeholder="Nombre y apellido" aria-describedby="err-nombre">
+          <div class="campo campo-nombre">
+            <label class="titulo-campo" for="rsvp-nombre">Tu nombre</label>
+            <div class="combo">
+              <input id="rsvp-nombre" name="nombre" type="text" required maxlength="80"
+                     autocomplete="off" autocapitalize="words" spellcheck="false"
+                     placeholder="Empieza a escribir tu nombre"
+                     role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="sugerencias"
+                     aria-describedby="ayuda-nombre err-nombre">
+              <ul class="sugerencias" id="sugerencias" role="listbox" aria-label="Invitados que coinciden" hidden></ul>
+            </div>
+            <input type="hidden" name="invitado" id="rsvp-invitado">
+            <small class="ayuda" id="ayuda-nombre">Escribe al menos 3 letras y elige tu nombre de la lista.</small>
+            <p class="cupos-info" id="cupos-info" role="status" hidden></p>
             <small class="err" id="err-nombre" hidden></small>
-          </label>
+          </div>
           <fieldset class="campo opciones">
             <legend>¿Nos acompañas?</legend>
             <label><input type="radio" name="asiste" value="si" checked> <span>¡Sí, allí estaré!</span></label>
