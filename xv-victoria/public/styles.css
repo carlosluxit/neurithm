@@ -209,8 +209,9 @@ a { color: inherit; }
 }
 .escena {
   position: relative;
-  width: min(100vw, 56.25vh);
-  width: min(100vw, 56.25svh);
+  /* Cabe en pantalla en vertical; en celulares horizontales o muy bajos no baja de 340px para que se pueda leer */
+  width: min(100vw, max(56.25vh, 340px));
+  width: min(100vw, max(56.25svh, 340px));
   aspect-ratio: 9 / 16;
   container-type: inline-size;
 }
@@ -224,7 +225,7 @@ a { color: inherit; }
 .tarjeta .nombre { font-family: var(--script); font-size: 226px; fill: var(--verde); stroke: var(--verde); stroke-width: 2.6px; paint-order: stroke; }
 .tarjeta .lugar { font-size: 45px; }
 .tarjeta .negrita { font-size: 38px; font-weight: 700; }
-.tarjeta .pequeno { font-size: 31px; fill: var(--verde); }
+.tarjeta .pequeno { font-size: 33px; fill: var(--verde); }
 .tarjeta .dorado-b { fill: var(--dorado); font-weight: 700; }
 .tarjeta .lineas line { stroke: var(--dorado); stroke-width: 2.4; opacity: .8; }
 .tarjeta .arco { fill: none; stroke: var(--rosa); stroke-width: 2.6; }
@@ -265,10 +266,10 @@ a { color: inherit; }
   gap: 0;
   color: var(--dorado);
   text-decoration: none;
-  font-size: 11px;
-  letter-spacing: .3em;
+  font-size: 12px;
+  letter-spacing: .26em;
   text-transform: uppercase;
-  padding: 4px 12px;
+  padding: 6px 14px;
   z-index: 5;
 }
 .desliza svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; animation: rebote 1.8s ease-in-out infinite; }
@@ -287,6 +288,7 @@ a { color: inherit; }
 
 .antetitulo {
   margin: 0 0 4px;
+  text-wrap: balance;
   font-size: 12.5px;
   letter-spacing: .24em;
   text-transform: uppercase;
@@ -296,6 +298,7 @@ a { color: inherit; }
   margin: 0 0 34px;
   font-family: var(--script);
   font-weight: 400;
+  text-wrap: balance;
   font-size: clamp(42px, 11.6vw, 64px);
   line-height: 1.15;
   padding: 0 .15em;
@@ -311,7 +314,7 @@ a { color: inherit; }
 }
 
 .mini { font-size: 13.5px; color: var(--texto-suave); margin: 18px 0 0; line-height: 1.55; }
-.mini a { color: var(--dorado); text-underline-offset: 3px; }
+.mini a { color: var(--dorado); text-underline-offset: 3px; padding-block: 12px; }
 
 /* Aparición al hacer scroll */
 .js [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 1s ease, transform 1s cubic-bezier(.2, .7, .2, 1); }
@@ -375,7 +378,7 @@ a { color: inherit; }
 .boton:focus-visible { outline: 2px solid var(--dorado); outline-offset: 3px; }
 .boton.claro { background: rgba(255, 255, 255, .6); color: var(--verde); }
 .boton.claro:hover { background: #fff; }
-.boton.ancho { width: 100%; justify-content: center; padding: 16px 22px; font-size: 15px; }
+.boton.ancho { width: 100%; justify-content: center; padding: 16px 14px; font-size: clamp(14px, 4.2vw, 15px); letter-spacing: .03em; }
 
 /* --- Mensaje --- */
 .mensaje { padding-top: clamp(56px, 12vw, 96px); }
@@ -416,7 +419,7 @@ a { color: inherit; }
   color: var(--dorado);
   font-variant-numeric: tabular-nums lining-nums;
 }
-.caja .lbl { margin-top: 4px; font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--verde); }
+.caja .lbl { margin-top: 4px; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--verde); }
 .contador-fin { font-family: var(--script); font-size: 40px; color: var(--verde); margin: 0; }
 
 /* --- Código de vestimenta --- */
